@@ -124,4 +124,4 @@ app.get('/travelinquiryform', function(req, res) {
 
 // 127.0.0.1:8080 is the URL
 app.listen(8080);
-console.log('8080 is the magic port');
+console.log('Listening on port 8080. IP is 127.0.0.1:8080');
