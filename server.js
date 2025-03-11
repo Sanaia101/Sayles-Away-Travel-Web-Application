@@ -13,8 +13,8 @@ async function initializeClient() {
     const issuer = await Issuer.discover('https://cognito-idp.us-east-1.amazonaws.com/us-east-1_9lWjSwVLc');
     client = new issuer.Client({
         client_id: '43l78mq196f1c1abgvpauqt53',
-        client_secret: '<client secret>',
-        redirect_uris: ['https://d84l1y8p4kdic.cloudfront.net'],
+        client_secret: '6opdhq3e1l1gv063f147a5k5sqd1fifj8smn78v72ab6d88ahko',
+        redirect_uris: ['http://localhost:8080/travelinquiryform'],
         response_types: ['code']
     });
 };
@@ -26,19 +26,14 @@ app.use(session({
     saveUninitialized: false
 }));
 
-const checkAuth = (req, res, next) => {
-    if (!req.session.userInfo) {
-        req.isAuthenticated = false;
-    } else {
-        req.isAuthenticated = true;
-    }
+app.use((req, res, next) => {
+    app.locals.isAuthenticated = req.session.userInfo ? true : false;
+    app.locals.userInfo = req.session.userInfo || null;
     next();
-};
+});
 
-app.get('/', checkAuth, (req, res) => {
-    res.render('index', {
-        isAuthenticated: req.isAuthenticated,
-        userInfo: req.session.userInfo
+app.get('/', (req, res) => {
+    res.render('index.ejs', {
     });
 });
 
@@ -50,7 +45,7 @@ app.get('/login', (req, res) => {
     req.session.state = state;
 
     const authUrl = client.authorizationUrl({
-        scope: 'phone openid email',
+        scope: 'email openid',
         state: state,
         nonce: nonce,
     });
@@ -69,11 +64,11 @@ function getPathFromURL(urlString) {
     }
 }
 
-app.get(getPathFromURL('https://d84l1y8p4kdic.cloudfront.net'), async (req, res) => {
+app.get(getPathFromURL('http://localhost:8080/travelinquiryform'), async (req, res) => {
     try {
         const params = client.callbackParams(req);
         const tokenSet = await client.callback(
-            'https://d84l1y8p4kdic.cloudfront.net',
+            'http://localhost:8080/travelinquiryform',
             params,
             {
                 nonce: req.session.nonce,
@@ -94,32 +89,41 @@ app.get(getPathFromURL('https://d84l1y8p4kdic.cloudfront.net'), async (req, res)
 // Logout route
 app.get('/logout', (req, res) => {
     req.session.destroy();
-    const logoutUrl = `https://<user pool domain>/logout?client_id=43l78mq196f1c1abgvpauqt53&logout_uri=<logout uri>`;
+    const logoutUrl = `https://us-east-19lwjswvlc.auth.us-east-1.amazoncognito.com/logout?client_id=43l78mq196f1c1abgvpauqt53&logout_uri=http://localhost:8080/`;
     res.redirect(logoutUrl);
 });
 
 app.get('/aboutus', function(req, res) {
-    res.render("about-us.ejs", {});
+    res.render("about-us.ejs", {
+    });
 });
 
 app.get('/contact', function(req, res) {
-    res.render("contact.ejs", {});
+    res.render("contact.ejs", {
+    });
 });
 
 app.get('/groupsandweddings', function(req, res) {
-    res.render("Groups & Weddings.ejs", {});
-});
-
-app.get('/index', function(req, res) {
-    res.render("index.ejs", {});
+    res.render("Groups & Weddings.ejs", {
+    });
 });
 
 app.get('/traveltermsandinsurance', function(req, res) {
-    res.render("Travel Terms & Insurance.ejs", {});
+    res.render("Travel Terms & Insurance.ejs", {
+    });
 });
 
-app.get('/travelinquiryform', function(req, res) {
-    res.render("Travel Inquiry Form", {});
+function isAuthenticated(req, res, next) {
+    if (req.session.userInfo) {
+        return next(); // User is authenticated, proceed to the next middleware/route
+    } else {
+        res.redirect('/login'); // User is not authenticated, redirect to login
+    }
+}
+
+app.get('/travelinquiryform', isAuthenticated, (req, res) => {
+    res.render("Travel Inquiry Form.ejs", {
+    });
 });
 
 // 127.0.0.1:8080 is the URL
