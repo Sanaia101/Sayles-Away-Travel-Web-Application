@@ -14,7 +14,7 @@ async function initializeClient() {
     client = new issuer.Client({
         client_id: '43l78mq196f1c1abgvpauqt53',
         client_secret: '6opdhq3e1l1gv063f147a5k5sqd1fifj8smn78v72ab6d88ahko',
-        redirect_uris: ['http://localhost:8080/travelinquiryform'],
+        redirect_uris: ['http://localhost:8080/callback'],
         response_types: ['code']
     });
 };
@@ -53,22 +53,11 @@ app.get('/login', (req, res) => {
     res.redirect(authUrl);
 });
 
-// Helper function to get the path from the URL. Example: "http://localhost/hello" returns "/hello"
-function getPathFromURL(urlString) {
-    try {
-        const url = new URL(urlString);
-        return url.pathname;
-    } catch (error) {
-        console.error('Invalid URL:', error);
-        return null;
-    }
-}
-
-app.get(getPathFromURL('http://localhost:8080/travelinquiryform'), async (req, res) => {
+app.get('/callback', async (req, res) => {
     try {
         const params = client.callbackParams(req);
         const tokenSet = await client.callback(
-            'http://localhost:8080/travelinquiryform',
+            'http://localhost:8080/callback',
             params,
             {
                 nonce: req.session.nonce,
@@ -79,7 +68,7 @@ app.get(getPathFromURL('http://localhost:8080/travelinquiryform'), async (req, r
         const userInfo = await client.userinfo(tokenSet.access_token);
         req.session.userInfo = userInfo;
 
-        res.redirect('/');
+        res.redirect('/travelinquiryform');
     } catch (err) {
         console.error('Callback error:', err);
         res.redirect('/');
@@ -128,4 +117,4 @@ app.get('/travelinquiryform', isAuthenticated, (req, res) => {
 
 // 127.0.0.1:8080 is the URL
 app.listen(8080);
-console.log('Listening on port 8080. IP is 127.0.0.1:8080');
+console.log('Listening on port 8080. Server is http://localhost:8080');
