@@ -13,11 +13,11 @@ async function initializeClient() {
     const issuer = await Issuer.discover('https://cognito-idp.us-east-1.amazonaws.com/us-east-1_9lWjSwVLc');
     client = new issuer.Client({
         client_id: '43l78mq196f1c1abgvpauqt53',
-        client_secret: '<client secret>',
-        redirect_uris: ['https://d84l1y8p4kdic.cloudfront.net/auth/callback'],
+        client_secret: '6opdhq3e1l1gv063f147a5k5sqd1fifj8smn78v72ab6d88ahko',
+        redirect_uris: ['http://localhost:8080/callback'],
         response_types: ['code']
     });
-}
+};
 initializeClient().catch(console.error);
 
 app.use(session({
@@ -26,20 +26,17 @@ app.use(session({
     saveUninitialized: false
 }));
 
-const checkAuth = (req, res, next) => {
-    req.isAuthenticated = !!req.session.userInfo;
+app.use((req, res, next) => {
+    app.locals.isAuthenticated = req.session.userInfo ? true : false;
+    app.locals.userInfo = req.session.userInfo || null;
     next();
-};
+});
 
-// Home Route
-app.get('/', checkAuth, (req, res) => {
-    res.render('index', {
-        isAuthenticated: req.isAuthenticated,
-        userInfo: req.session.userInfo
+app.get('/', (req, res) => {
+    res.render('index.ejs', {
     });
 });
 
-// Login Route
 app.get('/login', (req, res) => {
     const nonce = generators.nonce();
     const state = generators.state();
@@ -56,12 +53,11 @@ app.get('/login', (req, res) => {
     res.redirect(authUrl);
 });
 
-// OpenID Callback Route
-app.get('/auth/callback', async (req, res) => {
+app.get('/callback', async (req, res) => {
     try {
         const params = client.callbackParams(req);
         const tokenSet = await client.callback(
-            'https://d84l1y8p4kdic.cloudfront.net/auth/callback',
+            'http://localhost:8080/callback',
             params,
             {
                 nonce: req.session.nonce,
@@ -79,30 +75,58 @@ app.get('/auth/callback', async (req, res) => {
     }
 });
 
-// Logout Route
+// Logout route
 app.get('/logout', (req, res) => {
     req.session.destroy();
-    const logoutUrl = `https://your-user-pool-domain/logout?client_id=43l78mq196f1c1abgvpauqt53&logout_uri=https://d84l1y8p4kdic.cloudfront.net`;
+    const logoutUrl = `https://us-east-19lwjswvlc.auth.us-east-1.amazoncognito.com/logout?client_id=43l78mq196f1c1abgvpauqt53&logout_uri=http://localhost:8080/`;
     res.redirect(logoutUrl);
 });
 
-// Middleware for Authentication Check
+app.get('/aboutus', function(req, res) {
+    res.render("about-us.ejs", {
+    });
+});
+
+app.get('/contact', function(req, res) {
+    res.render("contact.ejs", {
+    });
+});
+
+app.get('/destination-weddings', function(req, res) {
+    res.render("destination-weddings.ejs", {
+    });
+});
+
+app.get('/group-travel-services', function(req, res) {
+    res.render("group-travel-services.ejs", {
+    });
+});
+
+app.get('/excursions', function(req, res) {
+    res.render("excursions.ejs", {
+    });
+});
+
+
+
+app.get('/traveltermsandinsurance', function(req, res) {
+    res.render("Travel Terms & Insurance.ejs", {
+    });
+});
+
 function isAuthenticated(req, res, next) {
     if (req.session.userInfo) {
-        return next();
+        return next(); // User is authenticated, proceed to the next middleware/route
     } else {
-        res.redirect('/login');
+        res.redirect('/login'); // User is not authenticated, redirect to login
     }
 }
 
-// Pages
-app.get('/about-us', (req, res) => res.render('about-us'));
-app.get('/contact', (req, res) => res.render('contact'));
-app.get('/excursions', isAuthenticated, (req, res) => res.render('excursions'));
-app.get('/travel-inquiry-form', isAuthenticated, (req, res) => res.render('travel-inquiry-form'));
-app.get('/traveltermsandinsurance', (req, res) => res.render('Travel Terms & Insurance'));
-app.get('/group-travel-services', (req, res) => res.render('group-travel-services'));
-app.get('/destination-weddings', (req, res) => res.render('destination-weddings'));
+app.get('/travelinquiryform', isAuthenticated, (req, res) => {
+    res.render("Travel Inquiry Form.ejs", {
+    });
+});
 
-// Start Server
-app.listen(8080, () => console.log('Server running on port 8080'));
+// 127.0.0.1:8080 is the URL
+app.listen(8080);
+console.log('Listening on port 8080. Server is http://localhost:8080');
