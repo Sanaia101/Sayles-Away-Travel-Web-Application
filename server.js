@@ -37,6 +37,11 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/excursions', (req, res) => {
+    res.render('excursions.ejs', {
+    });
+});
+
 app.get('/login', (req, res) => {
     const nonce = generators.nonce();
     const state = generators.state();
@@ -102,6 +107,11 @@ app.get('/traveltermsandinsurance', function(req, res) {
     });
 });
 
+app.get('/excursions', function(req, res) {
+    res.render("excursions.ejs", {
+    });
+});
+
 function isAuthenticated(req, res, next) {
     if (req.session.userInfo) {
         return next(); // User is authenticated, proceed to the next middleware/route
@@ -112,6 +122,11 @@ function isAuthenticated(req, res, next) {
 
 app.get('/travelinquiryform', isAuthenticated, (req, res) => {
     res.render("Travel Inquiry Form.ejs", {
+    });
+});
+
+app.get('/excursions', isAuthenticated, (req, res) => {
+    res.render("excursions.ejs", {
     });
 });
 
