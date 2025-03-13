@@ -101,7 +101,6 @@ app.get('/contact', (req, res) => res.render('contact'));
 app.get('/excursions', isAuthenticated, (req, res) => res.render('excursions'));
 app.get('/travel-inquiry-form', isAuthenticated, (req, res) => res.render('travel-inquiry-form'));
 app.get('/traveltermsandinsurance', (req, res) => res.render('Travel Terms & Insurance'));
-app.get('/groups-and-weddings', (req, res) => res.render('groups-and-weddings'));
 app.get('/group-travel-services', (req, res) => res.render('group-travel-services'));
 app.get('/destination-weddings', (req, res) => res.render('destination-weddings'));
 
