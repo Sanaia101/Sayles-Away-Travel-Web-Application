@@ -2,13 +2,17 @@ const express = require('express');
 const session = require('express-session');
 const { Issuer, generators } = require('openid-client');
 const app = express();
+const bodyParser  = require('body-parser');
+
+const axios = require('axios');
+
+app.use(bodyParser.urlencoded());
 
 app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
 
 let client;
-// Initialize OpenID Client
 async function initializeClient() {
     const issuer = await Issuer.discover('https://cognito-idp.us-east-1.amazonaws.com/us-east-1_9lWjSwVLc');
     client = new issuer.Client({
@@ -45,7 +49,7 @@ app.get('/login', (req, res) => {
     req.session.state = state;
 
     const authUrl = client.authorizationUrl({
-        scope: 'email openid',
+        scope: 'email openid profile',
         state: state,
         nonce: nonce,
     });
@@ -75,7 +79,6 @@ app.get('/callback', async (req, res) => {
     }
 });
 
-// Logout route
 app.get('/logout', (req, res) => {
     req.session.destroy();
     const logoutUrl = `https://us-east-19lwjswvlc.auth.us-east-1.amazoncognito.com/logout?client_id=43l78mq196f1c1abgvpauqt53&logout_uri=http://localhost:8080/`;
@@ -107,8 +110,6 @@ app.get('/excursions', function(req, res) {
     });
 });
 
-
-
 app.get('/traveltermsandinsurance', function(req, res) {
     res.render("Travel Terms & Insurance.ejs", {
     });
@@ -116,16 +117,35 @@ app.get('/traveltermsandinsurance', function(req, res) {
 
 function isAuthenticated(req, res, next) {
     if (req.session.userInfo) {
-        return next(); // User is authenticated, proceed to the next middleware/route
+        return next();
     } else {
-        res.redirect('/login'); // User is not authenticated, redirect to login
+        res.redirect('/login');
     }
 }
 
-app.get('/travelinquiryform', isAuthenticated, (req, res) => {
-    res.render("Travel Inquiry Form.ejs", {
-    });
+app.get('/travelinquiryform', isAuthenticated, async (req, res) => {
+    try {
+        const userInfo = req.session.userInfo;
+
+        const response = await axios.post('http://localhost:5000/travelinquiryform', {
+            first_name: userInfo.given_name, 
+            last_name: userInfo.family_name,
+            email: userInfo.email
+        });
+
+        if (response.status === 200 || response.status === 201) {
+            res.render('Travel Inquiry Form.ejs', {
+                user_info: userInfo
+            });
+        } else {
+            res.redirect('/');
+        }
+    } catch (error) {
+        console.error(error);
+        res.redirect('/');
+    }
 });
+
 
 // 127.0.0.1:8080 is the URL
 app.listen(8080);
