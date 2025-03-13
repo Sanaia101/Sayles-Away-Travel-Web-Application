@@ -24,6 +24,7 @@
 
 <body>
 
+
     <!--================ Offcanvus Menu Area =================-->
     <div class="side_menu" style="padding-top: 0; margin-top: 0;">
 		<div class="logo">
@@ -59,8 +60,10 @@
 		</ul>
 	</div>
 	
-    
-    <!--================ End Offcanvus Menu Area =================-->
+	
+	
+	<!--================ End Offcanvus Menu Area =================-->
+
 
     <!--================ Canvus Menu Area =================-->
     <div class="canvus_menu">
@@ -72,33 +75,18 @@
     </div>
     <!--================ End Canvus Menu Area =================-->
 
-    <% if (isAuthenticated) { %>
-        <section class="top-btn-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <a href="/logout" class="main_btn">
-                            Log out
-                            <img src="img/next.png" alt="">
-                        </a>
-                    </div>
+    <section class="top-btn-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="/login" class="main_btn">
+						Login
+                        <img src="img/next.png" alt="">
+                    </a>
                 </div>
             </div>
-        </section>
-        <% } else { %>
-            <section class="top-btn-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <a href="/login" class="main_btn">
-                                Log in
-                                <img src="img/next.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        <% } %>
+        </div>
+    </section>
 
     <!--================ Start banner section =================-->
     <section class="home-banner-area common-banner relative">

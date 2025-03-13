@@ -24,47 +24,45 @@
 
 <body>
 
-    <!--================ Offcanvus Menu Area =================-->
-    <div class="side_menu">
+
+
+	<!--================ Offcanvus Menu Area =================-->
+    <div class="side_menu" style="padding-top: 0; margin-top: 0;">
 		<div class="logo">
-			<a href="/">
-				<img src="" alt="">
-			</a>
+			<a href="/"></a>
 		</div>
-		<ul class="list menu-left">
+		<ul class="list menu-left" style="margin-top: -20px;">
 			<li>
-                <a href="/">Home</a>
-            </li>
-            <li>
-            </li>
-            <li>
-                <a href="/groupsandweddings">Groups & Weddings</a>
-            </li>
-            <li>
-                <% if (isAuthenticated) { %>
+				<a href="/">Home</a>
+			</li>
+			<li>
+				<a href="/group-travel-services">Group Travel Services</a>
+			</li>
+			<li>
+				<a href="/destination-weddings">Destination Weddings</a>
+			</li>
+			<li>
+				<a href="/excursions">Excursions</a>
+			</li>
+			<li>
+				<% if (isAuthenticated) { %>
 					<a href="/travelinquiryform">Travel Inquiry Form</a>
 				<% } %>
-            </li>
-            <li>
-            </li>
-            <li>
-                <a href="/traveltermsandinsurance">Travel Terms & Insurance</a>
-            </li>
-            <li>   
-            </li>
-            <li>
-                <a href="/aboutus">About</a>
-            </li>
-            <li>
-            <li>
-                <a href="/contact">Contact Us</a>
-            </li>
-        </ul>
-    </div>
-    <!--================ End Offcanvus Menu Area =================-->
-
-    <!--================ Canvus Menu Area =================-->
-    <div class="canvus_menu">
+			</li>
+			<li>
+				<a href="/traveltermsandinsurance">Travel Terms & Insurance</a>
+			</li>
+			<li>
+				<a href="/aboutus">About</a>
+			</li>
+			<li>
+				<a href="/contact">Contact Us</a>
+			</li>
+		</ul>
+	</div>
+	
+     <!--================ Canvus Menu Area =================-->
+     <div class="canvus_menu">
         <div class="container">
             <div class="toggle_icon" title="Menu Bar">
                 <span></span>
@@ -100,6 +98,7 @@
                 </div>
             </section>
         <% } %>
+
 
     <!--================ Start banner section =================-->
     <section class="home-banner-area common-banner relative">

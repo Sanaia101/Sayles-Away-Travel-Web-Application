@@ -92,10 +92,22 @@ app.get('/contact', function(req, res) {
     });
 });
 
-app.get('/groupsandweddings', function(req, res) {
-    res.render("Groups & Weddings.ejs", {
+app.get('/destination-weddings', function(req, res) {
+    res.render("destination-weddings.ejs", {
     });
 });
+
+app.get('/group-travel-services', function(req, res) {
+    res.render("group-travel-services.ejs", {
+    });
+});
+
+app.get('/excursions', function(req, res) {
+    res.render("excursions.ejs", {
+    });
+});
+
+
 
 app.get('/traveltermsandinsurance', function(req, res) {
     res.render("Travel Terms & Insurance.ejs", {
