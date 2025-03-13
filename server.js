@@ -97,10 +97,7 @@ app.get('/contact', function(req, res) {
     });
 });
 
-app.get('/groupsandweddings', function(req, res) {
-    res.render("Groups & Weddings.ejs", {
-    });
-});
+
 
 app.get('/traveltermsandinsurance', function(req, res) {
     res.render("Travel Terms & Insurance.ejs", {
@@ -129,6 +126,17 @@ app.get('/excursions', isAuthenticated, (req, res) => {
     res.render("excursions.ejs", {
     });
 });
+
+app.get('/group-travel-services', (req, res) => {
+    res.render('group-travel-services.ejs', {});
+});
+
+app.get('/destination-weddings', (req, res) => {
+    res.render('destination-weddings.ejs', {});
+});
+
+
+
 
 // 127.0.0.1:8080 is the URL
 app.listen(8080);
