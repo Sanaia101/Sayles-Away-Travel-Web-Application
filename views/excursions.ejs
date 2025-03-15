@@ -55,8 +55,57 @@
             padding: 10px;
             cursor: pointer;
         }
+        
+        .main_btn:hover {
+            background-color: #efc351; 
+            box-shadow: 0 0 15px rgba(212, 163, 115, 0.8); 
+            transition: all 0.3s ease-in-out;
+        }
+
+      
+        .main_btn {
+            position: relative;
+            left: -10px; 
+        }
+
+
+
+
     </style>
 </head>
+
+
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 5px 20px; background-color: #ffffff;">
+    
+    <div style="flex: 1; display: flex; justify-content: center; position: relative; right: -55px;">
+        <img src="img/header-sized-image.jpg" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain;">
+    </div>
+
+    <section class="top-btn-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <% if (isAuthenticated) { %>
+                        <a href="/logout" class="main_btn">
+                            Log out
+                            <img src="img/next.png" alt="">
+                        </a>
+                    <% } else { %>
+                        <a href="/login" class="main_btn">
+                            Log in
+                            <img src="img/next.png" alt="">
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</header>
+
+
+
+
 
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
     <div class="side_menu" style="padding-top: 0; margin-top: 0;">
@@ -86,23 +135,13 @@
         <span></span>
     </div>
 
-    <section class="top-btn-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <a href="/login" class="main_btn">Login <img src="img/next.png" alt=""></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="excursions-area" style="flex-grow: 1;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Explore Exciting Excursions</h2>
                     <p>Discover amazing experiences with our trusted partner, Viator.</p>
-                    <a href="https://www.viator.com/?pid=P00002881&uid=U00172711&mcid=58086&currency=USD" target="_blank" class="main_btn">Book Excursions Now</a>
+                    <a href="https://www.viator.com/?pid=P00002881&uid=U00172711&mcid=58086&currency=USD" target="_blank" class="main_btn">Book Excursions Now</a>       
                 </div>
             </div>
         </div>
