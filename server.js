@@ -72,7 +72,7 @@ app.get('/callback', async (req, res) => {
         const userInfo = await client.userinfo(tokenSet.access_token);
         req.session.userInfo = userInfo;
 
-        res.redirect('/travelinquiryform');
+        res.redirect('/travel-inquiry-form');
     } catch (err) {
         console.error('Callback error:', err);
         res.redirect('/');
@@ -85,10 +85,8 @@ app.get('/logout', (req, res) => {
     res.redirect(logoutUrl);
 });
 
-app.get('/aboutus', function(req, res) {
-    res.render("about-us.ejs", {
-    });
-});
+
+
 
 function isAuthenticated(req, res, next) {
     if (req.session.userInfo) {
@@ -118,12 +116,16 @@ app.get('/excursions', function(req, res) {
     });
 });
 
-app.get('/traveltermsandinsurance', function(req, res) {
-    res.render("Travel Terms & Insurance.ejs", {
-    });
-});
 
-app.get('/travelinquiryform', isAuthenticated, async (req, res) => {
+function isAuthenticated(req, res, next) {
+    if (req.session.userInfo) {
+        return next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
+app.get('/travel-inquiry-form', isAuthenticated, async (req, res) => {
     try {
         const userInfo = req.session.userInfo;
 
@@ -134,7 +136,7 @@ app.get('/travelinquiryform', isAuthenticated, async (req, res) => {
         });
 
         if (response.status === 200 || response.status === 201) {
-            res.render('Travel Inquiry Form.ejs', {
+            res.render('travel-inquiry-form.ejs', {
                 user_info: userInfo
             });
         } else {
@@ -144,6 +146,15 @@ app.get('/travelinquiryform', isAuthenticated, async (req, res) => {
         console.error(error);
         res.redirect('/');
     }
+});
+
+
+app.get('/terms-of-service', (req, res) => {
+    res.render('terms-of-service');
+});
+
+app.get('/privacy-policy', (req, res) => {
+    res.render('privacy-policy'); 
 });
 
 
