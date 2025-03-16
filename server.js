@@ -87,7 +87,16 @@ app.get('/logout', (req, res) => {
 
 
 
-app.get('/contact', function(req, res) {
+
+function isAuthenticated(req, res, next) {
+    if (req.session.userInfo) {
+        return next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
+app.get('/contact', isAuthenticated, function(req, res) {
     res.render("contact.ejs", {
     });
 });

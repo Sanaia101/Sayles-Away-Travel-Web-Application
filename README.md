@@ -8,6 +8,8 @@ Follow these steps to run the application:
 
 3. Run the command "pip install mysql-connector-python" to install mysqlconnector.
 
+4. Run the command "pip install flask-cors" to install Cross-Origin Resource Sharing.
+
 4. Run the command "npm install" to install all dependencies.
 
 5. Open another terminal and navigate to the backend folder path. Run the command "python backendapi.py" to launch the flask server.
