@@ -90,7 +90,15 @@ app.get('/aboutus', function(req, res) {
     });
 });
 
-app.get('/contact', function(req, res) {
+function isAuthenticated(req, res, next) {
+    if (req.session.userInfo) {
+        return next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
+app.get('/contact', isAuthenticated, function(req, res) {
     res.render("contact.ejs", {
     });
 });
@@ -114,14 +122,6 @@ app.get('/traveltermsandinsurance', function(req, res) {
     res.render("Travel Terms & Insurance.ejs", {
     });
 });
-
-function isAuthenticated(req, res, next) {
-    if (req.session.userInfo) {
-        return next();
-    } else {
-        res.redirect('/login');
-    }
-}
 
 app.get('/travelinquiryform', isAuthenticated, async (req, res) => {
     try {
