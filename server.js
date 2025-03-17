@@ -96,7 +96,10 @@ function isAuthenticated(req, res, next) {
     }
 }
 
-
+app.get('/contact', isAuthenticated, function(req, res) {
+    res.render("contact.ejs", {
+    });
+});
 
 app.get('/destination-weddings', function(req, res) {
     res.render("destination-weddings.ejs", {
