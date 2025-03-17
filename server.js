@@ -85,22 +85,6 @@ app.get('/logout', (req, res) => {
     res.redirect(logoutUrl);
 });
 
-
-
-
-function isAuthenticated(req, res, next) {
-    if (req.session.userInfo) {
-        return next();
-    } else {
-        res.redirect('/login');
-    }
-}
-
-app.get('/contact', isAuthenticated, function(req, res) {
-    res.render("contact.ejs", {
-    });
-});
-
 app.get('/destination-weddings', function(req, res) {
     res.render("destination-weddings.ejs", {
     });
@@ -115,7 +99,6 @@ app.get('/excursions', function(req, res) {
     res.render("excursions.ejs", {
     });
 });
-
 
 function isAuthenticated(req, res, next) {
     if (req.session.userInfo) {

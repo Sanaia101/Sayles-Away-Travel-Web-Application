@@ -14,21 +14,21 @@ $(document).ready(function(){
             rules: {
                 subject: {
                     required: true,
-                    minlength: 4
+                    minlength: 0
                 },
                 message: {
                     required: true,
-                    minlength: 20
+                    minlength: 0
                 }
             },
             messages: {
                 subject: {
-                    required: "come on, you have a subject, don't you?",
-                    minlength: "your subject must consist of at least 4 characters"
+                    required: "Subject field is required",
+                    minlength: ""
                 },
                 message: {
-                    required: "um...yea, you have to write something to send this form.",
-                    minlength: "thats all? really?"
+                    required: "Message field is required",
+                    minlength: ""
                 }
             },
             submitHandler: function(form) {

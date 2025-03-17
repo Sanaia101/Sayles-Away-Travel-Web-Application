@@ -344,23 +344,17 @@ label {
     </div>
 </section>
 
+<% if (isAuthenticated) { %>
 <section id="contact" style="background-color: #fff; padding: 60px 20px;">
     <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
         <h2 style="font-family: 'Playfair Display', serif; font-size: 40px; color: #080909; margin-bottom: 30px; font-weight: bold;">Contact Us</h2>
         <p style="font-size: 18px; color: #777; margin-bottom: 40px;">We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
         
-        <form action="/submit-contact-form" method="POST" style="max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+        <form method="POST" id ="contactForm" style="max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
             <!-- Name Input -->
             <div style="margin-bottom: 20px;">
-                <label for="name" style="font-size: 18px; font-weight: 500; color: #333;">Your Name</label>
-                <input type="text" id="name" name="name" required placeholder="Enter your name" 
-                       style="width: 100%; padding: 15px; margin-top: 8px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-            </div>
-
-            <!-- Email Input -->
-            <div style="margin-bottom: 20px;">
-                <label for="email" style="font-size: 18px; font-weight: 500; color: #333;">Your Email</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email" 
+                <label for="subject" style="font-size: 18px; font-weight: 500; color: #333;">Your Subject</label>
+                <input type="text" id="subject" name="subject" required placeholder="Enter your subject" 
                        style="width: 100%; padding: 15px; margin-top: 8px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
             </div>
 
@@ -378,7 +372,44 @@ label {
         </form>
     </div>
 </section>
+ <!--================Contact Success and Error message Area =================-->
+ <div id="success" class="modal modal-message fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-close"></i>
+                </button>
+                <h2>Thank you</h2>
+                <p>Your message is successfully sent...</p>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Modals error -->
+
+<div id="error" class="modal modal-message fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-close"></i>
+                </button>
+                <h2>Sorry !</h2>
+                <p> Something went wrong </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================End Contact Success and Error message Area =================-->
+<% } else { %>
+    <div style="text-align: center; padding: 60px 20px;">
+        <h2 style="font-size: 30px; color: #000000;">
+            You must be logged in to view and submit a contact form.
+        </h2>
+    </div>
+<% } %>
 
 
 
@@ -471,6 +502,10 @@ label {
 	<script src="vendors/swiper/js/swiper.min.js"></script>
 	<script src="vendors/scroll/jquery.mCustomScrollbar.js"></script>
 	<script src="js/theme.js"></script>
+    <!-- contact js -->
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/contact.js"></script>
 </body>
 
 </html>
