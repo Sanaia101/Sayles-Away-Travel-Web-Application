@@ -87,10 +87,16 @@ app.get('/logout', (req, res) => {
 
 
 
-app.get('/contact', function(req, res) {
-    res.render("contact.ejs", {
-    });
-});
+
+function isAuthenticated(req, res, next) {
+    if (req.session.userInfo) {
+        return next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
+
 
 app.get('/destination-weddings', function(req, res) {
     res.render("destination-weddings.ejs", {
