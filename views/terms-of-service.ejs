@@ -1,14 +1,172 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-    <title>Terms of Service</title>
-    <link rel="stylesheet" href="/css/style.css">
+	
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="img/Golden.png" type="image/png">
+	<title>Sayles Away Travel</title>
+
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="vendors/linericon/style.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="vendors/animate-css/animate.css">
+	<link rel="stylesheet" href="vendors/jquery-ui/jquery-ui.css">
+	<link rel="stylesheet" href="vendors/popup/magnific-popup.css">
+	<link rel="stylesheet" href="vendors/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="vendors/scroll/jquery.mCustomScrollbar.css">
+	<!-- main css -->
+	<link rel="stylesheet" href="css/style.css">
 </head>
+
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #37d7e5, #00b8b8); border-bottom: 4px solid #FFD700;">
+    <div style="flex: 1; display: flex; justify-content: center; position: relative;">
+        <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; position: relative; z-index: 1;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, #37d7e5, #00b8b8); z-index: 0;"></div>
+    </div>
+
+
+    <section class="top-btn-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <% if (isAuthenticated) { %>
+                        <a href="/logout" class="main_btn">
+                            Log out
+                            <img src="img/next.png" alt="">
+                        </a>
+                    <% } else { %>
+                        <a href="/login" class="main_btn">
+                            Log in
+                            <img src="img/next.png" alt="">
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</header>
+
+
+
 <body>
+
+	<style>
+
+    .side_menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 350px;
+        height: 100vh;
+        background: linear-gradient(to right, #37d7e5, #00b8b8); 
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    .side_menu.active {
+        display: block;
+    }
+
+    .toggle_icon {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 1100;
+    }
+
+    .toggle_icon span {
+        background-color: #ffffff;
+        height: 3px;
+        width: 30px;
+        margin: 4px 0;
+    }
+
+    .menu-close {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .list.menu-left li a {
+        color: #fff; 
+        text-decoration: none;
+        padding: 10px 15px;
+        display: block;
+        transition: background-color 0.3s ease;
+    }
+
+    .list.menu-left li a:hover {
+        background-color: rgba(255, 255, 255, 0.2); 
+    }
+
+    .logo img {
+        max-width: 90%;
+        object-fit: contain;
+        height: 150px;
+    }
+
+
+    </style>
+</head>
+
+<body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
+    <div class="side_menu" style="padding-top: 0; margin-top: 0; max-height: 100vh; overflow-y: auto; scroll-behavior: smooth;">
+        <div class="menu-close">
+            <div class="toggle_icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+       
+		<div class="logo" style="text-align: center; padding: 30px 0;">
+			<img src="img/JPEG-small-size-transparent.png" alt="Sayles Away Travel Logo" style="height: 150px; max-width: 90%; object-fit: contain;">
+		</div>
+
+        <ul class="list menu-left" style="margin-top: -20px;">
+            <li><a href="/">Home</a></li>
+            <li><a href="/group-travel-services">Group Travel Services</a></li>
+            <li><a href="/destination-weddings">Destination Weddings</a></li>
+			<li>
+                <% if (isAuthenticated) { %>
+                    <a href="/travel-inquiry-form">Travel Inquiry Form</a>
+                <% } %>
+            </li>
+            <li><a href="/excursions">Excursions</a></li>
+        </ul>
+    </div>
+
+    <div class="toggle_icon" title="Menu Bar">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+    </script>
     <div class="container">
-        <h1>Terms of Service</h1>
-        <p>By accessing this site, you agree to the following terms...</p>
-        <p>ACCEPTANCE OF TERMS
+        <h1 style="font-size: 2.5rem; font-weight: bold; text-align: center; margin-bottom: 20px; color: #004d4d;">Terms of Service</h1>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify;">
+            <strong>ACCEPTANCE OF TERMS</strong><br>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify;">
+        <p style="font-size: 1.1rem; line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify;">
+            By accessing this site, you agree to the following terms...
+        <p style="font-size: 1.1rem; line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify; border: 2px solid #FFD700; padding: 15px; border-radius: 10px; background: linear-gradient(to right, #f9f9f9, #e6f7ff); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: 'Georgia', serif;">
 
             Your access to and use of this website on which this document is found (the “Website”) and all Services (as defined in Section 2), is subject exclusively to these Terms of Service. The terms “you”, “your” and similar pronouns refer to the person using or accessing the Website or the Services. The terms “we”, “our” and similar pronouns refer to the independently contracted person or entity referered to in the header of this site (the “Company”). This is a legally binding agreement between you and Company; please read it carefully. Unless explicitly stated otherwise, any features or services available at any time on the Website or the Services are subject to these Terms of Service. Accessing the Website or the Services in any manner, even by automated means, constitutes your use of said Website or the Services, respectively, and your agreement to be bound by these Terms of Service. If you do not accept these Terms of Service you must immediately stop using the Website or the Services. You may not use the Website or the Services for any purpose that is unlawful or prohibited by these Terms of Service. You further expressly agree and acknowledge all of the following provisions:
             We reserve the right to update or amend (collectively, “change”) these Terms of Service at any time and will revise the effective date when we do so. It is your responsibility to check the Terms of Service regularly for any changes and to take note of the posted effective date of the Terms of Service. Your continued use of the Website or the Services, as the case may be, after the posted effective dates constitutes your agreement to be bound by these Terms of Service as modified, provided however, that such modifications shall not apply to any disputes arising prior to the effective date of the changes. Accordingly, you hereby agree that your continued use of the Website constitutes your waiver to contest the enforceability of any such changes (whether for lack of notice or otherwise). Please do not use the Website if you disagree with the provisions of this paragraph 1.3. Otherwise, your continued use is to be deemed conclusive acceptance thereof.
@@ -83,5 +241,92 @@
             This Agreement shall be construed and enforced in accordance with the laws of the State of Florida. In the event of any legal action or proceeding arising from this Agreement, the parties agree that the state court forum for said litigation shall be in Duval County, Florida, in the court of appropriate jurisdiction, and that the federal court jurisdiction shall be in the Middle District of Florida in Duval County, Florida. The parties hereto submit to the exclusive jurisdiction of such courts and hereby waive any objection or defense to such jurisdiction or venue, including any defense based upon inconvenient forum.
             Effective Date: April 8, 2019</p>
     </div>
+
+    <head>
+        <script src="https://kit.fontawesome.com/83152295c7.js" crossorigin="anonymous"></script>
+    </head>
+
+    <footer class="footer-area" style="background: linear-gradient(to right, #37d7e5, #00b8b8); color: #000000; font-family: 'Roboto', sans-serif;">
+        <div class="container">
+            <div class="footer-bottom" style="text-align: center; padding: 10px 0; font-size: 12px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
+                <h3 style="font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+                    Sayles Away Travel
+                </h3>
+                <p style="margin: 2px 0;">
+                    832.377.5221 • <a href="mailto:saylesawaytravel@gmail.com" style="color: #000000; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#D1E7EC';" onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent';">saylesawaytravel@gmail.com</a>
+                </p>
+                <p style="margin: 2px 0; line-height: 1.4;">
+                    An Independent Affiliate of A. S. A. P. Cruises Inc., Florida Seller of Travel Ref. No. ST15578 – Washington UBID No. 603189022
+                </p>
+                <p style="margin-top: 5px;">
+                    <a href="/terms-of-service" 
+                       style="color: #000000; text-decoration: none; transition: all 0.3s ease;" 
+                       onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#D1E7EC';"
+                       onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent';">
+                       Terms Of Service
+                    </a> • 
+                    <a href="/privacy-policy" 
+                       style="color: #000000; text-decoration: none; transition: all 0.3s ease;" 
+                       onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#D1E7EC';"
+                       onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent';">
+                       Privacy Policy
+                    </a>
+                </p>
+                <div style="margin-top: 10px;">
+                    <a href="https://www.facebook.com/saylesawaytravel/" target="_blank" style="margin: 0 8px;">
+                        <i class="fab fa-facebook-f" style="font-size: 18px; color: #000000;"></i>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/saylesawaytravel/" target="_blank" style="margin: 0 8px;">
+                        <i class="fab fa-instagram" style="font-size: 18px; color: #000000;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    
+        
+    
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const toggleIcons = document.querySelectorAll(".toggle_icon");
+                const sideMenu = document.querySelector(".side_menu");
+                const closeMenuIcon = document.querySelector(".menu-close .toggle_icon");
+    
+                toggleIcons.forEach(icon => {
+                    icon.addEventListener("click", function () {
+                        sideMenu.classList.toggle("active");
+                    });
+                });
+    
+                closeMenuIcon.addEventListener("click", function () {
+                    sideMenu.classList.remove("active");
+                });
+            });
+        </script>
+    </body>
+    
+        
+        <!--================ End footer Area  =================-->
+    
+    
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/stellar.js"></script>
+        <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+        <script src="vendors/isotope/isotope-min.js"></script>
+        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="vendors/jquery-ui/jquery-ui.js"></script>
+        <script src="js/jquery.ajaxchimp.min.js"></script>
+        <script src="js/mail-script.js"></script>
+        <script src="vendors/popup/jquery.magnific-popup.min.js"></script>
+        <script src="vendors/swiper/js/swiper.min.js"></script>
+        <script src="vendors/scroll/jquery.mCustomScrollbar.js"></script>
+        <script src="js/theme.js"></script>
 </body>
 </html>
