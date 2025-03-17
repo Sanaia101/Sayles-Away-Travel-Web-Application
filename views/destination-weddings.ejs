@@ -1,34 +1,37 @@
 <!doctype html>
 <html lang="en">
- 
+
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="img/Golden.png" type="image/webp">
-    <title>Sayles Away Travel</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="vendors/linericon/style.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
-    <link rel="stylesheet" href="vendors/animate-css/animate.css">
-    <link rel="stylesheet" href="vendors/jquery-ui/jquery-ui.css">
-    <link rel="stylesheet" href="vendors/popup/magnific-popup.css">
-    <link rel="stylesheet" href="vendors/swiper/css/swiper.min.css">
-    <link rel="stylesheet" href="vendors/scroll/jquery.mCustomScrollbar.css">
-    <!-- main css -->
-    <link rel="stylesheet" href="css/style.css">
+	
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="img/Golden.png" type="image/png">
+	<title>Sayles Away Travel</title>
+
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="vendors/linericon/style.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="vendors/animate-css/animate.css">
+	<link rel="stylesheet" href="vendors/jquery-ui/jquery-ui.css">
+	<link rel="stylesheet" href="vendors/popup/magnific-popup.css">
+	<link rel="stylesheet" href="vendors/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="vendors/scroll/jquery.mCustomScrollbar.css">
+	<!-- main css -->
+	<link rel="stylesheet" href="css/style.css">
 </head>
- 
- 
-<header style="display: flex; align-items: center; justify-content: space-between; padding: 5px 20px; background-color: #ffffff;">
-   
-    <div style="flex: 1; display: flex; justify-content: center; position: relative; right: -55px;">
-        <img src="img/header-sized-image.jpg" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain;">
+
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #37d7e5, #00b8b8); border-bottom: 4px solid #FFD700;">
+    <div style="flex: 1; display: flex; justify-content: center; position: relative;">
+        <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; position: relative; z-index: 1;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, #37d7e5, #00b8b8); z-index: 0;"></div>
     </div>
- 
+
+
     <section class="top-btn-area">
         <div class="container">
             <div class="row">
@@ -48,57 +51,77 @@
             </div>
         </div>
     </section>
-   
+    
 </header>
- 
- 
- 
+
+
+
 <body>
- 
- 
-    <style>
-        .side_menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 350px;
-            height: 100vh;
-            background-color: #fff;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-        }
- 
-        .side_menu.active {
-            display: block;
-        }
- 
-        .toggle_icon {
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 1100;
-        }
- 
-        .toggle_icon span {
-            background-color: #000;
-            height: 3px;
-            width: 30px;
-            margin: 4px 0;
-        }
- 
-        .menu-close {
-            padding: 10px;
-            cursor: pointer;
-        }
+
+	<style>
+
+    .side_menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 350px;
+        height: 100vh;
+        background: linear-gradient(to right, #37d7e5, #00b8b8); 
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    .side_menu.active {
+        display: block;
+    }
+
+    .toggle_icon {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 1100;
+    }
+
+    .toggle_icon span {
+        background-color: #ffffff;
+        height: 3px;
+        width: 30px;
+        margin: 4px 0;
+    }
+
+    .menu-close {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .list.menu-left li a {
+        color: #fff; 
+        text-decoration: none;
+        padding: 10px 15px;
+        display: block;
+        transition: background-color 0.3s ease;
+    }
+
+    .list.menu-left li a:hover {
+        background-color: rgba(255, 255, 255, 0.2); 
+    }
+
+    .logo img {
+        max-width: 90%;
+        object-fit: contain;
+        height: 150px;
+    }
+
+
     </style>
 </head>
- 
+
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
-    <div class="side_menu" style="padding-top: 0; margin-top: 0;">
+    <div class="side_menu" style="padding-top: 0; margin-top: 0; max-height: 100vh; overflow-y: auto; scroll-behavior: smooth;">
         <div class="menu-close">
             <div class="toggle_icon">
                 <span></span>
@@ -123,96 +146,75 @@
             <li><a href="/excursions">Excursions</a></li>
         </ul>
     </div>
- 
+
     <div class="toggle_icon" title="Menu Bar">
         <span></span>
         <span></span>
         <span></span>
     </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+    </script>
  
     <!--================ Start banner section =================-->
-    <section class="home-banner-area common-banner relative">
-        <div class="container-fluid">
-            <div class="row d-flex align-items-center justify-content-center">
-                <div class="header-right col-lg-6 col-md-6">
-                    <h1>
-                        Destination Weddings
-                    </h1>
-                    <p class="pt-20">
-                        Celebrate your special day in a beautiful destination. We offer a variety of wedding packages to make your dream wedding a reality.
-                    </p>
-                    <div class="page-link-wrap">
-                        <div class="page_link">
-                            <a href="/">Home</a>
-                            <a href="/destination-weddings">Destination Weddings</a>
-                        </div>
-                        <img src="img/next.png" alt="">
+    <section class="home-banner-area common-banner relative" style="padding: 50px 0; background: linear-gradient(to right, #37d7e5, #00b8b8); text-align: center;">
+        <!-- Title of the tab -->
+        <h1 style="color: #FFFFFF; font-size: 3rem; font-weight: bold; margin-bottom: 20px; font-family: 'Roboto', sans-serif;">
+            Destination Weddings
+        </h1>
+        <!-- Description with additional information -->
+        <p style="color: #FFFFFF; font-size: 1.2rem; margin-bottom: 30px; font-family: 'Roboto', sans-serif;">
+            Celebrate your love in a breathtaking destination. From sandy beaches to luxurious resorts, we provide tailored wedding packages to make your special day unforgettable.
+        </p>
+        <!-- Interactive sections -->
+        <div class="container">
+            <div class="row">
+                <!-- First interactive div -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="interactive-box" style="background: #FFFFFF; padding: 20px; border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s;">
+                        <img src="img/wedding picture 1.jpg" alt="Wedding Picture 1" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
+                        <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Beach Weddings</h3>
+                        <p style="color: #333333; font-size: 1rem;">Exchange vows with the sound of waves and a stunning ocean view.</p>
                     </div>
                 </div>
- 
-                <div class="col-lg-6 col-md-6 header-left">
-                    <div class="">
-                        <img class="img-fluid w-100" src="img/wedding picture 1.jpg" alt="Destination Weddings">
+                <!-- Second interactive div -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="interactive-box" style="background: #FFFFFF; padding: 20px; border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s;">
+                        <img src="img/wedding picture 2.jpg" alt="Wedding Picture 2" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
+                        <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Luxury Resorts</h3>
+                        <p style="color: #333333; font-size: 1rem;">Host your wedding in a luxurious resort with top-notch amenities.</p>
+                    </div>
+                </div>
+                <!-- Third interactive div -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="interactive-box" style="background: #FFFFFF; padding: 20px; border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s;">
+                        <img src="img/wedding picture 3.jpg" alt="Wedding Picture 3" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
+                        <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Custom Packages</h3>
+                        <p style="color: #333333; font-size: 1rem;">Create a wedding package that fits your unique vision and needs.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <style>
+        /* Add hover effects for interactivity */
+        .interactive-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
     <!--================ End banner section =================-->
  
     <!--================Contact Area =================-->
-    <section class="contact_area section_gap" style="margin-top: 15px;"></section>
+    <section class="contact_area section_gap" style="margin-top: 15%;"></section>
         <div class="container">
             <div id="mapBox" class="mapBox" data-lat="40.701083" data-lon="-74.1522848" data-zoom="13" data-info="PO Box CT16122 Collins Street West, Victoria 8007, Australia."
                 data-mlat="40.701083" data-mlon="-74.1522848">
-            </div>
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="contact_info">
-                        <div class="info_item">
-                            <i class="lnr lnr-home"></i>
-                            <h6>California, United States</h6>
-                            <p>Santa monica bullevard</p>
-                        </div>
-                        <div class="info_item">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <h6><a href="#">00 (440) 9865 562</a></h6>
-                            <p>Mon to Fri 9am to 6 pm</p>
-                        </div>
-                        <div class="info_item">
-                            <i class="lnr lnr-envelope"></i>
-                            <h6><a href="#">support@colorlib.com</a></h6>
-                            <p>Send us your query anytime!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <form class="row contact_form" action="contact_process.php" method="post" id="contactForm"
-                        novalidate="novalidate">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Enter Message"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12 text-right">
-                            <button type="submit" value="submit" class="main_btn">
-                                Send Message
-                                <img src="img/next.png" alt="">
-                            </button>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </section>
@@ -234,7 +236,7 @@
                     Sayles Away Travel
                 </h3>
                 <p style="margin: 2px 0;">
-                    832.377.5221 • saylesawaytravel@gmail.com
+                    832.377.5221 • <a href="mailto:saylesawaytravel@gmail.com" style="color: #000000; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#D1E7EC';" onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent';">saylesawaytravel@gmail.com</a>
                 </p>
                 <p style="margin: 2px 0; line-height: 1.4;">
                     An Independent Affiliate of A. S. A. P. Cruises Inc., Florida Seller of Travel Ref. No. ST15578 – Washington UBID No. 603189022
