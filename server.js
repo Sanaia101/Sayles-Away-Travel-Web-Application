@@ -143,4 +143,4 @@ app.get('/privacy-policy', (req, res) => {
 
 // 127.0.0.1:8080 is the URL
 app.listen(8080);
-console.log('Listening on port 8080. Server is http://localhost:8080');
+console.log('Listening on port 8080. Server is http://127.0.0.1:8080');
