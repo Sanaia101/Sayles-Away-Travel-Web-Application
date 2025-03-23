@@ -26,8 +26,8 @@
 </head>
 
 
-<header style="display: flex; align-items: center; justify-content: center; padding: 0px 20px; background: linear-gradient(to right, #37d7e5, #00b8b8); border-bottom: 4px solid #FFD700;">
-    <div style="display: flex; justify-content: center; position: relative;">
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #37d7e5, #00b8b8); border-bottom: 4px solid #FFD700;">
+    <div style="flex: 1; display: flex; justify-content: center; position: relative;">
         <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; position: relative; z-index: 1;">
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, #37d7e5, #00b8b8); z-index: 0;"></div>
     </div>
@@ -37,12 +37,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <% if (isAuthenticated) { %>
-                        <a href="/logout" class="main_btn" style="background-color: #fff; color: #37d7e5; padding: 10px 20px; border-radius: 5px; text-decoration: none;">
+                        <a href="/logout" class="main_btn">
                             Log out
                             <img src="img/next.png" alt="">
                         </a>
                     <% } else { %>
-                        <a href="/login" class="main_btn" style="background-color: #fff; color: #37d7e5; padding: 10px 20px; border-radius: 5px; text-decoration: none;">
+                        <a href="/login" class="main_btn">
                             Log in
                             <img src="img/next.png" alt="">
                         </a>
@@ -121,7 +121,7 @@
 </head>
 
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
-    <div class="side_menu" style="padding-top: 0; margin-top: 0;">
+    <div class="side_menu" style="padding-top: 0; margin-top: 0; max-height: 100vh; overflow-y: auto; scroll-behavior: smooth;">
         <div class="menu-close">
             <div class="toggle_icon">
                 <span></span>
@@ -138,7 +138,11 @@
             <li><a href="/">Home</a></li>
             <li><a href="/group-travel-services">Group Travel Services</a></li>
             <li><a href="/destination-weddings">Destination Weddings</a></li>
-			<li><a href="/travel-inquiry-form">Travel Inquiry Form</a></li>
+			<li>
+                <% if (isAuthenticated) { %>
+                    <a href="/travel-inquiry-form">Travel Inquiry Form</a>
+                <% } %>
+            </li>
             <li><a href="/excursions">Excursions</a></li>
         </ul>
     </div>
@@ -147,7 +151,14 @@
         <span></span>
         <span></span>
         <span></span>
-    </div>
+                </div>
+
+                <script>
+                    function toggleMenu() {
+                        const menu = document.getElementById('menu');
+                        menu.classList.toggle('active');
+                    }
+                </script>
 
 	<title>Our Services</title>
     <style>
@@ -156,14 +167,121 @@
             margin: 0;
             padding: 0;
         }
-        </style>
+        .title {
+            text-align: center;
+            font-family: 'Georgia', serif; 
+            font-size: 2.5rem;
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        .service-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .service-card {
+            width: 20%;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card img,
+        .service-card video {
+            width: 100%;
+            height: auto;  
+            object-fit: cover;
+        }
+
+        .service-card .service-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .service-card .service-info h3 {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .service-card .service-info p {
+            color: #777;
+            font-size: 1rem;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        @media (max-width: 768px) {
+            .service-card {
+                width: 48%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-card {
+                width: 100%;
+            }
+        }
+	
+button[type="submit"]:hover {
+    background-color: #009b9b; 
+    transition: background-color 0.3s ease;
+}
+
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #ffd700; 
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.8); 
+}
+
+
+label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+    form {
+        padding: 10px;
+    }
+    input, textarea {
+        font-size: 16px;
+    }
+}
+
+
+    </style>
+</head>
+
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<body>
+
+
+<div class="title" style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #090909;">
+    Travel Inquiry Form
+</div>
+
+
+</body>
+</html>
+
         
 
-        <head>
-            <script src="https://kit.fontawesome.com/83152295c7.js" crossorigin="anonymous"></script>
-        </head>
-        
-            
+<head>
+    <script src="https://kit.fontawesome.com/83152295c7.js" crossorigin="anonymous"></script>
+</head>
+          
         <footer class="footer-area" style="background: linear-gradient(to right, #37d7e5, #00b8b8); color: #000000; font-family: 'Roboto', sans-serif;">
             <div class="container">
                 <div class="footer-bottom" style="text-align: center; padding: 10px 0; font-size: 12px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
@@ -171,7 +289,7 @@
                         Sayles Away Travel
                     </h3>
                     <p style="margin: 2px 0;">
-                        832.377.5221 • saylesawaytravel@gmail.com
+                        832.377.5221 • <a href="mailto:saylesawaytravel@gmail.com" style="color: #000000; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#D1E7EC';" onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent';">saylesawaytravel@gmail.com</a>
                     </p>
                     <p style="margin: 2px 0; line-height: 1.4;">
                         An Independent Affiliate of A. S. A. P. Cruises Inc., Florida Seller of Travel Ref. No. ST15578 – Washington UBID No. 603189022
@@ -203,9 +321,6 @@
             </div>
         </footer>
         
-        
-            
-        
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
                     const toggleIcons = document.querySelectorAll(".toggle_icon");
@@ -226,9 +341,7 @@
         </body>
         
             
-            <!--================ End footer Area  =================-->
-        
-        
+<!--================ End footer Area  =================-->
 
 
     <!-- Optional JavaScript -->
@@ -247,14 +360,11 @@
     <script src="vendors/popup/jquery.magnific-popup.min.js"></script>
     <script src="vendors/swiper/js/swiper.min.js"></script>
     <script src="vendors/scroll/jquery.mCustomScrollbar.js"></script>
+    <script src="js/theme.js"></script>
     <!-- contact js -->
     <script src="js/jquery.form.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/contact.js"></script>
-    <!--gmaps Js-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-    <script src="js/gmaps.min.js"></script>
-    <script src="js/theme.js"></script>
 </body>
 
 </html>
