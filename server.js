@@ -124,6 +124,7 @@ function isAuthenticated(req, res, next) {
 
 // Create the frontend path for the travel inquiry form page which checks if the user is logged in.
 // When a logged in user is redirected to the travel inquiry form page, their user info is stored in the database if it does not already exist.
+
 app.get('/travel-inquiry-form', isAuthenticated, async (req, res) => {
     try {
         const userInfo = req.session.userInfo;
