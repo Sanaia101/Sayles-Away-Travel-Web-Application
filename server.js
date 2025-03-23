@@ -124,6 +124,13 @@ function isAuthenticated(req, res, next) {
 
 // Create the frontend path for the travel inquiry form page which checks if the user is logged in.
 // When a logged in user is redirected to the travel inquiry form page, their user info is stored in the database if it does not already exist.
+
+//changing path for testing
+app.get('/travel-inquiry-form', function(req, res) {
+    res.render("travel-inquiry-form.ejs", {
+    });
+});
+/* 
 app.get('/travel-inquiry-form', isAuthenticated, async (req, res) => {
     try {
         const userInfo = req.session.userInfo;
@@ -145,7 +152,7 @@ app.get('/travel-inquiry-form', isAuthenticated, async (req, res) => {
         console.error(error);
         res.redirect('/');
     }
-});
+});*/
 
 // Create the frontend path for the terms of service page.
 app.get('/terms-of-service', (req, res) => {
