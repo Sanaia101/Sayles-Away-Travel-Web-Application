@@ -306,7 +306,7 @@ label {
                 <label for="email" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     Email
                 </label>
-                <input type="text" id="lname" name="lname" required placeholder="Enter your email" 
+                <input type="text" id="email" name="email" required placeholder="Enter your email" 
                        style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
             </div>
 
@@ -315,7 +315,7 @@ label {
                 <label for="destination" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     Where would you like to travel to?
                 </label>
-                <input type="text" id="lname" name="lname" required placeholder="Enter your desired destination" 
+                <input type="text" id="destination" name="destination" required placeholder="Enter your desired destination" 
                        style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
             </div>
 
@@ -324,7 +324,7 @@ label {
                 <label for="departure" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     What is your departure city?
                 </label>
-                <input type="text" id="lname" name="lname" required placeholder="Enter your departure city" 
+                <input type="text" id="departure" name="departure" required placeholder="Enter your departure city" 
                        style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
             </div>
 
@@ -396,8 +396,8 @@ label {
                         onclick="toggleTextbox()">
                     <label for="is-traveling" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Yes</label>
                 </div>
-                <div style="margin-bottom: 20px;">
-                    <input type="number" id="under-18-traveler-count" name="under-18-traveler-count" placeholder="Enter number of travelers under 18" 
+                <div style="margin-bottom: 20px;" id="under-18-traveler-count">
+                    <input type="number" name="under-18-traveler-count" placeholder="Enter number of travelers under 18" 
                            style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
                 </div>
                 <div style="display: flex; align-items: center;">
@@ -447,7 +447,7 @@ label {
 
             <!-- Rooms Input -->
             <div style="margin-bottom: 20px;">
-                <label for="departure" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="rooms" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     How many rooms do you need?
                 </label>
                 <input type="number" id="rooms" name="rooms" required placeholder="Enter number of rooms" 
@@ -463,13 +463,94 @@ label {
                         style="width: 100%; padding: 15px; margin-top: 8px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
             </div>
 
-            
+            <!-- Atmosphere Input -->
+            <div style="margin-bottom: 20px;">
+                <label for="atmosphere" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                    What type of atmosphere are you looking for?
+                </label>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="rest" name="rest" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="rest" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Rest & Relaxation</label>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="party" name="party" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="party" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Party Vibes</label>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="family" name="family" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="family" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Family Friendly</label>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="romantic" name="romantic" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="romantic" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Romantic</label>
+                </div>
+            </div>
 
-            <!-- Message Input -->
-            <div style="margin-bottom: 30px;">
-                <label for="message" style="font-size: 18px; font-weight: 500; color: #333;">Your Message</label>
-                <textarea id="message" name="message" required placeholder="Enter your message" 
-                            style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;"></textarea>
+            <!-- Budget Input -->
+            <div style="margin-bottom: 20px;">
+                <label for="budget" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                    What is the budget per person? Please be as accurate as possible.
+                </label>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="over-500>" name="over-500" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="over-500" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">$500 - $800</label>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="over-800" name="over-800" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="over-800" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">$800 - $1,000</label>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="over-1000" name="over-1000" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="over-1000" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">$1,000 - $2,000</label>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="over-2000" name="over-2000" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="over-2000" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Over $2,000</label>
+                </div>
+            </div>
+
+            <!-- Activities Input -->
+            <div style="margin-bottom: 20px;">
+                <label for="activities" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                    Which activities are you interested in?
+                </label>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="beach" name="beach" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="beach" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Beach</label>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="gambling" name="gambling" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="gambling" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Gambling</label>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="excursions" name="excursions" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="excursions" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Excursions</label>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="nightlife" name="nightlife" required 
+                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                    <label for="nightlife" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Nightlife</label>
+                </div>
+            </div>
+
+            <!-- Reference Input -->
+            <div style="margin-bottom: 20px;">
+                <label for="reference" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                    How did you find me?
+                </label>
+                <input type="text" id="reference" name="reference" required 
+                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Submit Button -->
