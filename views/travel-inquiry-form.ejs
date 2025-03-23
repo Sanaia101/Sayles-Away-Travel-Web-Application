@@ -270,6 +270,39 @@ label {
 
 <div class="title" style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #090909;">
     Travel Inquiry Form
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+        <br>
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 30px; color: #057c7c; margin-bottom: 30px; font-weight: bold;">Please complete the form below so we can provide a custom quote just for you!</h2>
+        <p style="font-size: 18px; color: #777; margin-bottom: 40px;">
+            Please allow 48-72 hours for all new quotes/bookings to be processed. 
+            If you have sent this request on a weekend and/or holiday, your request will be processed the following business day.
+            <br>
+            Thank you!
+            <br>
+            - Sayles Away Travel
+        </p>
+        
+        <form method="POST" id ="contactForm" style="max-width: 100%; margin: 0 auto; background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            <!-- Name Input -->
+            <div style="margin-bottom: 20px;">
+                <label for="subject" style="font-size: 18px; font-weight: 500; color: #333;">Your Subject</label>
+                <input type="text" id="subject" name="subject" required placeholder="Enter your subject" 
+                        style="width: 100%; padding: 15px; margin-top: 8px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+            </div>
+
+            <!-- Message Input -->
+            <div style="margin-bottom: 30px;">
+                <label for="message" style="font-size: 18px; font-weight: 500; color: #333;">Your Message</label>
+                <textarea id="message" name="message" required placeholder="Enter your message" 
+                            style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" style="background-color: #00b8b8; color: white; padding: 14px 30px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease;">
+                Submit
+            </button>
+        </form>
+    </div>
 </div>
 
 
