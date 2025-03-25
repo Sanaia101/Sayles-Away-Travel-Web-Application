@@ -117,7 +117,8 @@
     }
 
 
-    </style>
+
+  </style>
 </head>
 
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
@@ -154,10 +155,32 @@
     </div>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
+    document.addEventListener("DOMContentLoaded", function () {
+    const menu = document.querySelector(".side_menu");
+    const toggleIcon = document.querySelector(".toggle_icon");
+
+    function toggleMenu() {
+        menu.classList.toggle("active");
+    }
+
+    function closeMenu() {
+        menu.classList.remove("active");
+    }
+
+    // Toggle menu when clicking the hamburger icon
+    toggleIcon.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevents immediate closing
+        toggleMenu();
+    });
+
+    // Close menu when clicking anywhere outside of it
+    document.addEventListener("click", function (event) {
+        if (menu.classList.contains("active") && !menu.contains(event.target) && !toggleIcon.contains(event.target)) {
+            closeMenu();
         }
+    });
+});
+
     </script>
 
 	<title>Our Services</title>
