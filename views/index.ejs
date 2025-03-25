@@ -74,56 +74,80 @@
         z-index: 1000;
     }
 
-    .side_menu.active {
-        display: block;
-    }
+        .side_menu.active {
+            display: block;
+        }
 
-    .toggle_icon {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        position: fixed;
-        top: 15px;
-        left: 15px;
-        z-index: 1100;
-    }
+        .toggle_icon {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1100;
+        }
 
-    .toggle_icon span {
-        background-color: #ffffff;
-        height: 3px;
-        width: 30px;
-        margin: 4px 0;
-    }
+        .toggle_icon span {
+            background-color: #ffffff;
+            height: 3px;
+            width: 30px;
+            margin: 4px 0;
+        }
 
-    .menu-close {
-        padding: 10px;
-        cursor: pointer;
-    }
+        .menu-close {
+            padding: 10px;
+            cursor: pointer;
+        }
 
-    .list.menu-left li a {
-        color: #fff; 
-        text-decoration: none;
-        padding: 10px 15px;
-        display: block;
-        transition: background-color 0.3s ease;
-    }
+        .list.menu-left li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
 
-    .list.menu-left li a:hover {
-        background-color: rgba(255, 255, 255, 0.2); 
-    }
+        .list.menu-left li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
 
-    .logo img {
-        max-width: 90%;
-        object-fit: contain;
-        height: 150px;
-    }
-
-
+        .logo img {
+            max-width: 90%;
+            object-fit: contain;
+            height: 150px;
+        }
     </style>
 </head>
 
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
-    <div class="side_menu" style="padding-top: 0; margin-top: 0; max-height: 100vh; overflow-y: auto; scroll-behavior: smooth;">
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #37d7e5, #00b8b8); border-bottom: 4px solid #FFD700;">
+        <div style="flex: 1; display: flex; justify-content: center; position: relative;">
+            <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; position: relative; z-index: 1;">
+        </div>
+
+        <section class="top-btn-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <% if (isAuthenticated) { %>
+                            <a href="/logout" class="main_btn">
+                                Log out
+                                <img src="img/next.png" alt="">
+                            </a>
+                        <% } else { %>
+                            <a href="/login" class="main_btn">
+                                Log in
+                                <img src="img/next.png" alt="">
+                            </a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <div class="side_menu">
         <div class="menu-close">
             <div class="toggle_icon">
                 <span></span>
@@ -131,20 +155,18 @@
                 <span></span>
             </div>
         </div>
-       
-		<div class="logo" style="text-align: center; padding: 30px 0;">
-			<img src="img/JPEG-small-size-transparent.png" alt="Sayles Away Travel Logo" style="height: 150px; max-width: 90%; object-fit: contain;">
-		</div>
 
-        <ul class="list menu-left" style="margin-top: -20px;">
+        <div class="logo" style="text-align: center; padding: 30px 0;">
+            <img src="img/JPEG-small-size-transparent.png" alt="Sayles Away Travel Logo">
+        </div>
+
+        <ul class="list menu-left">
             <li><a href="/">Home</a></li>
             <li><a href="/group-travel-services">Group Travel Services</a></li>
             <li><a href="/destination-weddings">Destination Weddings</a></li>
-			<li>
-                <% if (isAuthenticated) { %>
-                    <a href="/travel-inquiry-form">Travel Inquiry Form</a>
-                <% } %>
-            </li>
+            <% if (isAuthenticated) { %>
+                <li><a href="/travel-inquiry-form">Travel Inquiry Form</a></li>
+            <% } %>
             <li><a href="/excursions">Excursions</a></li>
         </ul>
     </div>
@@ -156,11 +178,45 @@
     </div>
 
     <script>
-        document.querySelector(".toggle_icon").addEventListener("click", function() {
-    document.querySelector(".side_menu").classList.toggle("active");
+        document.addEventListener("DOMContentLoaded", function () {
+    const menu = document.querySelector(".side_menu");
+    const toggleIcon = document.querySelector(".toggle_icon");
+
+    function toggleMenu() {
+        menu.classList.toggle("active");
+    }
+
+    function closeMenu() {
+        if (menu.classList.contains("active")) {
+            menu.classList.remove("active");
+        }
+    }
+
+    // Toggle menu when clicking the hamburger icon
+    toggleIcon.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevents click from immediately closing the menu
+        toggleMenu();
+    });
+
+    // Close menu when clicking anywhere outside of it
+    document.addEventListener("click", function (event) {
+        if (!menu.contains(event.target) && !toggleIcon.contains(event.target)) {
+            closeMenu();
+        }
+    });
+
+    // Prevent menu from closing when clicking inside it
+    menu.addEventListener("click", function (event) {
+        event.stopPropagation();
+    });
 });
 
     </script>
+</body>
+
+</html>
+
+
 
 	<title>Our Services</title>
     <style>
