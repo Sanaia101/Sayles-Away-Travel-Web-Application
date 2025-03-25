@@ -91,6 +91,23 @@ def insert_inquiry_info(client_id, email, first_name, last_name, destination, de
 @app.route('/travelinquiryform', methods=['POST'])
 def register_client():
     data = request.get_json()
+    email = data.get('email')
+    first_name = data.get('first_name')
+    last_name = data.get('last_name')
+
+    global store_email
+    store_email = email
+
+    session['email_store'] = email
+
+    if not check_if_client_exists(email):
+        insert_new_client(first_name, last_name, email)
+    return "Client added unless already exists"
+
+# Create a backend path which recieves a post request when the travel inquiry form page is accessed.
+@app.route('/travelinquiryformsubmit', methods=['POST'])
+def submit_travel_inquiry_form():
+    data = request.get_json()
 
     email = data.get('email')
     first_name = data.get('fname')
@@ -109,10 +126,6 @@ def register_client():
     budget = data.get('budget')
     activities = data.get('activities')
     referenced_by = data.get('reference')
-
-    global store_email
-    store_email = email
-    session['email_store'] = email
 
     client = find_client(store_email)
     client_id = client[0]['client_id']

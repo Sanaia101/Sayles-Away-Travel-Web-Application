@@ -127,7 +127,7 @@ $(document).ready(function(){
 
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:5000/travelinquiryform",
+                    url: "http://localhost:5000/travelinquiryformsubmit",
                     contentType: "application/json", 
                     data: JSON.stringify(formData), 
                     success: function() {
