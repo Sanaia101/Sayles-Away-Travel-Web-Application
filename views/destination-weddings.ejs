@@ -161,11 +161,12 @@
     </div>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        }
+        document.querySelector(".toggle_icon").addEventListener("click", function() {
+    document.querySelector(".side_menu").classList.toggle("active");
+});
+
     </script>
+
  
     <!--================ Start banner section =================-->
         <!-- Title of the tab -->
