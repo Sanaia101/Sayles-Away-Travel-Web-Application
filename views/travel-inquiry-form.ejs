@@ -138,12 +138,21 @@
             <li><a href="/">Home</a></li>
             <li><a href="/group-travel-services">Group Travel Services</a></li>
             <li><a href="/destination-weddings">Destination Weddings</a></li>
-			<li>
+            <li><a href="/excursions">Excursions</a></li>
+            <li>
                 <% if (isAuthenticated) { %>
                     <a href="/travel-inquiry-form">Travel Inquiry Form</a>
+                <% } else { %>
+                    <a href="/travelinquiryformnoaccess">Travel Inquiry Form</a>
                 <% } %>
             </li>
-            <li><a href="/excursions">Excursions</a></li>
+            <li>
+                <% if (isAuthenticated) { %>
+                    <a href="/contact">Contact Us</a>
+                <% } else { %>
+                    <a href="/contactnoaccess">Contact Us</a>
+                <% } %>
+            </li>
         </ul>
     </div>
 
