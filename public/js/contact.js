@@ -51,7 +51,11 @@ $(document).ready(function(){
                             $('#success').fadeIn()
                             $('.modal').modal('hide');
 		                	$('#success').modal('show');
-                        })
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 5000)
+                        });
                     },
                     error: function() {
                         $('#contactForm').fadeTo( "slow", 1, function() {
