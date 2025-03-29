@@ -117,6 +117,11 @@
     }
 
 
+        .interactive-border:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            border-color: #00b8b8;
+        }
     </style>
 </head>
 
@@ -162,54 +167,79 @@
         <span></span>
     </div>
 
-	<title>Our Services</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
         }
-        </style>
-        
+    </script>
+</body>
 
-<section class="excursions-area" style="flex-grow: 1; position: relative;">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center" 
-                style="
-                    position: absolute; 
-                    top: 50%; 
-                    left: 50%; 
-                    transform: translate(-50%, -50%); 
-                    background-color: #ffffff; 
-                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
-                    border-radius: 12px; 
-                    padding: 30px; 
-                    width: 90%; 
-                    max-width: 400px;
-                    z-index: 999;">
-                
-                <h2 style="color: #009688;">Explore Exciting Excursions</h2>
-                <p>Discover amazing experiences with our trusted partner, Viator.</p>
-                <a href="https://www.viator.com/?pid=P00002881&uid=U00172711&mcid=58086&currency=USD" 
-                   target="_blank" 
-                   style="
-                       display: inline-block; 
-                       background-color: #009688; 
-                       color: #fff; 
-                       padding: 10px 20px; 
-                       border-radius: 8px; 
-                       text-decoration: none;
-                       font-weight: bold;
-                       transition: background-color 0.3s;">
-                    Explore on Viator
-                </a>       
+</html>
+
+	<title>Contact Us</title>
+
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<section id="contact" style="background-color: #fff; padding: 60px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 40px; color: #080909; margin-bottom: 30px; font-weight: bold;">Contact Us</h2>
+        <p style="font-size: 18px; color: #777; margin-bottom: 40px;">We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
+        
+        <form method="POST" id ="contactForm" style="max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            <!-- Name Input -->
+            <div style="margin-bottom: 20px;">
+                <label for="subject" style="font-size: 18px; font-weight: 500; color: #333;">Your Subject</label>
+                <input type="text" id="subject" name="subject" required placeholder="Enter your subject" 
+                       style="width: 100%; padding: 15px; margin-top: 8px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+            </div>
+
+            <!-- Message Input -->
+            <div style="margin-bottom: 30px;">
+                <label for="message" style="font-size: 18px; font-weight: 500; color: #333;">Your Message</label>
+                <textarea id="message" name="message" required placeholder="Enter your message" 
+                          style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" style="background-color: #00b8b8; color: white; padding: 14px 30px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease;">
+                Submit
+            </button>
+        </form>
+    </div>
+</section>
+ <!--================Contact Success and Error message Area =================-->
+ <div id="success" class="modal modal-message fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-close"></i>
+                </button>
+                <h2>Thank you</h2>
+                <p>Your message is successfully sent...</p>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-    
+<!-- Modals error -->
+
+<div id="error" class="modal modal-message fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-close"></i>
+                </button>
+                <h2>Sorry !</h2>
+                <p> Something went wrong </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================End Contact Success and Error message Area =================-->
+
 <head>
     <script src="https://kit.fontawesome.com/83152295c7.js" crossorigin="anonymous"></script>
 </head>
@@ -256,13 +286,7 @@
 
 
 	
-	
-	<!--================ End footer Area  =================-->
 
-
-
-
-    <!----For menu bar-->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const toggleIcons = document.querySelectorAll(".toggle_icon");
@@ -281,4 +305,32 @@
         });
     </script>
 </body>
+
+	
+	<!--================ End footer Area  =================-->
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/stellar.js"></script>
+	<script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+	<script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+	<script src="vendors/isotope/isotope-min.js"></script>
+	<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+	<script src="vendors/jquery-ui/jquery-ui.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="vendors/popup/jquery.magnific-popup.min.js"></script>
+	<script src="vendors/swiper/js/swiper.min.js"></script>
+	<script src="vendors/scroll/jquery.mCustomScrollbar.js"></script>
+	<script src="js/theme.js"></script>
+    <!-- contact js -->
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+
 </html>

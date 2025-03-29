@@ -143,12 +143,21 @@
             <li><a href="/">Home</a></li>
             <li><a href="/group-travel-services">Group Travel Services</a></li>
             <li><a href="/destination-weddings">Destination Weddings</a></li>
-			<li>
+            <li><a href="/excursions">Excursions</a></li>
+            <li>
                 <% if (isAuthenticated) { %>
                     <a href="/travel-inquiry-form">Travel Inquiry Form</a>
+                <% } else { %>
+                    <a href="/travelinquiryformnoaccess">Travel Inquiry Form</a>
                 <% } %>
             </li>
-            <li><a href="/excursions">Excursions</a></li>
+            <li>
+                <% if (isAuthenticated) { %>
+                    <a href="/contact">Contact Us</a>
+                <% } else { %>
+                    <a href="/contactnoaccess">Contact Us</a>
+                <% } %>
+            </li>
         </ul>
     </div>
 
@@ -226,72 +235,6 @@
         }
     </style>
     <!--================ End banner section =================-->
-    <% if (isAuthenticated) { %>
-        <section id="contact" style="background-color: #fff; padding: 60px 20px;">
-            <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 40px; color: #080909; margin-bottom: 30px; font-weight: bold;">Contact Us</h2>
-                <p style="font-size: 18px; color: #777; margin-bottom: 40px;">We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
-                
-                <form method="POST" id ="contactForm" style="max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-                    <!-- Name Input -->
-                    <div style="margin-bottom: 20px;">
-                        <label for="subject" style="font-size: 18px; font-weight: 500; color: #333;">Your Subject</label>
-                        <input type="text" id="subject" name="subject" required placeholder="Enter your subject" 
-                               style="width: 100%; padding: 15px; margin-top: 8px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    </div>
-        
-                    <!-- Message Input -->
-                    <div style="margin-bottom: 30px;">
-                        <label for="message" style="font-size: 18px; font-weight: 500; color: #333;">Your Message</label>
-                        <textarea id="message" name="message" required placeholder="Enter your message" 
-                                  style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;"></textarea>
-                    </div>
-        
-                    <!-- Submit Button -->
-                    <button type="submit" style="background-color: #00b8b8; color: white; padding: 14px 30px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease;">
-                        Submit
-                    </button>
-                </form>
-            </div>
-        </section>
-         <!--================Contact Success and Error message Area =================-->
-         <div id="success" class="modal modal-message fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class="fa fa-close"></i>
-                        </button>
-                        <h2>Thank you</h2>
-                        <p>Your message is successfully sent...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Modals error -->
-        
-        <div id="error" class="modal modal-message fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class="fa fa-close"></i>
-                        </button>
-                        <h2>Sorry !</h2>
-                        <p> Something went wrong </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--================End Contact Success and Error message Area =================-->
-        <% } else { %>
-            <div style="text-align: center; padding: 60px 20px;">
-                <h3 style="font-size: 30px; color: #000000;">
-                    Please login to view and submit a contact form.
-                </h3>
-            </div>
-        <% } %> 
  
     <!--================ start footer Area  =================-->
     <head>
@@ -361,68 +304,6 @@
 </body>
    
     <!--================ End footer Area  =================-->
- 
-    <!--================Contact Success and Error message Area =================-->
-    <div id="success" class="modal modal-message fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="fa fa-close"></i>
-                    </button>
-                    <h2>Thank you</h2>
-                    <p>Your message is successfully sent...</p>
-                </div>
-            </div>
-        </div>
-    </div>
- 
-    <!-- Modals error -->
- 
-    <div id="error" class="modal modal-message fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="fa fa-close"></i>
-                    </button>
-                    <h2>Sorry !</h2>
-                    <p> Something went wrong </p>
-                </div>
-            </div>
-        </div>
-    </div>
- 
- 
-    <!--================End Contact Success and Error message Area =================-->
- 
- 
- 
- 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/stellar.js"></script>
-    <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
-    <script src="vendors/isotope/isotope-min.js"></script>
-    <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="vendors/jquery-ui/jquery-ui.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/mail-script.js"></script>
-    <script src="vendors/popup/jquery.magnific-popup.min.js"></script>
-    <script src="vendors/swiper/js/swiper.min.js"></script>
-    <script src="vendors/scroll/jquery.mCustomScrollbar.js"></script>
-    <!-- contact js -->
-    <script src="js/jquery.form.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/contact.js"></script>
-    <!--gmaps Js-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-    <script src="js/gmaps.min.js"></script>
-    <script src="js/theme.js"></script>
-</body>
+
  
 </html>

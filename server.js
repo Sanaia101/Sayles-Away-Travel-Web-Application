@@ -78,7 +78,13 @@ app.get('/callback', async (req, res) => {
         const userInfo = await client.userinfo(tokenSet.access_token);
         req.session.userInfo = userInfo;
 
-        res.redirect('/travel-inquiry-form');
+        const response = await axios.post('http://localhost:5000/callback', {
+            first_name: userInfo.given_name, 
+            last_name: userInfo.family_name,
+            email: userInfo.email
+        });
+
+        res.redirect('/');
     } catch (err) {
         console.error('Callback error:', err);
         res.redirect('/');
@@ -123,29 +129,13 @@ function isAuthenticated(req, res, next) {
 }
 
 // Create the frontend path for the travel inquiry form page which checks if the user is logged in.
-// When a logged in user is redirected to the travel inquiry form page, their user info is stored in the database if it does not already exist.
-
 app.get('/travel-inquiry-form', isAuthenticated, async (req, res) => {
-    try {
-        const userInfo = req.session.userInfo;
+    res.render('travel-inquiry-form')
+});
 
-        const response = await axios.post('http://localhost:5000/travelinquiryform', {
-            first_name: userInfo.given_name, 
-            last_name: userInfo.family_name,
-            email: userInfo.email
-        });
-
-        if (response.status === 200 || response.status === 201) {
-            res.render('travel-inquiry-form.ejs', {
-                user_info: userInfo
-            });
-        } else {
-            res.redirect('/');
-        }
-    } catch (error) {
-        console.error(error);
-        res.redirect('/');
-    }
+// Create the frontend path for the travel inquiry form page which can only be accessed if the user is not logged in.
+app.get('/travelinquiryformnoaccess', async (req, res) => {
+    res.render('travelinquiryformnoaccess')
 });
 
 // Create the frontend path for the terms of service page.
@@ -158,6 +148,15 @@ app.get('/privacy-policy', (req, res) => {
     res.render('privacy-policy'); 
 });
 
+// Create the frontend path for the contact us page which checks if the user is logged in.
+app.get('/contact', isAuthenticated, async (req, res) => {
+    res.render('contact');
+});
+
+// Create the frontend path for the contact us page which can only be accessed if the user is not logged in.
+app.get('/contactnoaccess', async (req, res) => {
+    res.render('contactnoaccess');
+});
 
 // localhost:8080 is the URL
 app.listen(8080);
