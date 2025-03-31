@@ -130,7 +130,9 @@ function isAuthenticated(req, res, next) {
 
 // Create the frontend path for the travel inquiry form page which checks if the user is logged in.
 app.get('/travel-inquiry-form', isAuthenticated, async (req, res) => {
-    res.render('travel-inquiry-form')
+    res.render('travel-inquiry-form', {
+        userInfo: req.session.userInfo
+    })
 });
 
 // Create the frontend path for the travel inquiry form page which can only be accessed if the user is not logged in.
