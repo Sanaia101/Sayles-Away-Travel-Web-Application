@@ -291,20 +291,20 @@ label {
         <form method="POST" id="travelinquiryform" style="max-width: 100%; margin: 0 auto; background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
             <!-- First Name Input -->
             <div style="margin-bottom: 20px;">
-                <label for="fname" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="fname" style="display: block; font-size: 18px; font-weight: 500; text-align: left; margin-bottom: 5px;">
                     First Name
                 </label>
-                <input type="text" id="fname" name="fname" required 
-                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                <input type="text" id="fname" name="fname" value="<%= user_info.given_name %>" readonly
+                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Last Name Input -->
             <div style="margin-bottom: 20px;">
-                <label for="lname" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="lname" style="display: block; font-size: 18px; font-weight: 500;  text-align: left; margin-bottom: 5px;">
                     Last Name
                 </label>
-                <input type="text" id="lname" name="lname" required
-                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                <input type="text" id="lname" name="lname" value="<%= user_info.family_name %>" readonly
+                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #333; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Email Input -->
@@ -312,8 +312,8 @@ label {
                 <label for="email" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     Email
                 </label>
-                <input type="text" id="email" name="email" required
-                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                <input type="text" id="email" name="email" value="<%= user_info.email %>" readonly
+                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px;  color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Destination Input -->

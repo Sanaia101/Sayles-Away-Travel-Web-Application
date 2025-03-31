@@ -1,4 +1,4 @@
-from flask import Flask, request, session
+from flask import Flask, redirect, request, session
 from flask_cors import CORS
 
 from sql import create_connection
@@ -183,15 +183,15 @@ def submit_travel_inquiry_form():
 
     destination = data.get('destination')
     departure = data.get('departure')
-    start_date = datetime.strptime(data.get('start_date'), '%Y-%m-%d').strftime('%m-%d-%Y')
-    end_date = datetime.strptime(data.get('end_date'), '%Y-%m-%d').strftime('%m-%d-%Y')
+    start_date = data.get('start_date')
+    end_date = data.get('end_date')
     is_passport_valid = data.get('is_passport_valid')
     num_travelers = data.get('num_travelers')
     underage_travelers = data.get('underage_travelers')
     num_underage_travelers = data.get('num_underage_travelers')
     accommodations = data.get('accommodations')
     rooms = data.get('rooms')
-    payment_date = datetime.strptime(data.get('payment_date'), '%Y-%m-%d').strftime('%m-%d-%Y')
+    payment_date = data.get('payment_date')
     atmosphere = data.get('atmosphere')
     budget = data.get('budget')
     activities = data.get('activities')
@@ -199,11 +199,12 @@ def submit_travel_inquiry_form():
 
     client = find_client(store_email)
     client_id = client[0]['client_id']
-    contact_data = find_contact()
-    client_data = find_client_by_id(contact_data[0]['client_id'])
+    client_data = find_client_by_id(client[0]['client_id'])
     first_name = client_data[0]['first_name']
     last_name = client_data[0]['last_name']
     email = client_data[0]['email']
+
+    print(client_data)
 
     insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by)
 
@@ -213,15 +214,15 @@ def submit_travel_inquiry_form():
         'email': email,
         'destination': destination,
         'departure': departure,
-        'start_date': start_date,
-        'end_date': end_date,
+        'start_date': datetime.strptime(start_date, '%Y-%m-%d').strftime('%m-%d-%Y'),
+        'end_date': datetime.strptime(end_date, '%Y-%m-%d').strftime('%m-%d-%Y'),
         'is_passport_valid': is_passport_valid,
         'num_travelers': num_travelers,
         'underage_travelers': underage_travelers,
         'num_underage_travelers': num_underage_travelers,
         'accommodations': accommodations,
         'rooms': rooms,
-        'payment_date': payment_date,
+        'payment_date': datetime.strptime(payment_date, '%Y-%m-%d').strftime('%m-%d-%Y'),
         'atmosphere': atmosphere,
         'budget': budget,
         'activities': activities,
