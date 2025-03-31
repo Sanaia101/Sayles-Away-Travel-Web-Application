@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, session
+from flask import Flask, request, session
 from flask_cors import CORS
 
 from sql import create_connection
