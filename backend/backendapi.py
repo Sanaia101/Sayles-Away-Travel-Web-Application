@@ -15,6 +15,8 @@ from email.mime.text import MIMEText
 from dotenv import load_dotenv
 import os
 
+from datetime import datetime
+
 load_dotenv()
 
 # Create the variables that store the gmail address and gmail address password from which form data is sent from.
@@ -83,8 +85,8 @@ def send_email(to_email, subject, message):
         print(f"Failed to send email: {e}")
 
 # Function to insert inquiry information into the database.
-def insert_inquiry_info(client_id, email, first_name, last_name, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, reference):
-    sql = f"insert into travel_inquiries (client_id, email, first_name, last_name, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, reference) values ({client_id}, '{email}', '{first_name}', '{last_name}', '{destination}', '{departure}', '{start_date}', '{end_date}', '{is_passport_valid}', '{num_travelers}', '{underage_travelers}', '{accommodations}', '{rooms}', '{payment_date}', '{atmosphere}', '{budget}', '{activities}', '{reference}')"
+def insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, reference):
+    sql = f"insert into travel_inquiries (client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by) values ({client_id}, '{destination}', '{departure}', '{start_date}', '{end_date}', '{is_passport_valid}', '{num_travelers}', '{underage_travelers}', '{num_underage_travelers}','{accommodations}', '{rooms}', '{payment_date}', '{atmosphere}', '{budget}', '{activities}', '{reference}')"
     execute_update_query(create_connection(creds.myhostname, creds.uname, creds.passwd, creds.dbname), sql)
 
 # Create a backend path which recieves a post request when the travel inquiry form page is accessed.
@@ -108,20 +110,19 @@ def register_client():
 @app.route('/travelinquiryformsubmit', methods=['POST'])
 def submit_travel_inquiry_form():
     data = request.get_json()
+    print(data)
 
-    email = data.get('email')
-    first_name = data.get('fname')
-    last_name = data.get('lname')
     destination = data.get('destination')
     departure = data.get('departure')
     start_date = data.get('start_date')
     end_date = data.get('end_date')
-    is_passport_valid = data.get('valid-passport')
-    num_travelers = data.get('travelers')
-    underage_travelers = data.get('under-18-is-traveling')
+    is_passport_valid = data.get('is_passport_valid')
+    num_travelers = data.get('num_travelers')
+    underage_travelers = data.get('underage_travelers')
+    num_underage_travelers = data.get('num_underage_travelers')
     accommodations = data.get('accommodations')
     rooms = data.get('rooms')
-    payment_date = data.get('payment')
+    payment_date = data.get('payment_date')
     atmosphere = data.get('atmosphere')
     budget = data.get('budget')
     activities = data.get('activities')
@@ -129,9 +130,13 @@ def submit_travel_inquiry_form():
 
     client = find_client(store_email)
     client_id = client[0]['client_id']
-    print(client)
+    contact_data = find_contact()
+    client_data = find_client_by_id(contact_data[0]['client_id'])
+    first_name = client_data[0]['first_name']
+    last_name = client_data[0]['last_name']
+    email = client_data[0]['email']
 
-    insert_inquiry_info(client_id, email, first_name, last_name, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by)
+    insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by)
 
     email_message = f"""
     Client: {first_name} {last_name}
@@ -145,13 +150,14 @@ def submit_travel_inquiry_form():
     Valid Passport: {is_passport_valid}
     Number of Travelers: {num_travelers}
     Underage Travelers: {underage_travelers}
+    Number of Underage Travelers: {num_underage_travelers}
     Accommodations: {accommodations}
     Rooms: {rooms}
     Able to make Payment on: {payment_date}
     Atmosphere: {atmosphere}
     Budget: {budget}
     Activities: {activities}
-    Referred By: {referenced_by}
+    How did you find me: {referenced_by}
     """
     send_email(sender_gmail, f"New Travel Inquiry Form Submission from {first_name} {last_name}", email_message)
 

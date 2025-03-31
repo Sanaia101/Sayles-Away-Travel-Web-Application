@@ -8,22 +8,11 @@ $(document).ready(function(){
         return this.optional(element) || /^\bcat\b$/.test(value)
     }, "type the correct answer -_-");
 
+
     // validate contactForm form
     $(function() {
         $('#travelinquiryform').validate({
             rules: {
-                email: {
-                    required: true,
-                    minlength: 0
-                },
-                fname: {
-                    required: true,
-                    minlength: 0
-                },
-                lname: {
-                    required: true,
-                    minlength: 0
-                },
                 destination: {
                     required: true,
                     minlength: 0
@@ -40,7 +29,22 @@ $(document).ready(function(){
                     required: true,
                     minlength: 0
                 },
+                valid_passport: {
+                    required: true,
+                    minlength: 0
+                },
                 num_travelers: {
+                    required: true,
+                    minlength: 0
+                },
+                under_18_travelers: {
+                    required: true,
+                    minlength: 0
+                },
+                under_18_traveler_count: {
+                    minlength: 0
+                },
+                accommodations: {
                     required: true,
                     minlength: 0
                 },
@@ -52,24 +56,24 @@ $(document).ready(function(){
                     required: true,
                     minlength: 0
                 },
+                atmosphere: {
+                    required: true,
+                    minlength: 0
+                },
+                budget: {
+                    required: true,
+                    minlength: 0
+                },
+                activities: {
+                    required: true,
+                    minlength: 0
+                },
                 reference: {
                     required: true,
                     minlength: 0
                 }
             },
             messages: {
-                email: {
-                    required: "Email field is required",
-                    minlength: ""
-                },
-                fname: {
-                    required: "First Name field is required",
-                    minlength: ""
-                },
-                lname: {
-                    required: "Last Name field is required",
-                    minlength: ""
-                },
                 destination: {
                     required: "Destination field is required",
                     minlength: ""
@@ -86,8 +90,24 @@ $(document).ready(function(){
                     required: "End Date field is required",
                     minlength: ""
                 },
+                valid_passport: {
+                    required: "Passport validity field is required",
+                    minlength: ""
+                },
                 num_travelers: {
                     required: "Number of Travelers is required",
+                    minlength: ""
+                },
+                under_18_travelers: {
+                    required: "Underage Travelers field is required",
+                    minlength: ""
+                },
+                under_18_traveler_count: {
+                    required: "Number of Underage Travelers is required",
+                    minlength: ""
+                },
+                accommodations: {
+                    required: "Accomodations field is required",
                     minlength: ""
                 },
                 rooms: {
@@ -98,6 +118,18 @@ $(document).ready(function(){
                     required: "Payment Date field is required",
                     minlength: ""
                 },
+                atmosphere: {
+                    required: "Atmosphere is required",
+                    minlength: ""
+                },
+                budget: {
+                    required: "Budget is required",
+                    minlength: ""
+                },
+                activities: {
+                    required: "Activities field is required",
+                    minlength: ""
+                },
                 reference: {
                     required: "Referenced by field is required",
                     minlength: ""
@@ -105,23 +137,31 @@ $(document).ready(function(){
             },
             submitHandler: function(form) {
 
+                var atmosphere = [];
+                $('input[name="atmosphere"]:checked').each(function() {
+                    atmosphere.push($(this).val());
+                });
+
+                var activities = [];
+                $('input[name="activities"]:checked').each(function() {
+                    activities.push($(this).val());
+                });
+
                 var formData = {
-                    email: $('#email').val(),
-                    first_name: $('#fname').val(),
-                    last_name: $('#lname').val(),
                     destination: $('#destination').val(),
                     departure: $('#departure').val(),
                     start_date: $('#start_date').val(),
                     end_date: $('#end_date').val(),
-                    is_passport_valid: $('#valid_passport').val(),
-                    num_travelers: $('#travelers').val(),
-                    underage_travelers: $('#under-18-is-traveling').val(),
-                    accommodations: $('#accommodations').val(),
+                    is_passport_valid: $('input[name="valid_passport"]:checked').val(),
+                    num_travelers: $('#num_travelers').val(),
+                    underage_travelers: $('input[name="under_18_travelers"]:checked').val(),
+                    num_underage_travelers: $('#under_18_traveler_count').is(':visible') ? $('#under_18_traveler_count input').val() : "0",
+                    accommodations: $('input[name="accommodations"]:checked').val(),
                     rooms: $('#rooms').val(),
                     payment_date: $('#payment').val(),
-                    atmosphere: $('#atmosphere').val(),
-                    budget: $('#budget').val(),
-                    activities: $('#activities').val(),
+                    atmosphere: atmosphere.join(', '),
+                    budget: $('input[name="budget"]:checked').val(),
+                    activities: activities.join(', '),
                     reference: $('#reference').val()
                 };
 
