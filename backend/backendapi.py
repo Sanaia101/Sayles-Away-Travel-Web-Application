@@ -94,7 +94,7 @@ def insert_inquiry_info(client_id, destination, departure, start_date, end_date,
     sql = f"insert into travel_inquiries (client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by) values ({client_id}, '{destination}', '{departure}', '{start_date}', '{end_date}', '{is_passport_valid}', '{num_travelers}', '{underage_travelers}', '{num_underage_travelers}','{accommodations}', '{rooms}', '{payment_date}', '{atmosphere}', '{budget}', '{activities}', '{reference}')"
     execute_update_query(create_connection(creds.myhostname, creds.uname, creds.passwd, creds.dbname), sql)
 
-def generate_pdf(data):
+def generate_inquiry_pdf(data):
     pdf = FPDF()
     pdf.set_auto_page_break(auto=True, margin=15)
     pdf.add_page()
@@ -129,7 +129,7 @@ def generate_pdf(data):
 
     return pdf
 
-def send_email_with_pdf(to_email, subject, message, pdf, pdf_data):
+def send_email_with_inquiry_pdf(to_email, subject, message, pdf, pdf_data):
     msg = MIMEMultipart()
     msg['From'] = sender_gmail
     msg['To'] = to_email
@@ -141,6 +141,59 @@ def send_email_with_pdf(to_email, subject, message, pdf, pdf_data):
     output_directory = os.path.join(os.getcwd(), "generated_pdfs")
     os.makedirs(output_directory, exist_ok=True)  # Create directory if it doesn't exist
     pdf_file_path = os.path.join(output_directory, f"travel_inquiry_{pdf_data['first_name']}_{pdf_data['last_name']}.pdf")
+    pdf.output(pdf_file_path)
+
+    # Attach PDF
+    with open(pdf_file_path, 'rb') as file:
+        part = MIMEApplication(file.read(), Name=os.path.basename(pdf_file_path))
+        part['Content-Disposition'] = f'attachment; filename="{os.path.basename(pdf_file_path)}"'
+        msg.attach(part)
+
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(sender_gmail, email_password) 
+        text = msg.as_string()
+        server.sendmail(sender_gmail, to_email, text)
+        server.quit()
+        print("Email sent successfully")
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+
+def generate_contact_pdf(data):
+    pdf = FPDF()
+    pdf.set_auto_page_break(auto=True, margin=15)
+    pdf.add_page()
+
+    # Title
+    pdf.set_font('Arial', 'B', 16)
+    pdf.cell(200, 10, f"Contact Form - {data['first_name']} {data['last_name']}", ln=True, align='C')
+
+    # Client information
+    pdf.ln(10)  # Line break
+    pdf.set_font('Arial', '', 12)
+    pdf.cell(200, 10, f"Client: {data['first_name']} {data['last_name']}", ln=True)
+    pdf.cell(200, 10, f"Email: {data['email']}", ln=True)
+    
+    # Form details
+    pdf.ln(10)  # Line break
+    pdf.cell(200, 10, f"Subject: {data['subject']}", ln=True)
+    pdf.cell(200, 10, f"Message: {data['message']}", ln=True)
+
+    return pdf
+
+def send_email_with_contact_pdf(to_email, subject, message, pdf, pdf_data):
+    msg = MIMEMultipart()
+    msg['From'] = sender_gmail
+    msg['To'] = to_email
+    msg['Subject'] = subject
+
+    msg.attach(MIMEText(message, 'plain'))
+
+    # Save PDF
+    output_directory = os.path.join(os.getcwd(), "generated_pdfs")
+    os.makedirs(output_directory, exist_ok=True)  # Create directory if it doesn't exist
+    pdf_file_path = os.path.join(output_directory, f"contact_{pdf_data['first_name']}_{pdf_data['last_name']}.pdf")
     pdf.output(pdf_file_path)
 
     # Attach PDF
@@ -231,9 +284,9 @@ def submit_travel_inquiry_form():
         'reference': referenced_by
     }
 
-    pdf_file = generate_pdf(pdf_data)
+    pdf_file = generate_inquiry_pdf(pdf_data)
 
-    send_email_with_pdf(sender_gmail, f"New Travel Inquiry Form Submission from {first_name} {last_name}", "Please find the travel inquiry form attached.", pdf_file, pdf_data)
+    send_email_with_inquiry_pdf(sender_gmail, f"New Travel Inquiry Form Submission from {first_name} {last_name}", "Please find the travel inquiry form attached.", pdf_file, pdf_data)
 
     return "Travel Inquiry Form added to db and sent to email"
     
@@ -260,8 +313,17 @@ def contact_form():
     email = client_data[0]['email']
     message = contact_data[0]['message']
 
-    email_message = f"Client: {first_name} {last_name}\nEmail: {email}\nSubject: {subject}\nMessage: {message}"
-    send_email(sender_gmail, f"New Contact Form Submission from {first_name} {last_name}", email_message)
+    pdf_data = {
+        'first_name': first_name,
+        'last_name': last_name,
+        'email': email,
+        'subject': subject,
+        'message': message
+    }
+
+    pdf_file = generate_contact_pdf(pdf_data)
+
+    send_email_with_contact_pdf(sender_gmail, f"New Contact Form Submission from {first_name} {last_name}", "Please find the contact form attached.", pdf_file, pdf_data)
 
     return "Contact form info added to database and sent to email"
 
