@@ -26,10 +26,12 @@
 </head>
 
 <header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #37d7e5, #00b8b8); border-bottom: 4px solid #FFD700;">
-    <div style="flex: 1; display: flex; justify-content: center; position: relative;">
-        <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; position: relative; z-index: 1;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, #37d7e5, #00b8b8); z-index: 0;"></div>
+    <div style="flex: 1; display: flex; justify-content: center; position: relative; margin-left: 80px;">
+        <a href="/" style="display: inline-block;">
+            <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
+        </a>
     </div>
+
 
 
     <section class="top-btn-area">
@@ -51,8 +53,8 @@
             </div>
         </div>
     </section>
-    
 </header>
+
 
 
 
@@ -168,11 +170,12 @@
     </div>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        }
+        document.querySelector(".toggle_icon").addEventListener("click", function() {
+    document.querySelector(".side_menu").classList.toggle("active");
+});
+
     </script>
+
  
     <!--================ Start banner section =================-->
         <!-- Title of the tab -->
@@ -240,14 +243,9 @@
     <head>
         <script src="https://kit.fontawesome.com/83152295c7.js" crossorigin="anonymous"></script>
     </head>
-    <footer class="footer-area" style="background-color: #22d7ef; color: #000000; font-family: 'Roboto', sans-serif;">
+    <footer class="footer-area" style="background: linear-gradient(to right, #37d7e5, #00b8b8); color: #000000; font-family: 'Roboto', sans-serif;">
         <div class="container">
-            <div class="footer-bottom" style="
-                text-align: center;
-                padding: 10px 0;
-                font-size: 12px;
-                border-top: 1px solid rgba(0, 0, 0, 0.1);
-            ">
+            <div class="footer-bottom" style="text-align: center; padding: 10px 0; font-size: 12px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
                 <h3 style="font-size: 16px; font-weight: 500; margin-bottom: 4px;">
                     Sayles Away Travel
                 </h3>
@@ -258,14 +256,14 @@
                     An Independent Affiliate of A. S. A. P. Cruises Inc., Florida Seller of Travel Ref. No. ST15578 – Washington UBID No. 603189022
                 </p>
                 <p style="margin-top: 5px;">
-                    <a href="/terms-of-service"
-                       style="color: #000000; text-decoration: none; transition: all 0.3s ease;"
+                    <a href="/terms-of-service" 
+                       style="color: #000000; text-decoration: none; transition: all 0.3s ease;" 
                        onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#D1E7EC';"
                        onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent';">
                        Terms Of Service
-                    </a> •
-                    <a href="/privacy-policy"
-                       style="color: #000000; text-decoration: none; transition: all 0.3s ease;"
+                    </a> • 
+                    <a href="/privacy-policy" 
+                       style="color: #000000; text-decoration: none; transition: all 0.3s ease;" 
                        onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#D1E7EC';"
                        onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent';">
                        Privacy Policy
@@ -275,7 +273,7 @@
                     <a href="https://www.facebook.com/saylesawaytravel/" target="_blank" style="margin: 0 8px;">
                         <i class="fab fa-facebook-f" style="font-size: 18px; color: #000000;"></i>
                     </a>
-                   
+                    
                     <a href="https://www.instagram.com/saylesawaytravel/" target="_blank" style="margin: 0 8px;">
                         <i class="fab fa-instagram" style="font-size: 18px; color: #000000;"></i>
                     </a>

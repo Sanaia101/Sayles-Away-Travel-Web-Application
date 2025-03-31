@@ -26,10 +26,12 @@
 </head>
 
 <header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #37d7e5, #00b8b8); border-bottom: 4px solid #FFD700;">
-    <div style="flex: 1; display: flex; justify-content: center; position: relative;">
-        <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; position: relative; z-index: 1;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, #37d7e5, #00b8b8); z-index: 0;"></div>
+    <div style="flex: 1; display: flex; justify-content: center; position: relative; margin-left: 80px;">
+        <a href="/" style="display: inline-block;">
+            <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
+        </a>
     </div>
+
 
 
     <section class="top-btn-area">
@@ -51,8 +53,8 @@
             </div>
         </div>
     </section>
-    
 </header>
+
 
 
 
@@ -191,6 +193,12 @@
         <span></span>
         <span></span>
     </div>
+    <script>
+        document.querySelector(".toggle_icon").addEventListener("click", function() {
+    document.querySelector(".side_menu").classList.toggle("active");
+});
+
+    </script>
 
 	<title>Our Services</title>
     <style>
