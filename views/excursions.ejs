@@ -9,6 +9,11 @@
 	<link rel="icon" href="img/Golden.png" type="image/png">
 	<title>Sayles Away Travel</title>
 
+     <!-- Embed League Script font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=League+Script&display=swap" rel="stylesheet">
+     
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -58,68 +63,125 @@
 
 
 
+
 <body>
+    <style>
 
-	<style>
 
+
+.list.menu-left a {
+    font-family: 'League Script', cursive !important;
+    font-size: 25px !important;
+    font-weight: 400 !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+    padding: 5px 0 !important;
+    white-space: nowrap !important;
+    display: block !important;
+    position: relative;
+    transition: color 0.3s ease, transform 0.2s ease;
+    text-align: left !important;
+    margin-left: -70px !important;
+}
+
+.list.menu-left a::after {
+    content: ""; 
+    display: block;
+    width: 150%; 
+    margin-left: -10%;
+    height: 2px;
+    background: #ffffff;
+    margin: 5px 0 5px -10px;
+    transition: background 0.3s ease;
+}
+
+
+.list.menu-left a:hover::after {
+    background: #ffd700;
+}
+
+
+
+
+   
+        .side_menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 350px;
+            height: 100vh;
+            background: linear-gradient(to right, #37d7e5, #00b8b8); 
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .side_menu.active {
+            display: block;
+        }
+
+
+        .toggle_icon {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1100;
+        }
+
+        .toggle_icon span {
+            background-color: #ffffff;
+            height: 3px;
+            width: 30px;
+            margin: 4px 0;
+        }
+
+        .logo img {
+            max-width: 90%;
+            object-fit: contain;
+            height: 150px;
+        }
+
+        .interactive-border:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            border-color: #00b8b8;
+        }
+
+        /* ------- MOBILE RESPONSIVENESS -------- */
+@media screen and (max-width: 768px) {
     .side_menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 350px;
-        height: 100vh;
-        background: linear-gradient(to right, #37d7e5, #00b8b8); 
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-        z-index: 1000;
+        width: 80vw; 
+        max-width: 280px; 
     }
 
-    .side_menu.active {
-        display: block;
+    .list.menu-left a {
+        font-size: 20px !important; 
+        margin-left: 0 !important;
+        text-align: center !important;
+        padding: 10px 0 !important;
+    }
+
+    .list.menu-left a::after {
+        width: 100%;
+        margin-left: 0;
     }
 
     .toggle_icon {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        position: fixed;
-        top: 15px;
-        left: 15px;
-        z-index: 1100;
+        left: 10px;
+        top: 10px;
     }
 
     .toggle_icon span {
-        background-color: #ffffff;
-        height: 3px;
-        width: 30px;
-        margin: 4px 0;
+        width: 25px; 
     }
-
-    .menu-close {
-        padding: 10px;
-        cursor: pointer;
-    }
-
-    .list.menu-left li a {
-        color: #fff; 
-        text-decoration: none;
-        padding: 10px 15px;
-        display: block;
-        transition: background-color 0.3s ease;
-    }
-
-    .list.menu-left li a:hover {
-        background-color: rgba(255, 255, 255, 0.2); 
-    }
-
-    .logo img {
-        max-width: 90%;
-        object-fit: contain;
-        height: 150px;
-    }
-
-
+}
     </style>
+
+
+
 </head>
 
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
