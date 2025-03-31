@@ -9,6 +9,11 @@
 	<link rel="icon" href="img/Golden.png" type="image/png">
 	<title>Sayles Away Travel</title>
 
+     <!-- Embed League Script font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=League+Script&display=swap" rel="stylesheet">
+     
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -58,73 +63,123 @@
 
 
 
+
 <body>
+    <style>
 
-	<style>
 
-    .side_menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 350px;
-        height: 100vh;
-        background: linear-gradient(to right, #37d7e5, #00b8b8); 
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-        z-index: 1000;
-    }
 
-    .side_menu.active {
-        display: block;
-    }
+.list.menu-left a {
+    font-family: 'League Script', cursive !important;
+    font-size: 25px !important;
+    font-weight: 400 !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+    padding: 5px 0 !important;
+    white-space: nowrap !important;
+    display: block !important;
+    position: relative;
+    transition: color 0.3s ease, transform 0.2s ease;
+    text-align: left !important;
+    margin-left: -70px !important;
+}
 
-    .toggle_icon {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        position: fixed;
-        top: 15px;
-        left: 15px;
-        z-index: 1100;
-    }
+.list.menu-left a::after {
+    content: ""; 
+    display: block;
+    width: 150%; 
+    margin-left: -10%;
+    height: 2px;
+    background: #ffffff;
+    margin: 5px 0 5px -10px;
+    transition: background 0.3s ease;
+}
 
-    .toggle_icon span {
-        background-color: #ffffff;
-        height: 3px;
-        width: 30px;
-        margin: 4px 0;
-    }
 
-    .menu-close {
-        padding: 10px;
-        cursor: pointer;
-    }
+.list.menu-left a:hover::after {
+    background: #ffd700;
+}
 
-    .list.menu-left li a {
-        color: #fff; 
-        text-decoration: none;
-        padding: 10px 15px;
-        display: block;
-        transition: background-color 0.3s ease;
-    }
 
-    .list.menu-left li a:hover {
-        background-color: rgba(255, 255, 255, 0.2); 
-    }
 
-    .logo img {
-        max-width: 90%;
-        object-fit: contain;
-        height: 150px;
-    }
 
+
+        .side_menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 350px;
+            height: 100vh;
+            background: linear-gradient(to right, #37d7e5, #00b8b8); 
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .side_menu.active {
+            display: block;
+        }
+
+
+        .toggle_icon {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1100;
+        }
+
+        .toggle_icon span {
+            background-color: #ffffff;
+            height: 3px;
+            width: 30px;
+            margin: 4px 0;
+        }
+
+        .logo img {
+            max-width: 90%;
+            object-fit: contain;
+            height: 150px;
+        }
 
         .interactive-border:hover {
             transform: scale(1.02);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
             border-color: #00b8b8;
         }
+
+        /* ------- MOBILE RESPONSIVENESS -------- */
+@media screen and (max-width: 768px) {
+    .side_menu {
+        width: 80vw;
+        max-width: 280px;
+    }
+
+    .list.menu-left a {
+        font-size: 20px !important; 
+        margin-left: 0 !important;
+        text-align: center !important;
+        padding: 10px 0 !important;
+    }
+
+    .list.menu-left a::after {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .toggle_icon {
+        left: 10px;
+        top: 10px;
+    }
+
+    .toggle_icon span {
+        width: 25px; 
+    }
+}
     </style>
+
 </head>
 
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
@@ -180,55 +235,75 @@
     <!--================ Start banner section =================-->
         <!-- Title of the tab -->
          <br>
-        <h1 style="color: black; font-size: 3rem; margin-bottom: 20px; font-family: 'Roboto', sans-serif; text-align: center;">
+         <h1 style="color: black; font-size: 2.5rem; margin-bottom: 20px; font-family: 'League Script', cursive; text-align: center; font-weight: 300; letter-spacing: 2px;">
             Destination Weddings
         </h1>
+        
+        
         <!-- Description with additional information -->
-        <p style="color: #FFFFFF; font-size: 1.2rem; margin-bottom: 30px; font-family: 'Roboto', sans-serif; padding-left: 10%; padding-right: 10%; color: black; text-align: center;">
+        <p style="color: black; font-size: 1.3rem; margin-bottom: 30px; font-family: 'Cormorant Garamond', serif; padding-left: 10%; padding-right: 10%; text-align: center; letter-spacing: 0.5px; line-height: 1.7; font-weight: 300;">
             Celebrate your love in a breathtaking destination. From sandy beaches to luxurious resorts, we provide tailored wedding packages to make your special day unforgettable.
         </p>
+        
 
         <!-- Interactive sections -->
             <!-- First section -->
             <div class="row mb-4 interactive-border" style="border: 2px solid #00b8b8; padding: 20px; border-radius: 10px; background: #FFFFFF; transition: transform 0.3s, box-shadow 0.3s; margin: 20px auto; max-width: 80%; box-sizing: border-box;">
                 <div class="col-md-6 d-flex align-items-center">
-                <div>
-                    <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Beach Wedding</h3>
-                    <p style="color: #333333; font-size: 1rem;">Say “I do” with your toes in the sand and the ocean breeze in your hair with Sayles Away Travel’s Tropical Ever After Wedding Package. We specialize in stress-free, breathtaking beach weddings in Maui, Bora Bora, the Maldives, and more. Whether you want an intimate seaside ceremony or a grand resort celebration, we handle venues, décor, dining, photography, and guest accommodations. Enjoy a sunset ceremony, private beach reception, live music, and moonlit dancing, plus spa treatments, yacht excursions, and honeymoon upgrades. Let Sayles Away Travel bring your dream wedding to life—book today!🌊</p>
-                </div>
+                    <div style="font-family: 'Cormorant Garamond', serif; font-weight: 300;">
+                        <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Beach Wedding</h3>
+                        <p style="color: #333333; font-size: 1rem;">
+                            Say “I do” with your toes in the sand and the ocean breeze in your hair with Sayles Away Travel’s Tropical Ever After Wedding Package. 
+                            We specialize in stress-free, breathtaking beach weddings in Maui, Bora Bora, the Maldives, and more. 
+                            Whether you want an intimate seaside ceremony or a grand resort celebration, we handle venues, décor, dining, photography, and guest accommodations. 
+                            Enjoy a sunset ceremony, private beach reception, live music, and moonlit dancing, plus spa treatments, yacht excursions, and honeymoon upgrades. 
+                            Let Sayles Away Travel bring your dream wedding to life—book today!🌊
+                        </p>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                <img src="img/wedding picture 1 cropped.jpg" alt="Wedding Picture 1 cropped" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
+                    <img src="img/wedding picture 1 cropped.jpg" alt="Wedding Picture 1 cropped" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
                 </div>
             </div>
-            </div>
+            
             <!-- Second section -->
             <div class="row mb-4 interactive-border" style="border: 2px solid #00b8b8; padding: 20px; border-radius: 10px; background: #FFFFFF; transition: transform 0.3s, box-shadow 0.3s; margin: 20px auto; max-width: 80%; box-sizing: border-box;">
                 <div class="col-md-6 d-flex align-items-center">
-                <div>
-                    <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Custom Wedding</h3>
-                    <p style="color: #333333; font-size: 1rem;">Dreaming of a wedding as unique as your love story? With Sayles Away Travel’s Custom Paradise Wedding Package, every detail is tailored to your vision. Whether it’s an intimate beach ceremony, a lavish resort celebration, or a yacht wedding at sea, we bring it to life. Our expert planners handle venues, décor, dining, and entertainment, while you enjoy the moment. Want fireworks, a beach bonfire, or a sunset sail? We make it happen! Enjoy spa retreats, adventure excursions, and VIP honeymoon upgrades for an unforgettable experience. Start planning today, your dream wedding awaits!💍</p>
-                </div>
+                    <div style="font-family: 'Cormorant Garamond', serif; font-weight: 300;">
+                        <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Custom Wedding</h3>
+                        <p style="color: #333333; font-size: 1rem;">
+                            Dreaming of a wedding as unique as your love story? With Sayles Away Travel’s Custom Paradise Wedding Package, every detail is tailored to your vision. 
+                            Whether it’s an intimate beach ceremony, a lavish resort celebration, or a yacht wedding at sea, we bring it to life. 
+                            Our expert planners handle venues, décor, dining, and entertainment, while you enjoy the moment. 
+                            Want fireworks, a beach bonfire, or a sunset sail? We make it happen! Enjoy spa retreats, adventure excursions, and VIP honeymoon upgrades for an unforgettable experience. 
+                            Start planning today, your dream wedding awaits!💍
+                        </p>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                <img src="img/wedding picture 2 cropped.jpg" alt="Wedding Picture 2 cropped" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
+                    <img src="img/wedding picture 2 cropped.jpg" alt="Wedding Picture 2 cropped" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
                 </div>
             </div>
-            </div>
+            
             <!-- Third section -->
-        <div class="row mb-4 interactive-border" style="border: 2px solid #00b8b8; padding: 20px; border-radius: 10px; background: #FFFFFF; transition: transform 0.3s, box-shadow 0.3s; margin: 20px auto; max-width: 80%; box-sizing: border-box;">
-            <div class="col-md-6 d-flex align-items-center">
-            <div>
-                <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Luxury Wedding</h3>
-                <p style="color: #333333; font-size: 1rem;">Indulge in a luxury destination wedding with Sayles Away Travel’s Luxe Coastal Elegance Wedding Package. Exchange vows on a private beach, overwater villa, or five-star resort, with VIP treatment, including first-class airfare, private transfers, and a concierge. Enjoy a designer floral arch, live music, and a top-tier photographer, followed by a gourmet reception, fireworks, and luxury honeymoon accommodations. Enhance your experience with private yacht excursions, spa retreats, and helicopter tours. Let Sayles Away Travel craft your perfect wedding—book today and begin forever in absolute luxury!✨</p>
+            <div class="row mb-4 interactive-border" style="border: 2px solid #00b8b8; padding: 20px; border-radius: 10px; background: #FFFFFF; transition: transform 0.3s, box-shadow 0.3s; margin: 20px auto; max-width: 80%; box-sizing: border-box;">
+                <div class="col-md-6 d-flex align-items-center">
+                    <div style="font-family: 'Cormorant Garamond', serif; font-weight: 300;">
+                        <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Luxury Wedding</h3>
+                        <p style="color: #333333; font-size: 1rem;">
+                            Indulge in a luxury destination wedding with Sayles Away Travel’s Luxe Coastal Elegance Wedding Package. 
+                            Exchange vows on a private beach, overwater villa, or five-star resort, with VIP treatment, including first-class airfare, private transfers, and a concierge. 
+                            Enjoy a designer floral arch, live music, and a top-tier photographer, followed by a gourmet reception, fireworks, and luxury honeymoon accommodations. 
+                            Enhance your experience with private yacht excursions, spa retreats, and helicopter tours. 
+                            Let Sayles Away Travel craft your perfect wedding—book today and begin forever in absolute luxury!✨
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="img/wedding picture 3.jpg" alt="Wedding Picture 3" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
+                </div>
             </div>
-            </div>
-            <div class="col-md-6">
-            <img src="img/wedding picture 3.jpg" alt="Wedding Picture 3" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
-            </div>
-        </div>
-        </div>
-    </div>
+            
 
     <style>
         /* Add hover effects for interactivity */
