@@ -12,10 +12,14 @@ import secrets
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
 from dotenv import load_dotenv
 import os
 
 from datetime import datetime
+
+from fpdf import FPDF
+import os
 
 load_dotenv()
 
@@ -89,6 +93,72 @@ def insert_inquiry_info(client_id, destination, departure, start_date, end_date,
     sql = f"insert into travel_inquiries (client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by) values ({client_id}, '{destination}', '{departure}', '{start_date}', '{end_date}', '{is_passport_valid}', '{num_travelers}', '{underage_travelers}', '{num_underage_travelers}','{accommodations}', '{rooms}', '{payment_date}', '{atmosphere}', '{budget}', '{activities}', '{reference}')"
     execute_update_query(create_connection(creds.myhostname, creds.uname, creds.passwd, creds.dbname), sql)
 
+def generate_pdf(data):
+    pdf = FPDF()
+    pdf.set_auto_page_break(auto=True, margin=15)
+    pdf.add_page()
+
+    # Title
+    pdf.set_font('Arial', 'B', 16)
+    pdf.cell(200, 10, f"Travel Inquiry Form - {data['first_name']} {data['last_name']}", ln=True, align='C')
+
+    # Client information
+    pdf.ln(10)  # Line break
+    pdf.set_font('Arial', '', 12)
+    pdf.cell(200, 10, f"Client: {data['first_name']} {data['last_name']}", ln=True)
+    pdf.cell(200, 10, f"Email: {data['email']}", ln=True)
+    
+    # Form details
+    pdf.ln(10)  # Line break
+    pdf.cell(200, 10, f"Destination: {data['destination']}", ln=True)
+    pdf.cell(200, 10, f"Departure City: {data['departure']}", ln=True)
+    pdf.cell(200, 10, f"Start Date: {data['start_date']}", ln=True)
+    pdf.cell(200, 10, f"End Date: {data['end_date']}", ln=True)
+    pdf.cell(200, 10, f"Valid Passport: {data['is_passport_valid']}", ln=True)
+    pdf.cell(200, 10, f"Number of Travelers: {data['num_travelers']}", ln=True)
+    pdf.cell(200, 10, f"Underage Travelers: {data['underage_travelers']}", ln=True)
+    pdf.cell(200, 10, f"Number of Underage Travelers: {data['num_underage_travelers']}", ln=True)
+    pdf.cell(200, 10, f"Accommodations: {data['accommodations']}", ln=True)
+    pdf.cell(200, 10, f"Rooms: {data['rooms']}", ln=True)
+    pdf.cell(200, 10, f"Able to make Payment on: {data['payment_date']}", ln=True)
+    pdf.cell(200, 10, f"Atmosphere: {data['atmosphere']}", ln=True)
+    pdf.cell(200, 10, f"Budget: {data['budget']}", ln=True)
+    pdf.cell(200, 10, f"Activities: {data['activities']}", ln=True)
+    pdf.cell(200, 10, f"How did you find me: {data['reference']}", ln=True)
+
+    return pdf
+
+def send_email_with_pdf(to_email, subject, message, pdf, pdf_data):
+    msg = MIMEMultipart()
+    msg['From'] = sender_gmail
+    msg['To'] = to_email
+    msg['Subject'] = subject
+
+    msg.attach(MIMEText(message, 'plain'))
+
+    # Save PDF
+    output_directory = os.path.join(os.getcwd(), "generated_pdfs")
+    os.makedirs(output_directory, exist_ok=True)  # Create directory if it doesn't exist
+    pdf_file_path = os.path.join(output_directory, f"travel_inquiry_{pdf_data['first_name']}_{pdf_data['last_name']}.pdf")
+    pdf.output(pdf_file_path)
+
+    # Attach PDF
+    with open(pdf_file_path, 'rb') as file:
+        part = MIMEApplication(file.read(), Name=os.path.basename(pdf_file_path))
+        part['Content-Disposition'] = f'attachment; filename="{os.path.basename(pdf_file_path)}"'
+        msg.attach(part)
+
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(sender_gmail, email_password) 
+        text = msg.as_string()
+        server.sendmail(sender_gmail, to_email, text)
+        server.quit()
+        print("Email sent successfully")
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+
 # Create a backend path which recieves a post request when the travel inquiry form page is accessed.
 @app.route('/travelinquiryform', methods=['POST'])
 def register_client():
@@ -110,19 +180,18 @@ def register_client():
 @app.route('/travelinquiryformsubmit', methods=['POST'])
 def submit_travel_inquiry_form():
     data = request.get_json()
-    print(data)
 
     destination = data.get('destination')
     departure = data.get('departure')
-    start_date = data.get('start_date')
-    end_date = data.get('end_date')
+    start_date = datetime.strptime(data.get('start_date'), '%Y-%m-%d').strftime('%m-%d-%Y')
+    end_date = datetime.strptime(data.get('end_date'), '%Y-%m-%d').strftime('%m-%d-%Y')
     is_passport_valid = data.get('is_passport_valid')
     num_travelers = data.get('num_travelers')
     underage_travelers = data.get('underage_travelers')
     num_underage_travelers = data.get('num_underage_travelers')
     accommodations = data.get('accommodations')
     rooms = data.get('rooms')
-    payment_date = data.get('payment_date')
+    payment_date = datetime.strptime(data.get('payment_date'), '%Y-%m-%d').strftime('%m-%d-%Y')
     atmosphere = data.get('atmosphere')
     budget = data.get('budget')
     activities = data.get('activities')
@@ -138,28 +207,30 @@ def submit_travel_inquiry_form():
 
     insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by)
 
-    email_message = f"""
-    Client: {first_name} {last_name}
-    Email: {email}
-    Subject: Travel Inquiry Form
-    
-    Destination: {destination}
-    Departure City: {departure}
-    Start Date: {start_date}
-    End Date: {end_date}
-    Valid Passport: {is_passport_valid}
-    Number of Travelers: {num_travelers}
-    Underage Travelers: {underage_travelers}
-    Number of Underage Travelers: {num_underage_travelers}
-    Accommodations: {accommodations}
-    Rooms: {rooms}
-    Able to make Payment on: {payment_date}
-    Atmosphere: {atmosphere}
-    Budget: {budget}
-    Activities: {activities}
-    How did you find me: {referenced_by}
-    """
-    send_email(sender_gmail, f"New Travel Inquiry Form Submission from {first_name} {last_name}", email_message)
+    pdf_data = {
+        'first_name': first_name,
+        'last_name': last_name,
+        'email': email,
+        'destination': destination,
+        'departure': departure,
+        'start_date': start_date,
+        'end_date': end_date,
+        'is_passport_valid': is_passport_valid,
+        'num_travelers': num_travelers,
+        'underage_travelers': underage_travelers,
+        'num_underage_travelers': num_underage_travelers,
+        'accommodations': accommodations,
+        'rooms': rooms,
+        'payment_date': payment_date,
+        'atmosphere': atmosphere,
+        'budget': budget,
+        'activities': activities,
+        'reference': referenced_by
+    }
+
+    pdf_file = generate_pdf(pdf_data)
+
+    send_email_with_pdf(sender_gmail, f"New Travel Inquiry Form Submission from {first_name} {last_name}", "Please find the travel inquiry form attached.", pdf_file, pdf_data)
 
     return "Travel Inquiry Form added to db and sent to email"
     
