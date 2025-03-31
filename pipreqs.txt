@@ -3,3 +3,4 @@ mysql-connector-python
 flask-cors
 pymysql
 python-dotenv
+fpdf

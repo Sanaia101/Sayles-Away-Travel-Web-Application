@@ -26,7 +26,6 @@
 </head>
 
 <header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #37d7e5, #00b8b8); border-bottom: 4px solid #FFD700;">
-
     <div style="flex: 1; display: flex; justify-content: center; position: relative;">
         <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; position: relative; z-index: 1;">
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, #37d7e5, #00b8b8); z-index: 0;"></div>
@@ -52,15 +51,26 @@
             </div>
         </div>
     </section>
-
+    
 </header>
-
 
 
 
 <body>
 
 	<style>
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background: url('img/background.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .content {
+        flex: 1;
+    }
 
     .side_menu {
         display: none;
@@ -179,197 +189,18 @@
 
 </html>
 
-
-
-	<title>Our Services</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-		.title {
-            text-align: center;
-            font-family: 'Georgia', serif; 
-            font-size: 2.5rem;
-            color: #333;
-            margin-top: 20px;
-            margin-bottom: 40px;
-        }
-        .service-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .service-card {
-            width: 20%;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .service-card img,
-        .service-card video {
-            width: 100%;
-            height: auto;  
-            object-fit: cover;
-        }
-
-        .service-card .service-info {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .service-card .service-info h3 {
-            margin: 10px 0;
-            font-size: 1.2rem;
-            color: #333;
-        }
-
-        .service-card .service-info p {
-            color: #777;
-            font-size: 1rem;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-
-        @media (max-width: 768px) {
-            .service-card {
-                width: 48%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .service-card {
-                width: 100%;
-            }
-        }
-	
-button[type="submit"]:hover {
-    background-color: #009b9b; 
-    transition: background-color 0.3s ease;
-}
-
-
-input:focus, textarea:focus {
-    outline: none;
-    border-color: #ffd700; 
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.8); 
-}
-
-
-label {
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 8px;
-}
-
-@media (max-width: 768px) {
-    form {
-        padding: 10px;
-    }
-    input, textarea {
-        font-size: 16px;
-    }
-}
-
-
-    </style>
-</head>
-
-	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
+	<title>Unauthorized</title>
 <body>
-
-
-<div class="title" style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #090909;">
-    Travel Services
-</div>
-
-
-    <div class="service-container">
-        <div class="service-card">
-            <video width="100%" height="200" controls>
-                <source src="img/Romantic.mp4" type="video/mp4">
-            </video>
-            <div class="service-info">
-                <h3>Romantic Getaways</h3>
-                <p>Escape to a paradise for two with our romantic getaway packages, perfect for creating unforgettable memories.</p>
-            </div>
-        </div>
-
-        <div class="service-card">
-            <video width="100%" height="200" controls>
-                <source src="img/Cabos.mp4" type="video/mp4">
-            </video>
-            <div class="service-info">
-                <h3>Luxury Vacations</h3>
-                <p>Indulge in a luxurious vacation experience with high-end resorts, gourmet dining, and exclusive experiences.</p>
-            </div>
-        </div>
-
-        <div class="service-card">
-            <video width="100%" height="200" controls>
-                <source src="img/Nickelodeon.mp4" type="video/mp4">
-            </video>
-            <div class="service-info">
-                <h3>All Inclusive Resorts</h3>
-                <p>Enjoy everything you need for a perfect vacation, from meals to activities, all in one incredible package.</p>
-            </div>
-        </div>
-
-        <div class="service-card">
-            <video width="100%" height="200" controls>
-                <source src="img/Colombia.mp4" type="video/mp4">
-            </video>
-            <div class="service-info">
-                <h3>International Escapes</h3>
-                <p>Explore new countries and cultures with tailored international travel experiences to amazing destinations.</p>
-            </div>
-        </div>
+    <div class="content" style="text-align: center; padding: 60px 20px;">
+        <h2 style="font-size: 30px; color: #000000;">
+            You must be logged in to submit a Contact Form.
+        </h2>
     </div>
-
-</body>
-</html>
-
-
-<!-- About Section -->
-<section id="about" style="padding: 50px 20px; background-color: #fffefe; color: #060606; text-align: left;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
-   
-        <div style="flex: 1; padding: 20px;">
-            <img src="img/Headshot.png" alt="About Us" style="max-width: 100%;background-color: #37d7e5; height: auto; border-radius: 10px;">
-        </div>
-
-
-        <div style="flex: 1; padding: 20px;">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; margin-bottom: 20px;">About Us</h2>
-            <p style="font-size: 18px; line-height: 1.6;">
-                After planning my dream destination wedding, I knew becoming a travel agent was the best way to express my passion for traveling.
-				Whether it's group travel or a family vacation, I'm here to assist with your travel needs.
-				I offer a variety of services including: customized quotes, trip itineraries/excursions, packages for groups , solo travelers, couples, etc.
-				I travel quite frequently and would love to share those experiences with my travel family. I truly enjoy helping others plan their dream vacations.
-				Allow me to be your dedicated travel consultant and curate the best travel experience for you!
-				Let's "Sayles " Away!
-
-            </p>
-        </div>
-    </div>
-</section>
 
 <head>
     <script src="https://kit.fontawesome.com/83152295c7.js" crossorigin="anonymous"></script>
 </head>
 
-	
 <footer class="footer-area" style="background: linear-gradient(to right, #37d7e5, #00b8b8); color: #000000; font-family: 'Roboto', sans-serif;">
     <div class="container">
         <div class="footer-bottom" style="text-align: center; padding: 10px 0; font-size: 12px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
@@ -408,10 +239,7 @@ label {
         </div>
     </div>
 </footer>
-
-
-	
-
+</body>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const toggleIcons = document.querySelectorAll(".toggle_icon");
@@ -431,7 +259,6 @@ label {
     </script>
 </body>
 
-	
 	<!--================ End footer Area  =================-->
 
 </html>

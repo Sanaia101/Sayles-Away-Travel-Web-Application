@@ -84,7 +84,7 @@ app.get('/callback', async (req, res) => {
             email: userInfo.email
         });
 
-        res.redirect('/travel-inquiry-form');
+        res.redirect('/');
     } catch (err) {
         console.error('Callback error:', err);
         res.redirect('/');
@@ -129,10 +129,15 @@ function isAuthenticated(req, res, next) {
 }
 
 // Create the frontend path for the travel inquiry form page which checks if the user is logged in.
-// When a logged in user is redirected to the travel inquiry form page, their user info is stored in the database if it does not already exist.
-
 app.get('/travel-inquiry-form', isAuthenticated, async (req, res) => {
-    res.render('travel-inquiry-form')
+    res.render('travel-inquiry-form', {
+        userInfo: req.session.userInfo
+    })
+});
+
+// Create the frontend path for the travel inquiry form page which can only be accessed if the user is not logged in.
+app.get('/travelinquiryformnoaccess', async (req, res) => {
+    res.render('travelinquiryformnoaccess')
 });
 
 // Create the frontend path for the terms of service page.
@@ -145,6 +150,15 @@ app.get('/privacy-policy', (req, res) => {
     res.render('privacy-policy'); 
 });
 
+// Create the frontend path for the contact us page which checks if the user is logged in.
+app.get('/contact', isAuthenticated, async (req, res) => {
+    res.render('contact');
+});
+
+// Create the frontend path for the contact us page which can only be accessed if the user is not logged in.
+app.get('/contactnoaccess', async (req, res) => {
+    res.render('contactnoaccess');
+});
 
 // localhost:8080 is the URL
 app.listen(8080);

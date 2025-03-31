@@ -142,12 +142,21 @@
             <li><a href="/">Home</a></li>
             <li><a href="/group-travel-services">Group Travel Services</a></li>
             <li><a href="/destination-weddings">Destination Weddings</a></li>
-			<li>
+            <li><a href="/excursions">Excursions</a></li>
+            <li>
                 <% if (isAuthenticated) { %>
                     <a href="/travel-inquiry-form">Travel Inquiry Form</a>
+                <% } else { %>
+                    <a href="/travelinquiryformnoaccess">Travel Inquiry Form</a>
                 <% } %>
             </li>
-            <li><a href="/excursions">Excursions</a></li>
+            <li>
+                <% if (isAuthenticated) { %>
+                    <a href="/contact">Contact Us</a>
+                <% } else { %>
+                    <a href="/contactnoaccess">Contact Us</a>
+                <% } %>
+            </li>
         </ul>
     </div>
 
@@ -275,7 +284,7 @@ label {
 
 <div class="title" style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #090909;">
     Travel Inquiry Form
-    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+    <div id="introduction" style="max-width: 1200px; margin: 0 auto; text-align: center;">
         <br>
         <h3 style="font-family: 'Playfair Display', serif; font-size: 30px; color: #057c7c; margin-bottom: 30px; font-weight: bold;">Please complete the form below so we can provide a custom quote just for you!</h2>
         <p style="font-size: 18px; color: #777; margin-bottom: 40px;">
@@ -286,24 +295,30 @@ label {
             <br>
             - Sayles Away Travel
         </p>
-        
-        <form method="POST" id="travelInquiryForm" style="max-width: 100%; margin: 0 auto; background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+    </div>
+</div>
+</body>
+</html>
+
+<section id="form" style="background-color: #fff; padding: 60px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+        <form method="POST" id="travelinquiryform" style="max-width: 100%; margin: 0 auto; background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
             <!-- First Name Input -->
             <div style="margin-bottom: 20px;">
-                <label for="fname" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="fname" style="display: block; font-size: 18px; font-weight: 500; text-align: left; margin-bottom: 5px;">
                     First Name
                 </label>
-                <input type="text" id="fname" name="fname" required 
-                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                <input type="text" id="fname" name="fname" value="<%= userInfo.given_name %>" readonly
+                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Last Name Input -->
             <div style="margin-bottom: 20px;">
-                <label for="lname" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="lname" style="display: block; font-size: 18px; font-weight: 500;  text-align: left; margin-bottom: 5px;">
                     Last Name
                 </label>
-                <input type="text" id="lname" name="lname" required
-                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                <input type="text" id="lname" name="lname" value="<%= userInfo.family_name %>" readonly
+                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #333; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Email Input -->
@@ -311,8 +326,8 @@ label {
                 <label for="email" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     Email
                 </label>
-                <input type="text" id="email" name="email" required
-                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                <input type="text" id="email" name="email" value="<%= userInfo.email %>" readonly
+                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px;  color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Destination Input -->
@@ -335,97 +350,61 @@ label {
 
             <!-- Dates Input -->
             <div style="margin-bottom: 20px;">
-                <label for="start-date" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="start_date" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     Start Date
                 </label>
-                <input type="date" id="start-date" name="start-date" required 
+                <input type="date" id="start_date" name="start_date" required 
                         style="width: 100%; padding: 15px; margin-top: 8px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
             </div>
             <div style="margin-bottom: 20px;">    
                 <label for="end-date" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     End Date
                 </label>
-                <input type="date" id="end-date" name="end-date" required 
+                <input type="date" id="end_date" name="end_date" required 
                         style="width: 100%; padding: 15px; margin-top: 8px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
             </div>
-            <!--Ensure valid date range is used-->
-            <script>
-                const startDateInput = document.getElementById('start-date');
-                const endDateInput = document.getElementById('end-date');
             
-                startDateInput.addEventListener('change', function() {
-                    const startDate = startDateInput.value;
-                    endDateInput.min = startDate;  
-                });
-            
-                endDateInput.addEventListener('change', function() {
-                    const endDate = endDateInput.value;
-                    startDateInput.max = endDate;  
-                });
-            </script>
-
             <!-- Valid Passport Input -->
             <div style="margin-bottom: 20px;">
-                <label for="valid-passport" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="valid_passport" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     Do you have a valid passport?
                 </label>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="is-valid" name="is-valid"  
-                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="is-valid" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Yes</label>
+                    <input type="radio" id="valid_passport_yes" name="valid_passport" value="Yes">
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Yes</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="is-not-valid" name="is-not-valid" 
-                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="is-not-valid" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">No</label>
+                    <input type="radio" id="valid_passport_no" name="valid_passport" value="No">
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">No</label>
                 </div>
             </div>
 
             <!-- Travelers Input -->
             <div style="margin-bottom: 20px;">
-                <label for="travelers" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="num_travelers" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     How many travelers?
                 </label>
-                <input type="number" id="travelers" name="travelers" required 
+                <input type="number" id="num_travelers" name="num_travelers" required 
                        style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Travelers under 18 Input -->
             <div style="margin-bottom: 20px;">
-                <label for="under-18" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     Are there any travelers under the age of 18? If so, how many?
                 </label>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="is-traveling" name="is-traveling"  
-                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;"
-                        onclick="toggleTextbox()">
-                    <label for="is-traveling" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Yes</label>
+                    <input type="radio" id="under_18_is_traveling" name="under_18_travelers" value="Yes" onclick="toggleTextbox(true)">
+                    <label for="under_18_is_traveling" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Yes</label>
                 </div>
-                <div style="margin-bottom: 20px;" id="under-18-traveler-count">
-                    <input type="number" name="under-18-traveler-count"
+                <div style="display: none; margin-bottom: 20px;" id="under_18_traveler_count" name="under_18_traveler_count">
+                    <input type="number" name="under_18_traveler_count"
                            style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="is-not-traveling" name="is-not-traveling"  
-                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="is-not-traveling" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">No</label>
+                    <input type="radio" id="under_18_is_not_traveling" name="under_18_travelers" value="No" onclick="toggleTextbox(false)">
+                    <label for="under_18_is_not_traveling" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">No</label>
                 </div>
-
-                <script>
-                    document.getElementById('under-18-traveler-count').style.display = 'none';
-                    function toggleTextbox() {
-                        const checkbox = document.getElementById('is-traveling');
-                        const textbox = document.getElementById('under-18-traveler-count');
-                        
-                        // Toggle visibility based on checkbox state
-                        if (checkbox.checked) {
-                            textbox.style.display = 'block';
-                        } else {
-                            textbox.style.display = 'none';
-                        }
-                    }
-                </script>
-
             </div>
 
             <!-- Travel accommodation Input -->
@@ -434,19 +413,16 @@ label {
                     What travel accommodation is needed?
                 </label>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="hotel-&-flight" name="hotel-&-flight"  
-                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="hotel-&-flight" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Hotel & Flight</label>
+                    <input type="radio" id="hotel-&-flight" name="accommodations" value="Hotel & Flight">
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Hotel & Flight</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="hotel" name="hotel"  
-                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="hotel" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Hotel only</label>
+                    <input type="radio" id="hotel-only" name="accommodations" value="Hotel Only">
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Hotel only</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="cruise" name="cruise"  
-                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="cruise" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Cruise Package</label>
+                    <input type="radio" id="cruise" name="accommodations" value="Cruise Package">
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Cruise Package</label>
                 </div>
             </div>
 
@@ -474,24 +450,24 @@ label {
                     What type of atmosphere are you looking for?
                 </label>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="rest" name="rest"  
+                    <input type="checkbox" id="rest" name="atmosphere" value="Rest & Relaxation"  
                         style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="rest" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Rest & Relaxation</label>
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Rest & Relaxation</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="party" name="party"  
+                    <input type="checkbox" id="party" name="atmosphere" value="Party Vibes"  
                         style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="party" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Party Vibes</label>
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Party Vibes</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="family" name="family"  
+                    <input type="checkbox" id="family" name="atmosphere" value="Family Friendly"  
                         style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="family" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Family Friendly</label>
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Family Friendly</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="romantic" name="romantic"  
+                    <input type="checkbox" id="romantic" name="atmosphere" value="Romantic"  
                         style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="romantic" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Romantic</label>
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Romantic</label>
                 </div>
             </div>
 
@@ -501,24 +477,20 @@ label {
                     What is the budget per person? Please be as accurate as possible.
                 </label>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="over-500>" name="over-500"  
-                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="over-500" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">$500 - $800</label>
+                    <input type="radio" id="over-500" name="budget" value="$500 - $800">
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">$500 - $800</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="over-800" name="over-800"  
-                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="over-800" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">$800 - $1,000</label>
+                    <input type="radio" id="over-800" name="budget" value="$800 - $1,000">
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">$800 - $1,000</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="over-1000" name="over-1000"  
-                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="over-1000" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">$1,000 - $2,000</label>
+                    <input type="radio" id="over-1000" name="budget" value="$1,000 - $2,000">
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">$1,000 - $2,000</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="over-2000" name="over-2000"  
-                        style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="over-2000" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Over $2,000</label>
+                    <input type="radio" id="over-2000" name="budget" value="Over $2,000">
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Over $2,000</label>
                 </div>
             </div>
 
@@ -528,24 +500,24 @@ label {
                     Which activities are you interested in?
                 </label>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="beach" name="beach"  
+                    <input type="checkbox" id="beach" name="activities" value="Beach"  
                         style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="beach" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Beach</label>
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Beach</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="gambling" name="gambling"  
+                    <input type="checkbox" id="gambling" name="activities" value="Gambling"  
                         style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="gambling" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Gambling</label>
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Gambling</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="excursions" name="excursions"  
+                    <input type="checkbox" id="excursion" name="activities" value="Excursions"  
                         style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="excursions" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Excursions</label>
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Excursions</label>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="nightlife" name="nightlife"  
+                    <input type="checkbox" id="nightlife" name="activities" value="Nightlife"  
                         style="width: auto; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
-                    <label for="nightlife" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Nightlife</label>
+                    <label style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Nightlife</label>
                 </div>
             </div>
 
@@ -562,15 +534,63 @@ label {
             <button type="submit" style="background-color: #00b8b8; color: white; padding: 14px 30px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease;">
                 Submit
             </button>
-        </form>
-    </div>
+        </div>
+    </form>
+</section>
+
+
+
+<!--Ensure valid date range is used and show text box if underage travelers are present-->
+<script>
+    const startDateInput = document.getElementById('start_date');
+    const endDateInput = document.getElementById('end_date');
+
+    startDateInput.addEventListener('change', function() {
+        const startDate = startDateInput.value;
+        endDateInput.min = startDate;  
+    });
+
+    endDateInput.addEventListener('change', function() {
+        const endDate = endDateInput.value;
+        startDateInput.max = endDate;  
+    });
+
+    function toggleTextbox(isVisible) {
+        document.getElementById("under_18_traveler_count").style.display = isVisible ? "block" : "none";
+    }
+</script>
+
+</section>
+<!--================Travel Inquiry Form Success and Error message Area =================-->
+<div id="success" class="modal modal-message fade" role="dialog">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <i class="fa fa-close"></i>
+               </button>
+               <h2>Thank you</h2>
+               <p>Your message is successfully sent...</p>
+           </div>
+       </div>
+   </div>
 </div>
 
+<!-- Modals error -->
 
-</body>
-</html>
-
-        
+<div id="error" class="modal modal-message fade" role="dialog">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <i class="fa fa-close"></i>
+               </button>
+               <h2>Sorry !</h2>
+               <p> Something went wrong </p>
+           </div>
+       </div>
+   </div>
+</div>
 
 <head>
     <script src="https://kit.fontawesome.com/83152295c7.js" crossorigin="anonymous"></script>
@@ -634,7 +654,8 @@ label {
             </script>
         </body>
         
-            
+
+
 <!--================ End footer Area  =================-->
 
 
@@ -655,10 +676,7 @@ label {
     <script src="vendors/swiper/js/swiper.min.js"></script>
     <script src="vendors/scroll/jquery.mCustomScrollbar.js"></script>
     <script src="js/theme.js"></script>
-    <!-- contact js -->
+    <!-- Travel Inquiry Form js -->
     <script src="js/jquery.form.js"></script>
     <script src="js/jquery.validate.min.js"></script>
-    <script src="js/contact.js"></script>
-</body>
-
-</html>
+    <script src="js/travel-inquiry-form.js"></script>
