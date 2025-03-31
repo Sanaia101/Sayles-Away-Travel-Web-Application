@@ -88,6 +88,7 @@ def send_email(to_email, subject, message):
     except Exception as e:
         print(f"Failed to send email: {e}")
 
+
 # Function to insert inquiry information into the database.
 def insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, reference):
     sql = f"insert into travel_inquiries (client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by) values ({client_id}, '{destination}', '{departure}', '{start_date}', '{end_date}', '{is_passport_valid}', '{num_travelers}', '{underage_travelers}', '{num_underage_travelers}','{accommodations}', '{rooms}', '{payment_date}', '{atmosphere}', '{budget}', '{activities}', '{reference}')"
@@ -159,8 +160,9 @@ def send_email_with_pdf(to_email, subject, message, pdf, pdf_data):
     except Exception as e:
         print(f"Failed to send email: {e}")
 
-# Create a backend path which recieves a post request when the travel inquiry form page is accessed.
-@app.route('/travelinquiryform', methods=['POST'])
+# Create a backend path which recieves a post request when the callback page is accessed.
+@app.route('/callback', methods=['POST'])
+
 def register_client():
     data = request.get_json()
     email = data.get('email')
