@@ -9,12 +9,9 @@
 	<link rel="icon" href="img/Golden.png" type="image/png">
 	<title>Sayles Away Travel</title>
 
-     <!-- Embed League Script font -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=League+Script&display=swap" rel="stylesheet">
-     
+    <link href="https://fonts.cdnfonts.com/css/gold-lines-serif-trial" rel="stylesheet">
 
+    <link href="https://fonts.cdnfonts.com/css/mylestock-free" rel="stylesheet">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="vendors/linericon/style.css">
@@ -30,7 +27,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
-<header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #37d7e5, #00b8b8); border-bottom: 4px solid #FFD700;">
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #f1f3f4); border-bottom: 4px solid #37d7e5;">
     <div style="flex: 1; display: flex; justify-content: center; position: relative; margin-left: 80px;">
         <a href="/" style="display: inline-block;">
             <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
@@ -66,107 +63,111 @@
 
 <body>
     <style>
+    .title {
+    font-family: 'Mylestock Free', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #090909;
+    letter-spacing: 1.5px;
+    line-height: 1.4;
+}
 
 
+.list.menu-left {
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+.list.menu-left li {
+    padding: 0 !important;
+    margin: 0 0 15px 0 !important; /* Adds space between list items */
+    list-style-type: none;
+}
 
 .list.menu-left a {
-    font-family: 'League Script', cursive !important;
-    font-size: 25px !important;
+    font-family: 'Gold Lines Serif Trial', sans-serif !important;
+    font-size: 22px !important;
     font-weight: 400 !important;
     color: #000000 !important;
     text-decoration: none !important;
-    padding: 5px 0 !important;
+    padding: 10px 0 !important; /* Adds space inside each item */
     white-space: nowrap !important;
     display: block !important;
-    position: relative;
-    transition: color 0.3s ease, transform 0.2s ease;
     text-align: left !important;
-    margin-left: -70px !important;
+    margin-left: 0 !important;
 }
 
-.list.menu-left a::after {
-    content: ""; 
+/* Ensure the container (side menu) doesn't add extra padding */
+.side_menu {
+    padding: 20px 0px 20px 10px !important; /* Adjust left padding */
+}
+
+
+/* Side menu styles */
+.side_menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 100vh;
+    background: linear-gradient(to right, #37d7e5, #00b8b8); 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.side_menu.active {
     display: block;
-    width: 150%; 
-    margin-left: -10%;
-    height: 2px;
-    background: #ffffff;
-    margin: 5px 0 5px -10px;
-    transition: background 0.3s ease;
 }
 
-
-.list.menu-left a:hover::after {
-    background: #ffd700;
+/* Toggle Icon */
+.toggle_icon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
 }
 
+.toggle_icon span {
+    background-color: #110e0e;
+    height: 3px;
+    width: 30px;
+    margin: 4px 0;
+}
 
+/* Logo */
+.logo img {
+    max-width: 90%;
+    object-fit: contain;
+    height: 150px;
+}
 
+/* Interactive Border */
+.interactive-border:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    border-color: #00b8b8;
+}
 
-  
-        .side_menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 350px;
-            height: 100vh;
-            background: linear-gradient(to right, #37d7e5, #00b8b8); 
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-        }
-
-        .side_menu.active {
-            display: block;
-        }
-
-
-        .toggle_icon {
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 1100;
-        }
-
-        .toggle_icon span {
-            background-color: #ffffff;
-            height: 3px;
-            width: 30px;
-            margin: 4px 0;
-        }
-
-        .logo img {
-            max-width: 90%;
-            object-fit: contain;
-            height: 150px;
-        }
-
-        .interactive-border:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-            border-color: #00b8b8;
-        }
-        /* ------- MOBILE RESPONSIVENESS -------- */
+/* ------- MOBILE RESPONSIVENESS -------- */
 @media screen and (max-width: 768px) {
-    .side_menu {
-        width: 80vw; 
-        max-width: 280px; 
+    .list.menu-left {
+        text-align: left !important;
+        padding-left: 0 !important;
     }
 
     .list.menu-left a {
-        font-size: 20px !important; 
-        margin-left: 0 !important;
-        text-align: center !important;
-        padding: 10px 0 !important;
+        font-size: 20px !important;
+        padding-left: 0 !important;
+        text-align: left !important;
     }
+}
 
-    .list.menu-left a::after {
-        width: 100%;
-        margin-left: 0;
-    }
+ 
 
     .toggle_icon {
         left: 10px;
@@ -176,8 +177,10 @@
     .toggle_icon span {
         width: 25px; 
     }
-}
+
+
     </style>
+
 
 </head>
 
@@ -233,13 +236,14 @@
 
     </div> 
     <div class="container">
-        <h1 style="font-size: 2.5rem; font-weight: bold; text-align: center; margin-bottom: 20px; color: #004d4d;">Terms of Service</h1>
-        <p style="font-size: 1.1rem; line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify;">
-            <strong>Privacy Policy</strong><br>
+        
+        <h1 style="font-family: 'Mylestock Free', sans-serif !important; font-size: 70px; font-weight: 300; text-align: center; margin-bottom: 20px; color: #333333; letter-spacing: 1.5px;">
+            Privacy Policy
+        </h1>
         <p style="font-size: 1.1rem; line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify;">
         <p style="line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify;">
             Last updated: March 2025
-        <div style="line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify; border: 2px solid #FFD700; padding: 15px; border-radius: 10px; background: linear-gradient(to right, #f9f9f9, #e6f7ff); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: 'Georgia', serif;"> 
+        <div style="line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify; border: 2px solid #37d7e5; padding: 15px; border-radius: 10px; background: linear-gradient(to right, #f9f9f9, #e6f7ff); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: 'Georgia', serif;"> 
             <p>We, the entity identified on this site by name and contact information published in the header of this site, (the “Company”), publish this Privacy Policy (the “Policy”) to inform visitors and customers of our practices concerning the collection, use, and protection of information that you provide to us through interactions with this website and with those of our affiliate. This Policy applies to all visitors to the website as well as all customers and potential customers of our travel services.</p>
 
                 <p>1. For purposes of this Policy, “User” means any person (i) accessing the Company’s website, (ii) using the services available through the Company’s website, or (iii) contacting the Company via the website’s contact form.</p>
