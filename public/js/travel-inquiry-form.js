@@ -75,63 +75,63 @@ $(document).ready(function(){
             },
             messages: {
                 destination: {
-                    required: "Destination field is required",
+                    required: "",
                     minlength: ""
                 },
                 departure: {
-                    required: "Departure field is required",
+                    required: "",
                     minlength: ""
                 },
                 start_date: {
-                    required: "Start Date field is required",
+                    required: "",
                     minlength: ""
                 },
                 end_date: {
-                    required: "End Date field is required",
+                    required: "",
                     minlength: ""
                 },
                 valid_passport: {
-                    required: "Passport validity field is required",
+                    required: "",
                     minlength: ""
                 },
                 num_travelers: {
-                    required: "Number of Travelers is required",
+                    required: "",
                     minlength: ""
                 },
                 under_18_travelers: {
-                    required: "Underage Travelers field is required",
+                    required: "",
                     minlength: ""
                 },
                 under_18_traveler_count: {
-                    required: "Number of Underage Travelers is required",
+                    required: "",
                     minlength: ""
                 },
                 accommodations: {
-                    required: "Accomodations field is required",
+                    required: "",
                     minlength: ""
                 },
                 rooms: {
-                    required: "Rooms field is required",
+                    required: "",
                     minlength: ""
                 },
                 payment: {
-                    required: "Payment Date field is required",
+                    required: "",
                     minlength: ""
                 },
                 atmosphere: {
-                    required: "Atmosphere is required",
+                    required: "",
                     minlength: ""
                 },
                 budget: {
-                    required: "Budget is required",
+                    required: "",
                     minlength: ""
                 },
                 activities: {
-                    required: "Activities field is required",
+                    required: "",
                     minlength: ""
                 },
                 reference: {
-                    required: "Referenced by field is required",
+                    required: "",
                     minlength: ""
                 }
             },

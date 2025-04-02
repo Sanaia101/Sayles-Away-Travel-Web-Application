@@ -246,7 +246,34 @@
         <p style="font-size: 18px; color: #777; margin-bottom: 40px;">We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
         
         <form method="POST" id ="contactForm" style="max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-            <!-- Name Input -->
+            <!-- First Name Input -->
+            <div style="margin-bottom: 20px;">
+                <label for="fname" style="display: block; font-size: 18px; font-weight: 500; margin-bottom: 5px;">
+                    First Name
+                </label>
+                <input type="text" id="fname" name="fname" value="<%= userInfo.given_name %>" readonly
+                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
+            </div>
+
+            <!-- Last Name Input -->
+            <div style="margin-bottom: 20px;">
+                <label for="lname" style="display: block; font-size: 18px; font-weight: 500; margin-bottom: 5px;">
+                    Last Name
+                </label>
+                <input type="text" id="lname" name="lname" value="<%= userInfo.family_name %>" readonly
+                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #333; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
+            </div>
+
+            <!-- Email Input -->
+            <div style="margin-bottom: 20px;">
+                <label for="email" style="display: block; font-size: 18px; font-weight: 500; margin-bottom: 5px;">
+                    Email
+                </label>
+                <input type="text" id="email" name="email" value="<%= userInfo.email %>" readonly
+                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px;  color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
+            </div>
+            
+            <!-- Subject Input -->
             <div style="margin-bottom: 20px;">
                 <label for="subject" style="font-size: 18px; font-weight: 500; color: #333;">Your Subject</label>
                 <input type="text" id="subject" name="subject" required placeholder="Enter your subject" 
@@ -261,7 +288,8 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" style="background-color: #00b8b8; color: white; padding: 14px 30px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease;">
+            <button type="submit" style="background-color: #00b8b8; color: white; padding: 14px 30px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease;"
+                onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
                 Submit
             </button>
         </form>
