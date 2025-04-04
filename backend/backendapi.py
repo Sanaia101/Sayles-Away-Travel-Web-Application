@@ -16,8 +16,6 @@ from email.mime.application import MIMEApplication
 from dotenv import load_dotenv
 import os
 
-from datetime import datetime
-
 from fpdf import FPDF
 import os
 
@@ -129,6 +127,11 @@ def generate_inquiry_pdf(data):
 
     return pdf
 
+def find_inquiry():
+    sql = f"select * from travel_inquiries where form_id = (select max(form_id) from travel_inquiries)"
+    result = execute_read_query(create_connection(creds.myhostname, creds.uname, creds.passwd, creds.dbname), sql)
+    return result
+
 def send_email_with_inquiry_pdf(to_email, subject, message, pdf, pdf_data):
     msg = MIMEMultipart()
     msg['From'] = sender_gmail
@@ -236,6 +239,7 @@ def register_client():
 def submit_travel_inquiry_form():
     data = request.get_json()
 
+    email = data.get('email')
     destination = data.get('destination')
     departure = data.get('departure')
     start_date = data.get('start_date')
@@ -252,32 +256,48 @@ def submit_travel_inquiry_form():
     activities = data.get('activities')
     referenced_by = data.get('reference')
 
-    client = find_client(store_email)
+    print(email)
+    client = find_client(email)
     client_id = client[0]['client_id']
     client_data = find_client_by_id(client[0]['client_id'])
     first_name = client_data[0]['first_name']
     last_name = client_data[0]['last_name']
     email = client_data[0]['email']
 
-    print(client_data)
-
     insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by)
 
+    form_data = find_inquiry()
+    destination = form_data[0]['destination']
+    departure = form_data[0]['departure']
+    start_date = form_data[0]['start_date']
+    end_date = form_data[0]['end_date']
+    is_passport_valid = form_data[0]['is_passport_valid']
+    num_travelers = form_data[0]['num_travelers']
+    underage_travelers = form_data[0]['underage_travelers']
+    num_underage_travelers = form_data[0]['num_underage_travelers']
+    accommodations = form_data[0]['accommodations']
+    rooms = form_data[0]['rooms']
+    payment_date = form_data[0]['payment_date']
+    atmosphere = form_data[0]['atmosphere']
+    budget = form_data[0]['budget']
+    activities = form_data[0]['activities']
+    referenced_by = form_data[0]['referenced_by']    
+    
     pdf_data = {
         'first_name': first_name,
         'last_name': last_name,
         'email': email,
         'destination': destination,
         'departure': departure,
-        'start_date': datetime.strptime(start_date, '%Y-%m-%d').strftime('%m-%d-%Y'),
-        'end_date': datetime.strptime(end_date, '%Y-%m-%d').strftime('%m-%d-%Y'),
+        'start_date': start_date.strftime('%m-%d-%Y'),
+        'end_date': end_date.strftime('%m-%d-%Y'),
         'is_passport_valid': is_passport_valid,
         'num_travelers': num_travelers,
         'underage_travelers': underage_travelers,
         'num_underage_travelers': num_underage_travelers,
         'accommodations': accommodations,
         'rooms': rooms,
-        'payment_date': datetime.strptime(payment_date, '%Y-%m-%d').strftime('%m-%d-%Y'),
+        'payment_date': payment_date.strftime('%m-%d-%Y'),
         'atmosphere': atmosphere,
         'budget': budget,
         'activities': activities,
