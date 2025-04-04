@@ -98,12 +98,15 @@ def generate_inquiry_pdf(data):
     pdf.add_page()
 
     # Title
-    pdf.set_font('Arial', 'B', 16)
+    pdf.set_font('Times', 'B', 16)
     pdf.cell(200, 10, f"Travel Inquiry Form - {data['first_name']} {data['last_name']}", ln=True, align='C')
+    
+    #watermark
+    pdf.image('../public/img/watermark.png', x=20, y=60, w=170)
 
     # Client information
     pdf.ln(10)  # Line break
-    pdf.set_font('Arial', '', 12)
+    pdf.set_font('Times', '', 12)
     pdf.cell(200, 10, f"Client: {data['first_name']} {data['last_name']}", ln=True)
     pdf.cell(200, 10, f"Email: {data['email']}", ln=True)
     
@@ -169,12 +172,12 @@ def generate_contact_pdf(data):
     pdf.add_page()
 
     # Title
-    pdf.set_font('Arial', 'B', 16)
+    pdf.set_font('Times', 'B', 16)
     pdf.cell(200, 10, f"Contact Form - {data['first_name']} {data['last_name']}", ln=True, align='C')
 
     # Client information
     pdf.ln(10)  # Line break
-    pdf.set_font('Arial', '', 12)
+    pdf.set_font('Times', '', 12)
     pdf.cell(200, 10, f"Client: {data['first_name']} {data['last_name']}", ln=True)
     pdf.cell(200, 10, f"Email: {data['email']}", ln=True)
     
