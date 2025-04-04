@@ -197,7 +197,7 @@
         </div>
        
 		<div class="logo" style="text-align: center; padding: 30px 0;">
-			<img src="img/JPEG-small-size-transparent.png" alt="Sayles Away Travel Logo" style="height: 150px; max-width: 90%; object-fit: contain;">
+			<img src="img/Golden_transparent.png" alt="Sayles Away Travel Logo" style="height: 150px; max-width: 90%; object-fit: contain;">
 		</div>
 
         <ul class="list menu-left" style="margin-top: -20px;">
@@ -367,18 +367,28 @@
             const toggleIcons = document.querySelectorAll(".toggle_icon");
             const sideMenu = document.querySelector(".side_menu");
             const closeMenuIcon = document.querySelector(".menu-close .toggle_icon");
- 
+    
+            // Toggle the side menu when the toggle icon is clicked
             toggleIcons.forEach(icon => {
                 icon.addEventListener("click", function () {
                     sideMenu.classList.toggle("active");
                 });
             });
- 
+    
+            // Close the side menu when the close menu icon is clicked
             closeMenuIcon.addEventListener("click", function () {
                 sideMenu.classList.remove("active");
             });
+    
+            // Close the side menu if you click anywhere outside of it
+            document.addEventListener("click", function (event) {
+                if (!sideMenu.contains(event.target) && !event.target.closest('.toggle_icon')) {
+                    sideMenu.classList.remove("active");
+                }
+            });
         });
     </script>
+    
 </body>
    
     <!--================ End footer Area  =================-->
