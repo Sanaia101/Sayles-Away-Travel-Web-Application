@@ -87,30 +87,31 @@ def send_email(to_email, subject, message):
         print(f"Failed to send email: {e}")
 
 
-# Function to insert inquiry information into the database.
+# Function to insert form inquiry information into the database.
 def insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, reference):
     sql = f"insert into travel_inquiries (client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by) values ({client_id}, '{destination}', '{departure}', '{start_date}', '{end_date}', '{is_passport_valid}', '{num_travelers}', '{underage_travelers}', '{num_underage_travelers}','{accommodations}', '{rooms}', '{payment_date}', '{atmosphere}', '{budget}', '{activities}', '{reference}')"
     execute_update_query(create_connection(creds.myhostname, creds.uname, creds.passwd, creds.dbname), sql)
 
+# Function to generate inquiry form pdf using data from the database
 def generate_inquiry_pdf(data):
     pdf = FPDF()
     pdf.set_auto_page_break(auto=True, margin=15)
     pdf.add_page()
 
-    # Title
+    # Add Title
     pdf.set_font('Times', 'B', 16)
     pdf.cell(200, 10, f"Travel Inquiry Form - {data['first_name']} {data['last_name']}", ln=True, align='C')
     
-    #watermark
+    # Add Watermark
     pdf.image('../public/img/watermark.png', x=20, y=60, w=170)
 
-    # Client information
+    # Add Client Information
     pdf.ln(10)  # Line break
     pdf.set_font('Times', '', 12)
     pdf.cell(200, 10, f"Client: {data['first_name']} {data['last_name']}", ln=True)
     pdf.cell(200, 10, f"Email: {data['email']}", ln=True)
     
-    # Form details
+    # Add Form Details
     pdf.ln(10)  # Line break
     pdf.cell(200, 10, f"Destination: {data['destination']}", ln=True)
     pdf.cell(200, 10, f"Departure City: {data['departure']}", ln=True)
@@ -130,11 +131,13 @@ def generate_inquiry_pdf(data):
 
     return pdf
 
+# Select most recent entry from the travel_inquiries table in the database
 def find_inquiry():
     sql = f"select * from travel_inquiries where form_id = (select max(form_id) from travel_inquiries)"
     result = execute_read_query(create_connection(creds.myhostname, creds.uname, creds.passwd, creds.dbname), sql)
     return result
 
+# Funtion to send an email that includes pdf with the travel inquiry details
 def send_email_with_inquiry_pdf(to_email, subject, message, pdf, pdf_data):
     msg = MIMEMultipart()
     msg['From'] = sender_gmail
@@ -155,6 +158,7 @@ def send_email_with_inquiry_pdf(to_email, subject, message, pdf, pdf_data):
         part['Content-Disposition'] = f'attachment; filename="{os.path.basename(pdf_file_path)}"'
         msg.attach(part)
 
+    # Send email
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
@@ -166,6 +170,7 @@ def send_email_with_inquiry_pdf(to_email, subject, message, pdf, pdf_data):
     except Exception as e:
         print(f"Failed to send email: {e}")
 
+# Function to generate contact pdf with data from the database
 def generate_contact_pdf(data):
     pdf = FPDF()
     pdf.set_auto_page_break(auto=True, margin=15)
@@ -174,6 +179,9 @@ def generate_contact_pdf(data):
     # Title
     pdf.set_font('Times', 'B', 16)
     pdf.cell(200, 10, f"Contact Form - {data['first_name']} {data['last_name']}", ln=True, align='C')
+
+    # Add Watermark
+    pdf.image('../public/img/watermark.png', x=20, y=60, w=170)
 
     # Client information
     pdf.ln(10)  # Line break
@@ -188,6 +196,7 @@ def generate_contact_pdf(data):
 
     return pdf
 
+# Funtion to send an email that includes pdf with contact message
 def send_email_with_contact_pdf(to_email, subject, message, pdf, pdf_data):
     msg = MIMEMultipart()
     msg['From'] = sender_gmail
@@ -208,6 +217,7 @@ def send_email_with_contact_pdf(to_email, subject, message, pdf, pdf_data):
         part['Content-Disposition'] = f'attachment; filename="{os.path.basename(pdf_file_path)}"'
         msg.attach(part)
 
+    # Send email
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
@@ -240,8 +250,9 @@ def register_client():
 # Create a backend path which recieves a post request when the travel inquiry form page is accessed.
 @app.route('/travelinquiryformsubmit', methods=['POST'])
 def submit_travel_inquiry_form():
-    data = request.get_json()
+    data = request.get_json() # Retrieve JSON data
 
+    # Extract specific values from JSON data
     email = data.get('email')
     destination = data.get('destination')
     departure = data.get('departure')
@@ -259,17 +270,21 @@ def submit_travel_inquiry_form():
     activities = data.get('activities')
     referenced_by = data.get('reference')
 
-    print(email)
-    client = find_client(email)
+    # Find the client ID in the database via email
+    client = find_client(email) 
     client_id = client[0]['client_id']
-    client_data = find_client_by_id(client[0]['client_id'])
+
+    # Retrieve specific client information from the database
+    client_data = find_client_by_id(client[0]['client_id']) 
     first_name = client_data[0]['first_name']
     last_name = client_data[0]['last_name']
-    email = client_data[0]['email']
 
+    # Insert form data into the database
     insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by)
 
-    form_data = find_inquiry()
+    form_data = find_inquiry() # Retrieve most recent travel inquiry from the database
+
+    # Extract specific inquiry details from the retrieved form data
     destination = form_data[0]['destination']
     departure = form_data[0]['departure']
     start_date = form_data[0]['start_date']
@@ -286,13 +301,14 @@ def submit_travel_inquiry_form():
     activities = form_data[0]['activities']
     referenced_by = form_data[0]['referenced_by']    
     
+    # Prepare the data for the pdf generation
     pdf_data = {
         'first_name': first_name,
         'last_name': last_name,
         'email': email,
         'destination': destination,
         'departure': departure,
-        'start_date': start_date.strftime('%m-%d-%Y'),
+        'start_date': start_date.strftime('%m-%d-%Y'), # Format dates as MM-DD-YYYY
         'end_date': end_date.strftime('%m-%d-%Y'),
         'is_passport_valid': is_passport_valid,
         'num_travelers': num_travelers,
@@ -307,8 +323,10 @@ def submit_travel_inquiry_form():
         'reference': referenced_by
     }
 
+    # Generate pdf using the prepared data
     pdf_file = generate_inquiry_pdf(pdf_data)
 
+    # Send email with attached pdf
     send_email_with_inquiry_pdf(sender_gmail, f"New Travel Inquiry Form Submission from {first_name} {last_name}", "Please find the travel inquiry form attached.", pdf_file, pdf_data)
 
     return "Travel Inquiry Form added to db and sent to email"

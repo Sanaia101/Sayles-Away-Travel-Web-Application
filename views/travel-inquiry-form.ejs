@@ -28,14 +28,13 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
+<!-- Set up header -->
 <header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #f0f4f5); border-bottom: 4px solid #37d7e5;">
     <div style="flex: 1; display: flex; justify-content: center; position: relative; margin-left: 80px;">
         <a href="/" style="display: inline-block;">
             <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
         </a>
     </div>
-
-
 
     <section class="top-btn-area">
         <div class="container">
@@ -58,12 +57,6 @@
     </section>
 </header>
 
-
-
-
-
-
-
 <body>
     <style>
     .title {
@@ -74,20 +67,16 @@
     letter-spacing: 1.5px;
     line-height: 1.4;
 }
-
-
 .list.menu-left {
     padding: 0 !important;
     margin: 0 !important;
     text-align: left !important;
 }
-
 .list.menu-left li {
     padding: 0 !important;
     margin: 0 0 15px 0 !important; /* Adds space between list items */
     list-style-type: none;
 }
-
 .list.menu-left a {
     font-family: 'Gold Lines Serif Trial', sans-serif !important;
     font-size: 22px !important;
@@ -100,13 +89,10 @@
     text-align: left !important;
     margin-left: 0 !important;
 }
-
 /* Ensure the container (side menu) doesn't add extra padding */
 .side_menu {
     padding: 20px 0px 20px 10px !important; /* Adjust left padding */
 }
-
-
 /* Side menu styles */
 .side_menu {
     display: none;
@@ -119,11 +105,9 @@
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
     z-index: 1000;
 }
-
 .side_menu.active {
     display: block;
 }
-
 /* Toggle Icon */
 .toggle_icon {
     display: flex;
@@ -134,7 +118,6 @@
     left: 15px;
     z-index: 1100;
 }
-
 .toggle_icon span {
     background-color: #110e0e;
     height: 3px;
@@ -170,8 +153,6 @@
     }
 }
 
- 
-
     .toggle_icon {
         left: 10px;
         top: 10px;
@@ -181,12 +162,10 @@
         width: 25px; 
     }
 
-
     </style>
-
-
 </head>
 
+<!-- Set up navigation bar -->
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
     <div class="side_menu" style="padding-top: 0; margin-top: 0; max-height: 100vh; overflow-y: auto; scroll-behavior: smooth;">
         <div class="menu-close">
@@ -236,7 +215,6 @@
             
                 </script>
             
-
 	<title>Our Services</title>
     <style>
         body {
@@ -259,7 +237,6 @@
             gap: 20px;
             padding: 20px;
         }
-
         .service-card {
             width: 20%;
             background-color: #f9f9f9;
@@ -268,60 +245,49 @@
             overflow: hidden;
             transition: transform 0.3s ease;
         }
-
         .service-card img,
         .service-card video {
             width: 100%;
             height: auto;  
             object-fit: cover;
         }
-
         .service-card .service-info {
             padding: 15px;
             text-align: center;
         }
-
         .service-card .service-info h3 {
             margin: 10px 0;
             font-size: 1.2rem;
             color: #333;
         }
-
         .service-card .service-info p {
             color: #777;
             font-size: 1rem;
         }
-
         .service-card:hover {
             transform: translateY(-10px);
         }
-
         .required::after {
             content: " *";
             color: rgb(164, 17, 17);
             font-weight: bold;
         }
-
         @media (max-width: 768px) {
             .service-card {
                 width: 48%;
             }
         }
-
         @media (max-width: 480px) {
             .service-card {
                 width: 100%;
             }
         }
-
 	
 input:focus, textarea:focus {
     outline: none;
     border-color: #ffd700; 
     box-shadow: 0 0 5px rgba(255, 215, 0, 0.8); 
 }
-
-
 label {
     font-weight: bold;
     color: #333;
@@ -336,23 +302,17 @@ label {
         font-size: 16px;
     }
 }
-
-
     </style>
 </head>
-
 	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
+<!-- Set up page content -->
 <body>
-
-
     <h2 style="font-family: 'Mylestock Free', sans-serif !important; font-size: 70px; font-weight: 400; color: #090909; letter-spacing: 1px; margin-bottom: 20px; text-align: center;">
         Travel Inquiry Form
-    </h2>
-    
-    
-    
-     
+    </h2>    
+
+    <!-- Introduction -->
     <div id="introduction" style="max-width: 1200px; margin: 0 auto; text-align: center;">
         <br>
         <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 30px; color: #37d7e5; margin-bottom: 30px; font-weight: bold;">
@@ -372,6 +332,7 @@ label {
 </body>
 </html>
 
+<!-- Create Travel Inquiry Form -->
 <form method="POST" id="travelinquiryform" 
     style="max-width: 800px; width: 100%; margin: 0 auto; background-color: #f9f9f9;
            padding: 30px; border-radius: 10px; 

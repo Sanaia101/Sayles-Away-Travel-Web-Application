@@ -9,7 +9,7 @@ $(document).ready(function(){
     }, "type the correct answer -_-");
 
 
-    // validate contactForm form
+    // validate travelinquiryform
     $(function() {
         $('#travelinquiryform').validate({
             rules: {
