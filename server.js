@@ -152,7 +152,9 @@ app.get('/privacy-policy', (req, res) => {
 
 // Create the frontend path for the contact us page which checks if the user is logged in.
 app.get('/contact', isAuthenticated, async (req, res) => {
-    res.render('contact');
+    res.render('contact', {
+        userInfo: req.session.userInfo
+    });
 });
 
 // Create the frontend path for the contact us page which can only be accessed if the user is not logged in.
