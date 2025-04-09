@@ -9,7 +9,9 @@
 	<link rel="icon" href="img/Golden.png" type="image/png">
 	<title>Sayles Away Travel</title>
 
+    <link href="https://fonts.cdnfonts.com/css/gold-lines-serif-trial" rel="stylesheet">
 
+    <link href="https://fonts.cdnfonts.com/css/mylestock-free" rel="stylesheet">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="vendors/linericon/style.css">
@@ -25,11 +27,13 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
-<header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #37d7e5, #00b8b8); border-bottom: 4px solid #FFD700;">
-    <div style="flex: 1; display: flex; justify-content: center; position: relative;">
-        <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; position: relative; z-index: 1;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, #37d7e5, #00b8b8); z-index: 0;"></div>
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #f1f3f4); border-bottom: 4px solid #37d7e5;">
+    <div style="flex: 1; display: flex; justify-content: center; position: relative; margin-left: 80px;">
+        <a href="/" style="display: inline-block;">
+            <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
+        </a>
     </div>
+
 
 
     <section class="top-btn-area">
@@ -51,73 +55,133 @@
             </div>
         </div>
     </section>
-    
 </header>
 
 
 
+
+
 <body>
+    <style>
+    .title {
+    font-family: 'Mylestock Free', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #090909;
+    letter-spacing: 1.5px;
+    line-height: 1.4;
+}
 
-	<style>
 
-    .side_menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 350px;
-        height: 100vh;
-        background: linear-gradient(to right, #37d7e5, #00b8b8); 
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-        z-index: 1000;
+.list.menu-left {
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+.list.menu-left li {
+    padding: 0 !important;
+    margin: 0 0 15px 0 !important; /* Adds space between list items */
+    list-style-type: none;
+}
+
+.list.menu-left a {
+    font-family: 'Gold Lines Serif Trial', sans-serif !important;
+    font-size: 22px !important;
+    font-weight: 400 !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+    padding: 10px 0 !important; /* Adds space inside each item */
+    white-space: nowrap !important;
+    display: block !important;
+    text-align: left !important;
+    margin-left: 0 !important;
+}
+
+/* Ensure the container (side menu) doesn't add extra padding */
+.side_menu {
+    padding: 20px 0px 20px 10px !important; /* Adjust left padding */
+}
+
+
+/* Side menu styles */
+.side_menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 100vh;
+    background: linear-gradient(to right, #37d7e5, #00b8b8); 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.side_menu.active {
+    display: block;
+}
+
+/* Toggle Icon */
+.toggle_icon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+}
+
+.toggle_icon span {
+    background-color: #110e0e;
+    height: 3px;
+    width: 30px;
+    margin: 4px 0;
+}
+
+/* Logo */
+.logo img {
+    max-width: 90%;
+    object-fit: contain;
+    height: 150px;
+}
+
+/* Interactive Border */
+.interactive-border:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    border-color: #00b8b8;
+}
+
+/* ------- MOBILE RESPONSIVENESS -------- */
+@media screen and (max-width: 768px) {
+    .list.menu-left {
+        text-align: left !important;
+        padding-left: 0 !important;
     }
 
-    .side_menu.active {
-        display: block;
+    .list.menu-left a {
+        font-size: 20px !important;
+        padding-left: 0 !important;
+        text-align: left !important;
     }
+}
+
+ 
 
     .toggle_icon {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        position: fixed;
-        top: 15px;
-        left: 15px;
-        z-index: 1100;
+        left: 10px;
+        top: 10px;
     }
 
     .toggle_icon span {
-        background-color: #ffffff;
-        height: 3px;
-        width: 30px;
-        margin: 4px 0;
-    }
-
-    .menu-close {
-        padding: 10px;
-        cursor: pointer;
-    }
-
-    .list.menu-left li a {
-        color: #fff; 
-        text-decoration: none;
-        padding: 10px 15px;
-        display: block;
-        transition: background-color 0.3s ease;
-    }
-
-    .list.menu-left li a:hover {
-        background-color: rgba(255, 255, 255, 0.2); 
-    }
-
-    .logo img {
-        max-width: 90%;
-        object-fit: contain;
-        height: 150px;
+        width: 25px; 
     }
 
 
     </style>
+
+
 </head>
 
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
@@ -131,7 +195,7 @@
         </div>
        
 		<div class="logo" style="text-align: center; padding: 30px 0;">
-			<img src="img/JPEG-small-size-transparent.png" alt="Sayles Away Travel Logo" style="height: 150px; max-width: 90%; object-fit: contain;">
+			<img src="img/Golden_transparent.png" alt="Sayles Away Travel Logo" style="height: 150px; max-width: 90%; object-fit: contain;">
 		</div>
 
         <ul class="list menu-left" style="margin-top: -20px;">
@@ -163,21 +227,23 @@
     </div>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        }
+        document.querySelector(".toggle_icon").addEventListener("click", function() {
+    document.querySelector(".side_menu").classList.toggle("active");
+});
+
     </script>
+
 
     </div> 
     <div class="container">
-        <h1 style="font-size: 2.5rem; font-weight: bold; text-align: center; margin-bottom: 20px; color: #004d4d;">Terms of Service</h1>
-        <p style="font-size: 1.1rem; line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify;">
-            <strong>Privacy Policy</strong><br>
+        
+        <h1 style="font-family: 'Mylestock Free', sans-serif !important; font-size: 70px; font-weight: 300; text-align: center; margin-bottom: 20px; color: #333333; letter-spacing: 1.5px;">
+            Privacy Policy
+        </h1>
         <p style="font-size: 1.1rem; line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify;">
         <p style="line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify;">
             Last updated: March 2025
-        <div style="line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify; border: 2px solid #FFD700; padding: 15px; border-radius: 10px; background: linear-gradient(to right, #f9f9f9, #e6f7ff); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: 'Georgia', serif;"> 
+        <div style="line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify; border: 2px solid #37d7e5; padding: 15px; border-radius: 10px; background: linear-gradient(to right, #f9f9f9, #e6f7ff); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: 'Georgia', serif;"> 
             <p>We, the entity identified on this site by name and contact information published in the header of this site, (the “Company”), publish this Privacy Policy (the “Policy”) to inform visitors and customers of our practices concerning the collection, use, and protection of information that you provide to us through interactions with this website and with those of our affiliate. This Policy applies to all visitors to the website as well as all customers and potential customers of our travel services.</p>
 
                 <p>1. For purposes of this Policy, “User” means any person (i) accessing the Company’s website, (ii) using the services available through the Company’s website, or (iii) contacting the Company via the website’s contact form.</p>
@@ -247,7 +313,7 @@
                     832.377.5221 • <a href="mailto:saylesawaytravel@gmail.com" style="color: #000000; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#D1E7EC';" onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent';">saylesawaytravel@gmail.com</a>
                 </p>
                 <p style="margin: 2px 0; line-height: 1.4;">
-                    An Independent Affiliate of A. S. A. P. Cruises Inc., Florida Seller of Travel Ref. No. ST15578 – Washington UBID No. 603189022
+                    An Independent Affiliate of Outside Agents, Florida Seller of Travel Ref. No. ST15578 – Washington UBID No. 603189022
                 </p>
                 <p style="margin-top: 5px;">
                     <a href="/terms-of-service" 
@@ -279,23 +345,33 @@
     
         
     
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const toggleIcons = document.querySelectorAll(".toggle_icon");
-                const sideMenu = document.querySelector(".side_menu");
-                const closeMenuIcon = document.querySelector(".menu-close .toggle_icon");
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleIcons = document.querySelectorAll(".toggle_icon");
+            const sideMenu = document.querySelector(".side_menu");
+            const closeMenuIcon = document.querySelector(".menu-close .toggle_icon");
     
-                toggleIcons.forEach(icon => {
-                    icon.addEventListener("click", function () {
-                        sideMenu.classList.toggle("active");
-                    });
-                });
-    
-                closeMenuIcon.addEventListener("click", function () {
-                    sideMenu.classList.remove("active");
+            // Toggle the side menu when the toggle icon is clicked
+            toggleIcons.forEach(icon => {
+                icon.addEventListener("click", function () {
+                    sideMenu.classList.toggle("active");
                 });
             });
-        </script>
+    
+            // Close the side menu when the close menu icon is clicked
+            closeMenuIcon.addEventListener("click", function () {
+                sideMenu.classList.remove("active");
+            });
+    
+            // Close the side menu if you click anywhere outside of it
+            document.addEventListener("click", function (event) {
+                if (!sideMenu.contains(event.target) && !event.target.closest('.toggle_icon')) {
+                    sideMenu.classList.remove("active");
+                }
+            });
+        });
+    </script>
+    
     </body>
     
         
