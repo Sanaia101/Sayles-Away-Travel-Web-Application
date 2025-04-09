@@ -88,8 +88,8 @@ def send_email(to_email, subject, message):
 
 
 # Function to insert form inquiry information into the database.
-def insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, reference):
-    sql = f"insert into travel_inquiries (client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by) values ({client_id}, '{destination}', '{departure}', '{start_date}', '{end_date}', '{is_passport_valid}', '{num_travelers}', '{underage_travelers}', '{num_underage_travelers}','{accommodations}', '{rooms}', '{payment_date}', '{atmosphere}', '{budget}', '{activities}', '{reference}')"
+def insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, reference, other_reference):
+    sql = f"insert into travel_inquiries (client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by, other_reference) values ({client_id}, '{destination}', '{departure}', '{start_date}', '{end_date}', '{is_passport_valid}', '{num_travelers}', '{underage_travelers}', '{num_underage_travelers}','{accommodations}', '{rooms}', '{payment_date}', '{atmosphere}', '{budget}', '{activities}', '{reference}', '{other_reference}')"
     execute_update_query(create_connection(creds.myhostname, creds.uname, creds.passwd, creds.dbname), sql)
 
 # Function to generate inquiry form pdf using data from the database
@@ -99,7 +99,7 @@ def generate_inquiry_pdf(data):
     pdf.add_page()
 
     # Add Title
-    pdf.set_font('Times', 'B', 16)
+    pdf.set_font('Times', 'B', 20)
     pdf.cell(200, 10, f"Travel Inquiry Form - {data['first_name']} {data['last_name']}", ln=True, align='C')
     
     # Add Watermark
@@ -107,7 +107,7 @@ def generate_inquiry_pdf(data):
 
     # Add Client Information
     pdf.ln(10)  # Line break
-    pdf.set_font('Times', '', 12)
+    pdf.set_font('Times', '', 16)
     pdf.cell(200, 10, f"Client: {data['first_name']} {data['last_name']}", ln=True)
     pdf.cell(200, 10, f"Email: {data['email']}", ln=True)
     
@@ -128,6 +128,7 @@ def generate_inquiry_pdf(data):
     pdf.cell(200, 10, f"Budget: {data['budget']}", ln=True)
     pdf.cell(200, 10, f"Activities: {data['activities']}", ln=True)
     pdf.cell(200, 10, f"How did you find me: {data['reference']}", ln=True)
+    pdf.cell(200, 10, f"If Other, reference: {data['other_reference']}", ln=True)
 
     return pdf
 
@@ -177,7 +178,7 @@ def generate_contact_pdf(data):
     pdf.add_page()
 
     # Title
-    pdf.set_font('Times', 'B', 16)
+    pdf.set_font('Times', 'B', 20)
     pdf.cell(200, 10, f"Contact Form - {data['first_name']} {data['last_name']}", ln=True, align='C')
 
     # Add Watermark
@@ -185,7 +186,7 @@ def generate_contact_pdf(data):
 
     # Client information
     pdf.ln(10)  # Line break
-    pdf.set_font('Times', '', 12)
+    pdf.set_font('Times', '', 16)
     pdf.cell(200, 10, f"Client: {data['first_name']} {data['last_name']}", ln=True)
     pdf.cell(200, 10, f"Email: {data['email']}", ln=True)
     
@@ -269,6 +270,7 @@ def submit_travel_inquiry_form():
     budget = data.get('budget')
     activities = data.get('activities')
     referenced_by = data.get('reference')
+    other_reference = data.get('other_reference')
 
     # Find the client ID in the database via email
     client = find_client(email) 
@@ -278,12 +280,13 @@ def submit_travel_inquiry_form():
     client_data = find_client_by_id(client[0]['client_id']) 
     first_name = client_data[0]['first_name']
     last_name = client_data[0]['last_name']
+    email = client_data[0]['email']
 
     # Insert form data into the database
-    insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by)
+    insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by, other_reference)
 
     form_data = find_inquiry() # Retrieve most recent travel inquiry from the database
-
+    print(form_data)
     # Extract specific inquiry details from the retrieved form data
     destination = form_data[0]['destination']
     departure = form_data[0]['departure']
@@ -299,7 +302,8 @@ def submit_travel_inquiry_form():
     atmosphere = form_data[0]['atmosphere']
     budget = form_data[0]['budget']
     activities = form_data[0]['activities']
-    referenced_by = form_data[0]['referenced_by']    
+    referenced_by = form_data[0]['referenced_by']  
+    other_reference = form_data[0]['other_reference']  
     
     # Prepare the data for the pdf generation
     pdf_data = {
@@ -320,7 +324,8 @@ def submit_travel_inquiry_form():
         'atmosphere': atmosphere,
         'budget': budget,
         'activities': activities,
-        'reference': referenced_by
+        'reference': referenced_by,
+        'other_reference': other_reference
     }
 
     # Generate pdf using the prepared data
@@ -338,10 +343,11 @@ def submit_travel_inquiry_form():
 def contact_form():
     data = request.get_json()
 
+    email = data['email']
     subject = data['subject']
     message = data['message']
 
-    client = find_client(store_email)
+    client = find_client(email)
     client_id = client[0]['client_id']
 
     insert_contact_info(client_id, subject, message)

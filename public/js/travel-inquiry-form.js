@@ -74,6 +74,9 @@ $(document).ready(function(){
                 reference: {
                     required: true,
                     minlength: 0
+                },
+                other_reference: {
+                    minlength: 0
                 }
             },
             messages: {
@@ -106,7 +109,6 @@ $(document).ready(function(){
                     minlength: ""
                 },
                 under_18_traveler_count: {
-                    required: "",
                     minlength: ""
                 },
                 accommodations: {
@@ -136,7 +138,10 @@ $(document).ready(function(){
                 reference: {
                     required: "",
                     minlength: ""
-                }
+                },
+                other_reference: {
+                    minlength: ""
+                },
             },
             submitHandler: function(form) {
 
@@ -166,7 +171,8 @@ $(document).ready(function(){
                     atmosphere: atmosphere.join(', '),
                     budget: $('input[name="budget"]:checked').val(),
                     activities: activities.join(', '),
-                    reference: $('#reference').val()
+                    reference: $('#reference').val(),
+                    other_reference: $('#other_reference input').val()
                 };
 
                 $.ajax({

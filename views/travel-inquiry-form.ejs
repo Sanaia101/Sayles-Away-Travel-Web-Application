@@ -26,6 +26,7 @@
 	<link rel="stylesheet" href="vendors/scroll/jquery.mCustomScrollbar.css">
 	<!-- main css -->
 	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <!-- Set up header -->
@@ -272,6 +273,14 @@
             color: rgb(164, 17, 17);
             font-weight: bold;
         }
+        .buttonload {
+            background-color: #090909;
+            padding: 12px 16px;
+        }
+        .fa {
+            margin-left: -12px;
+            margin-right: 8px;
+        }
         @media (max-width: 768px) {
             .service-card {
                 width: 48%;
@@ -338,7 +347,10 @@ label {
            padding: 30px; border-radius: 10px; 
            border: 2px solid #37d7e5; 
            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-           margin-bottom: 20px;">
+           margin-bottom: 20px;
+           display: flex;
+           flex-direction: column;
+           ">
 
             <!-- First Name Input -->
             <div style="margin-bottom: 20px;">
@@ -431,7 +443,7 @@ label {
                     Are there any travelers under the age of 18? If so, how many?
                 </label>
                 <div style="display: flex; align-items: center;">
-                    <input type="radio" id="under_18_is_traveling" name="under_18_travelers" value="Yes" onclick="toggleTextbox(true)">
+                    <input type="radio" id="under_18_is_traveling" name="under_18_travelers" value="Yes" onclick="toggleTextboxAge(true)">
                     <label for="under_18_is_traveling" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Yes</label>
                 </div>
                 <div style="display: none; margin-bottom: 20px;" id="under_18_traveler_count" name="under_18_traveler_count">
@@ -439,7 +451,7 @@ label {
                            style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="radio" id="under_18_is_not_traveling" name="under_18_travelers" value="No" onclick="toggleTextbox(false)">
+                    <input type="radio" id="under_18_is_not_traveling" name="under_18_travelers" value="No" onclick="toggleTextboxAge(false)">
                     <label for="under_18_is_not_traveling" style="font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">No</label>
                 </div>
             </div>
@@ -563,15 +575,29 @@ label {
                 <label for="reference" class="required" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     How did you find me?
                 </label>
-                <input type="text" id="reference" name="reference" required 
-                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                <div style="display: flex; margin-bottom: 5px;">
+                    <select id="reference" name="reference" onchange="toggleTextboxReference(this.value)" style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; margin-bottom: 15px; transition: border 0.3s; display: block;">
+                        <option value="Select">Select</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="TikTok">TikTok</option>
+                        <option value="Other Social Media">Other Social Media</option>
+                        <option value="Web">Internet Search</option>
+                        <option value="Friend">Friend or Relative</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div style="display: none; margin-bottom: 20px;" id="other_reference" name="other_reference">
+                    <input type="text" name="other_reference" placeholder="Please specify"
+                           style="width: 30%; padding: 10px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                </div>
             </div>
 
             <!-- Submit Button -->
         <div style="text-align: center;">
-            <button type="form_submit" style="background-color: #00b8b8; color: white; padding: 14px 30px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease;"
-                onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
-                Submit
+            <button type="form_submit" id="submitButton" class="buttonload" style="background-color: #00b8b8; color: white; padding: 14px 30px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease;"
+                onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';" onclick="showSpinner()">
+                <i id="submit" class=""></i>Submit
             </button>
         </div>
     </form>
@@ -579,10 +605,14 @@ label {
 
 
 
-<!--Ensure valid date range is used and show text box if underage travelers are present-->
+<!--Ensure valid date range is used, show text box if underage travelers are present or if other option is selected, and show spinner when form is submitted-->
 <script>
     const startDateInput = document.getElementById('start_date');
     const endDateInput = document.getElementById('end_date');
+    const paymentDateInput = document.getElementById('payment');
+
+    startDateInput.min = new Date().toISOString().split('T')[0];
+    paymentDateInput.min = new Date().toISOString().split('T')[0];
 
     startDateInput.addEventListener('change', function() {
         const startDate = startDateInput.value;
@@ -594,8 +624,27 @@ label {
         startDateInput.max = endDate;  
     });
 
-    function toggleTextbox(isVisible) {
+    function toggleTextboxAge(isVisible) {
         document.getElementById("under_18_traveler_count").style.display = isVisible ? "block" : "none";
+    }
+
+    function toggleTextboxReference(selectedOption) {
+        const textbox = document.getElementById("other_reference");
+        if (selectedOption == "Other") {
+            textbox.style.display = "block";
+        } else {
+            textbox.style.display = "none";
+        }
+    }
+
+    function showSpinner() {
+        var form = document.getElementById('travelinquiryform')
+        var submitButton = document.getElementById("submitButton");
+        var submit = document.getElementById("submit");
+
+        if (form.checkValidity()) {
+            submit.classList.add("fa", "fa-spinner", "fa-spin")
+        }
     }
 
 </script>
