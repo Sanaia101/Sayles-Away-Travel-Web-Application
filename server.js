@@ -15,10 +15,10 @@ app.set('view engine', 'ejs');
 // Code to connect to the AWS cognito configuration and set up the redirect URL after login
 let client;
 async function initializeClient() {
-    const issuer = await Issuer.discover('https://cognito-idp.us-east-1.amazonaws.com/us-east-1_9lWjSwVLc');
+    const issuer = await Issuer.discover('https://cognito-idp.us-east-1.amazonaws.com/us-east-1_W9e55lCun');
     client = new issuer.Client({
-        client_id: '43l78mq196f1c1abgvpauqt53',
-        client_secret: '6opdhq3e1l1gv063f147a5k5sqd1fifj8smn78v72ab6d88ahko',
+        client_id: '4c2ukjsnde24bok70eao19k1jo',
+        client_secret: '1ui8kfv18gc76e1oe3lnes0v0cdca3ebdl5vfli8coce4q6eg31l',
         redirect_uris: ['http://localhost:8080/callback'],
         response_types: ['code']
     });
@@ -95,7 +95,7 @@ app.get('/callback', async (req, res) => {
 // Create the path to log out a user by destroying the session. Also redirects user back to the homepage.
 app.get('/logout', (req, res) => {
     req.session.destroy();
-    const logoutUrl = `https://us-east-19lwjswvlc.auth.us-east-1.amazoncognito.com/logout?client_id=43l78mq196f1c1abgvpauqt53&logout_uri=http://localhost:8080/`;
+    const logoutUrl = `https://us-east-1w9e55lcun.auth.us-east-1.amazoncognito.com/logout?client_id=4c2ukjsnde24bok70eao19k1jo&logout_uri=http://localhost:8080/`;
     res.redirect(logoutUrl);
 });
 
@@ -152,7 +152,9 @@ app.get('/privacy-policy', (req, res) => {
 
 // Create the frontend path for the contact us page which checks if the user is logged in.
 app.get('/contact', isAuthenticated, async (req, res) => {
-    res.render('contact');
+    res.render('contact', {
+        userInfo: req.session.userInfo
+    });
 });
 
 // Create the frontend path for the contact us page which can only be accessed if the user is not logged in.

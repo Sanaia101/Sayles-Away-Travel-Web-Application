@@ -8,11 +8,17 @@ $(document).ready(function(){
         return this.optional(element) || /^\bcat\b$/.test(value)
     }, "type the correct answer -_-");
 
+    $.validator.addMethod("notNone", function(value, element) {
+        return value !== "";
+    }, "Please select a valid reference.");
 
-    // validate contactForm form
+    // validate travelinquiryform
     $(function() {
         $('#travelinquiryform').validate({
             rules: {
+                email: {
+                    minlength: 0
+                },
                 destination: {
                     required: true,
                     minlength: 0
@@ -70,70 +76,76 @@ $(document).ready(function(){
                 },
                 reference: {
                     required: true,
+                    minlength: 0,
+                    notNone: true
+                },
+                other_reference: {
                     minlength: 0
                 }
             },
             messages: {
                 destination: {
-                    required: "Destination field is required",
+                    required: "",
                     minlength: ""
                 },
                 departure: {
-                    required: "Departure field is required",
+                    required: "",
                     minlength: ""
                 },
                 start_date: {
-                    required: "Start Date field is required",
+                    required: "",
                     minlength: ""
                 },
                 end_date: {
-                    required: "End Date field is required",
+                    required: "",
                     minlength: ""
                 },
                 valid_passport: {
-                    required: "Passport validity field is required",
+                    required: "",
                     minlength: ""
                 },
                 num_travelers: {
-                    required: "Number of Travelers is required",
+                    required: "",
                     minlength: ""
                 },
                 under_18_travelers: {
-                    required: "Underage Travelers field is required",
+                    required: "",
                     minlength: ""
                 },
                 under_18_traveler_count: {
-                    required: "Number of Underage Travelers is required",
                     minlength: ""
                 },
                 accommodations: {
-                    required: "Accomodations field is required",
+                    required: "",
                     minlength: ""
                 },
                 rooms: {
-                    required: "Rooms field is required",
+                    required: "",
                     minlength: ""
                 },
                 payment: {
-                    required: "Payment Date field is required",
+                    required: "",
                     minlength: ""
                 },
                 atmosphere: {
-                    required: "Atmosphere is required",
+                    required: "",
                     minlength: ""
                 },
                 budget: {
-                    required: "Budget is required",
+                    required: "",
                     minlength: ""
                 },
                 activities: {
-                    required: "Activities field is required",
+                    required: "",
                     minlength: ""
                 },
                 reference: {
-                    required: "Referenced by field is required",
+                    required: "",
+                    notNone: ""
+                },
+                other_reference: {
                     minlength: ""
-                }
+                },
             },
             submitHandler: function(form) {
 
@@ -148,6 +160,7 @@ $(document).ready(function(){
                 });
 
                 var formData = {
+                    email: $('#email').val(),
                     destination: $('#destination').val(),
                     departure: $('#departure').val(),
                     start_date: $('#start_date').val(),
@@ -162,7 +175,8 @@ $(document).ready(function(){
                     atmosphere: atmosphere.join(', '),
                     budget: $('input[name="budget"]:checked').val(),
                     activities: activities.join(', '),
-                    reference: $('#reference').val()
+                    reference: $('#reference').val(),
+                    other_reference: $('#other_reference input').val()
                 };
 
                 $.ajax({
@@ -178,6 +192,10 @@ $(document).ready(function(){
                             $('#success').fadeIn()
                             $('.modal').modal('hide');
 		                	$('#success').modal('show');
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 5000)
                         })
                     },
                     error: function() {

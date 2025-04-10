@@ -9,6 +9,11 @@
 	<link rel="icon" href="img/Golden.png" type="image/png">
 	<title>Sayles Away Travel</title>
 
+    <link href="https://fonts.cdnfonts.com/css/mylestock-free" rel="stylesheet">
+
+    <link href="https://fonts.cdnfonts.com/css/gold-lines-serif-trial" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/klein-trial" rel="stylesheet">
+
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -25,11 +30,13 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
-<header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #37d7e5, #00b8b8); border-bottom: 4px solid #FFD700;">
-    <div style="flex: 1; display: flex; justify-content: center; position: relative;">
-        <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; position: relative; z-index: 1;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, #37d7e5, #00b8b8); z-index: 0;"></div>
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #37d7e5); border-bottom: 4px solid #37d7e5;">
+    <div style="flex: 1; display: flex; justify-content: center; position: relative; margin-left: 80px;">
+        <a href="/" style="display: inline-block;">
+            <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
+        </a>
     </div>
+
 
 
     <section class="top-btn-area">
@@ -51,78 +58,137 @@
             </div>
         </div>
     </section>
-    
 </header>
 
 
 
-<body>
 
-	<style>
+
+
+<body>
+    <style>
+    .title {
+    font-family: 'Mylestock Free', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #090909;
+    letter-spacing: 1.5px;
+    line-height: 1.4;
+}
+
+
+.list.menu-left {
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+.list.menu-left li {
+    padding: 0 !important;
+    margin: 0 0 15px 0 !important; 
+    list-style-type: none;
+}
+
+.list.menu-left a {
+    font-family: 'Gold Lines Serif Trial', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+    padding: 10px 0 !important; 
+    white-space: nowrap !important;
+    display: block !important;
+    text-align: left !important;
+    margin-left: 0 !important;
+}
+
+
+.side_menu {
+    padding: 20px 0px 20px 10px !important; 
+}
+
+
+/* Side menu styles */
+.side_menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 100vh;
+    background: linear-gradient(to right, #37d7e5, #00b8b8); 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.side_menu.active {
+    display: block;
+}
+
+/* Toggle Icon */
+.toggle_icon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+}
+
+.toggle_icon span {
+    background-color: #110e0e;
+    height: 3px;
+    width: 30px;
+    margin: 4px 0;
+}
+
+/* Logo */
+.logo img {
+    max-width: 90%;
+    object-fit: contain;
+    height: 150px;
+}
+
+/* Interactive Border */
+.interactive-border:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    border-color: #00b8b8;
+}
+
+
+/* ------- MOBILE RESPONSIVENESS -------- */
+@media screen and (max-width: 768px) {
+    .list.menu-left {
+        text-align: left !important;
+        padding-left: 0 !important;
+    }
+
+    .list.menu-left a {
+        font-size: 18px !important;
+        padding-left: 0 !important;
+        text-align: left !important;
+    }
 
     .side_menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 350px;
-        height: 100vh;
-        background: linear-gradient(to right, #37d7e5, #00b8b8); 
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-        z-index: 1000;
+        width: 250px !important; 
     }
-
-    .side_menu.active {
-        display: block;
-    }
+}
+ 
 
     .toggle_icon {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        position: fixed;
-        top: 15px;
-        left: 15px;
-        z-index: 1100;
+        left: 10px;
+        top: 10px;
     }
 
     .toggle_icon span {
-        background-color: #ffffff;
-        height: 3px;
-        width: 30px;
-        margin: 4px 0;
-    }
-
-    .menu-close {
-        padding: 10px;
-        cursor: pointer;
-    }
-
-    .list.menu-left li a {
-        color: #fff; 
-        text-decoration: none;
-        padding: 10px 15px;
-        display: block;
-        transition: background-color 0.3s ease;
-    }
-
-    .list.menu-left li a:hover {
-        background-color: rgba(255, 255, 255, 0.2); 
-    }
-
-    .logo img {
-        max-width: 90%;
-        object-fit: contain;
-        height: 150px;
+        width: 25px; 
     }
 
 
-        .interactive-border:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-            border-color: #00b8b8;
-        }
     </style>
+
 </head>
 
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
@@ -136,7 +202,7 @@
         </div>
        
 		<div class="logo" style="text-align: center; padding: 30px 0;">
-			<img src="img/JPEG-small-size-transparent.png" alt="Sayles Away Travel Logo" style="height: 150px; max-width: 90%; object-fit: contain;">
+			<img src="img/Golden_transparent.png" alt="Sayles Away Travel Logo" style="height: 150px; max-width: 90%; object-fit: contain;">
 		</div>
 
         <ul class="list menu-left" style="margin-top: -20px;">
@@ -168,67 +234,81 @@
     </div>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        }
+        document.querySelector(".toggle_icon").addEventListener("click", function() {
+    document.querySelector(".side_menu").classList.toggle("active");
+});
+
     </script>
+
  
     <!--================ Start banner section =================-->
         <!-- Title of the tab -->
          <br>
-        <h1 style="color: black; font-size: 3rem; margin-bottom: 20px; font-family: 'Roboto', sans-serif; text-align: center;">
+         <h2 style="font-family: 'Mylestock Free', sans-serif !important; font-size: 70px; font-weight: 400; color: #090909; letter-spacing: 1px; margin-bottom: 20px; text-align: center;">
             Destination Weddings
-        </h1>
+        </h2>
+        
+        
+        
         <!-- Description with additional information -->
-        <p style="color: #FFFFFF; font-size: 1.2rem; margin-bottom: 30px; font-family: 'Roboto', sans-serif; padding-left: 10%; padding-right: 10%; color: black; text-align: center;">
+        <p style="color: black; font-size: 1.3rem; margin-bottom: 30px; font-family: 'Klein Trial', serif ; padding-left: 10%; padding-right: 10%; text-align: center; letter-spacing: 0.5px; line-height: 1.7; font-weight: 300;">
             Celebrate your love in a breathtaking destination. From sandy beaches to luxurious resorts, we provide tailored wedding packages to make your special day unforgettable.
         </p>
+        
 
-        <!-- Interactive sections -->
-            <!-- First section -->
-            <div class="row mb-4 interactive-border" style="border: 2px solid #00b8b8; padding: 20px; border-radius: 10px; background: #FFFFFF; transition: transform 0.3s, box-shadow 0.3s; margin: 20px auto; max-width: 80%; box-sizing: border-box;">
-                <div class="col-md-6 d-flex align-items-center">
-                <div>
-                    <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Beach Wedding</h3>
-                    <p style="color: #333333; font-size: 1rem;">Say “I do” with your toes in the sand and the ocean breeze in your hair with Sayles Away Travel’s Tropical Ever After Wedding Package. We specialize in stress-free, breathtaking beach weddings in Maui, Bora Bora, the Maldives, and more. Whether you want an intimate seaside ceremony or a grand resort celebration, we handle venues, décor, dining, photography, and guest accommodations. Enjoy a sunset ceremony, private beach reception, live music, and moonlit dancing, plus spa treatments, yacht excursions, and honeymoon upgrades. Let Sayles Away Travel bring your dream wedding to life—book today!🌊</p>
-                </div>
-                </div>
-                <div class="col-md-6">
-                <img src="img/wedding picture 1 cropped.jpg" alt="Wedding Picture 1 cropped" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
-                </div>
-            </div>
-            </div>
-            <!-- Second section -->
-            <div class="row mb-4 interactive-border" style="border: 2px solid #00b8b8; padding: 20px; border-radius: 10px; background: #FFFFFF; transition: transform 0.3s, box-shadow 0.3s; margin: 20px auto; max-width: 80%; box-sizing: border-box;">
-                <div class="col-md-6 d-flex align-items-center">
-                <div>
-                    <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Custom Wedding</h3>
-                    <p style="color: #333333; font-size: 1rem;">Dreaming of a wedding as unique as your love story? With Sayles Away Travel’s Custom Paradise Wedding Package, every detail is tailored to your vision. Whether it’s an intimate beach ceremony, a lavish resort celebration, or a yacht wedding at sea, we bring it to life. Our expert planners handle venues, décor, dining, and entertainment, while you enjoy the moment. Want fireworks, a beach bonfire, or a sunset sail? We make it happen! Enjoy spa retreats, adventure excursions, and VIP honeymoon upgrades for an unforgettable experience. Start planning today, your dream wedding awaits!💍</p>
-                </div>
-                </div>
-                <div class="col-md-6">
-                <img src="img/wedding picture 2 cropped.jpg" alt="Wedding Picture 2 cropped" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
-                </div>
-            </div>
-            </div>
-            <!-- Third section -->
-        <div class="row mb-4 interactive-border" style="border: 2px solid #00b8b8; padding: 20px; border-radius: 10px; background: #FFFFFF; transition: transform 0.3s, box-shadow 0.3s; margin: 20px auto; max-width: 80%; box-sizing: border-box;">
-            <div class="col-md-6 d-flex align-items-center">
-            <div>
-                <h3 style="color: #00b8b8; font-size: 1.5rem; font-weight: bold;">Luxury Wedding</h3>
-                <p style="color: #333333; font-size: 1rem;">Indulge in a luxury destination wedding with Sayles Away Travel’s Luxe Coastal Elegance Wedding Package. Exchange vows on a private beach, overwater villa, or five-star resort, with VIP treatment, including first-class airfare, private transfers, and a concierge. Enjoy a designer floral arch, live music, and a top-tier photographer, followed by a gourmet reception, fireworks, and luxury honeymoon accommodations. Enhance your experience with private yacht excursions, spa retreats, and helicopter tours. Let Sayles Away Travel craft your perfect wedding—book today and begin forever in absolute luxury!✨</p>
-            </div>
-            </div>
-            <div class="col-md-6">
-            <img src="img/wedding picture 3.jpg" alt="Wedding Picture 3" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
-            </div>
-        </div>
+
+<div class="row mb-4 interactive-border" style="border: 2px solid #00b8b8; padding: 20px; border-radius: 10px; background: #FFFFFF; transition: transform 0.2s, box-shadow 0.2s; margin: 20px auto; max-width: 80%; box-sizing: border-box;">
+    <div class="col-md-6 d-flex align-items-center">
+        <div style="font-family: 'Cormorant Garamond', serif; font-weight: 300;">
+            <h3 style="color: #00b8b8; font-size: 1.5rem; font-family: 'Gold Lines Serif Trial', serif; font-weight: bold;">
+                Beach Wedding
+            </h3>
+            <p style="font-family: 'Klein Trial', serif; color: #333333; font-size: 1rem;">
+                Say “I do” with your toes in the sand and the ocean breeze in your hair with Sayles Away Travel’s Beach Wedding Package. We specialize in breathtaking beach weddings in Maui, Bora Bora, the Maldives, and more. Whether you want an intimate seaside ceremony or a grand resort celebration, we handle venues, décor, dining, photography, and guest accommodations. Enjoy a sunset ceremony, private beach reception, live music, and moonlit dancing, plus yacht excursions and honeymoon upgrades. From start to finish, we ensure every detail is flawless, so you can cherish every moment. Let Sayles Away Travel bring your dream wedding to life. Book today! 🌊
+            </p>
         </div>
     </div>
+    <div class="col-md-6">
+        <img src="img/wedding picture 4.jpg" alt="Wedding Picture 4 new" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
+    </div>
+</div>
+
+            
+            <!-- Second section -->
+            <div class="row mb-4 interactive-border" style="border: 2px solid #00b8b8; padding: 20px; border-radius: 10px; background: #FFFFFF; transition: transform 0.2s, box-shadow 0.2s; margin: 20px auto; max-width: 80%; box-sizing: border-box;">
+                <div class="col-md-6 d-flex align-items-center">
+                <div style="font-family: 'Cormorant Garamond', serif; font-weight: 300;">
+                    <h3 style="color: #00b8b8; font-size: 1.5rem; font-family: 'Gold Lines Serif Trial', serif; font-weight: bold;">Custom Wedding</h3>
+                    <p style="font-family: 'Klein Trial', serif;color: #333333; font-size: 1rem;">Dreaming of a wedding as unique as your love story? With Sayles Away Travel’s Custom Paradise Wedding Package, every detail is tailored to your vision. Whether it’s an intimate beach ceremony, a lavish resort celebration, or a yacht wedding at sea, we bring it to life. Our expert planners handle venues, décor, dining, and entertainment, while you enjoy the moment. Want fireworks, a beach bonfire, or a sunset sail? We make it happen! Enjoy spa retreats, adventure excursions, and VIP honeymoon upgrades for an unforgettable experience. With endless possibilities, your wedding will be a true reflection of your love. Start planning today—your dream wedding awaits! 💍</p>
+                </div>
+                </div>
+                <div class="col-md-6">
+                <img src="img/new wedding picture 2.jpg" alt="Wedding Picture 2 cropped" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
+                </div>
+            </div>
+            
+            <!-- Third section -->
+            <div class="row mb-4 interactive-border" style="border: 2px solid #00b8b8; padding: 20px; border-radius: 10px; background: #FFFFFF; transition: transform 0.2s, box-shadow 0.2s; margin: 20px auto; max-width: 80%; box-sizing: border-box;">
+                <div class="col-md-6 d-flex align-items-center">
+                    <div style="font-family: 'Cormorant Garamond', serif; font-weight: 300;">
+                        <h3 style="color: #00b8b8; font-size: 1.5rem;font-family: 'Gold Lines Serif Trial', serif; font-weight: bold;">Luxury Wedding</h3>
+                        <p style="font-family: 'Klein Trial', serif; color: #333333; font-size: 1rem;">
+                            Indulge in a luxury destination wedding with Sayles Away Travel’s Luxe Coastal Elegance Wedding Package. 
+                            Exchange vows on a private beach, overwater villa, or five-star resort, with VIP treatment, including first-class airfare, private transfers, and a concierge. 
+                            Enjoy a designer floral arch, live music, and a top-tier photographer, followed by a gourmet reception, fireworks, and luxury honeymoon accommodations. 
+                            Enhance your experience with private yacht excursions, spa retreats, and helicopter tours. 
+                            Let Sayles Away Travel craft your perfect wedding—book today and begin forever in absolute luxury!✨
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="img/wedding picture 3.jpg" alt="Wedding Picture 3" style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
+                </div>
+            </div>
+            
 
     <style>
-        /* Add hover effects for interactivity */
+        
         .interactive-box:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
@@ -240,32 +320,27 @@
     <head>
         <script src="https://kit.fontawesome.com/83152295c7.js" crossorigin="anonymous"></script>
     </head>
-    <footer class="footer-area" style="background-color: #22d7ef; color: #000000; font-family: 'Roboto', sans-serif;">
+    <footer class="footer-area" style="font-family: 'Mylestock-Free';background: linear-gradient(to right, #37d7e5, #00b8b8); color: #000000; font-family: 'Roboto', sans-serif;">
         <div class="container">
-            <div class="footer-bottom" style="
-                text-align: center;
-                padding: 10px 0;
-                font-size: 12px;
-                border-top: 1px solid rgba(0, 0, 0, 0.1);
-            ">
-                <h3 style="font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+            <div class="footer-bottom" style="text-align: center; padding: 10px 0; font-size: 12px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
+                <h3 style="font-size: 16px; font-family: 'Mylestock-Free';font-weight: 500; margin-bottom: 4px;">
                     Sayles Away Travel
                 </h3>
                 <p style="margin: 2px 0;">
                     832.377.5221 • <a href="mailto:saylesawaytravel@gmail.com" style="color: #000000; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#D1E7EC';" onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent';">saylesawaytravel@gmail.com</a>
                 </p>
                 <p style="margin: 2px 0; line-height: 1.4;">
-                    An Independent Affiliate of A. S. A. P. Cruises Inc., Florida Seller of Travel Ref. No. ST15578 – Washington UBID No. 603189022
+                    An Independent Affiliate of Outside Agents, Florida Seller of Travel Ref. No. ST15578 – Washington UBID No. 603189022
                 </p>
                 <p style="margin-top: 5px;">
-                    <a href="/terms-of-service"
-                       style="color: #000000; text-decoration: none; transition: all 0.3s ease;"
+                    <a href="/terms-of-service" 
+                       style="color: #000000; text-decoration: none; transition: all 0.3s ease;" 
                        onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#D1E7EC';"
                        onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent';">
                        Terms Of Service
-                    </a> •
-                    <a href="/privacy-policy"
-                       style="color: #000000; text-decoration: none; transition: all 0.3s ease;"
+                    </a> • 
+                    <a href="/privacy-policy" 
+                       style="color: #000000; text-decoration: none; transition: all 0.3s ease;" 
                        onmouseover="this.style.textDecoration='underline'; this.style.backgroundColor='#D1E7EC';"
                        onmouseout="this.style.textDecoration='none'; this.style.backgroundColor='transparent';">
                        Privacy Policy
@@ -275,7 +350,7 @@
                     <a href="https://www.facebook.com/saylesawaytravel/" target="_blank" style="margin: 0 8px;">
                         <i class="fab fa-facebook-f" style="font-size: 18px; color: #000000;"></i>
                     </a>
-                   
+                    
                     <a href="https://www.instagram.com/saylesawaytravel/" target="_blank" style="margin: 0 8px;">
                         <i class="fab fa-instagram" style="font-size: 18px; color: #000000;"></i>
                     </a>
@@ -289,18 +364,28 @@
             const toggleIcons = document.querySelectorAll(".toggle_icon");
             const sideMenu = document.querySelector(".side_menu");
             const closeMenuIcon = document.querySelector(".menu-close .toggle_icon");
- 
+    
+   
             toggleIcons.forEach(icon => {
                 icon.addEventListener("click", function () {
                     sideMenu.classList.toggle("active");
                 });
             });
- 
+    
+           
             closeMenuIcon.addEventListener("click", function () {
                 sideMenu.classList.remove("active");
             });
+    
+            
+            document.addEventListener("click", function (event) {
+                if (!sideMenu.contains(event.target) && !event.target.closest('.toggle_icon')) {
+                    sideMenu.classList.remove("active");
+                }
+            });
         });
     </script>
+    
 </body>
    
     <!--================ End footer Area  =================-->
