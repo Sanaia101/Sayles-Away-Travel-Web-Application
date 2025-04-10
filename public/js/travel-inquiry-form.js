@@ -13,6 +13,9 @@ $(document).ready(function(){
     $(function() {
         $('#travelinquiryform').validate({
             rules: {
+                email: {
+                    minlength: 0
+                },
                 destination: {
                     required: true,
                     minlength: 0
@@ -148,6 +151,7 @@ $(document).ready(function(){
                 });
 
                 var formData = {
+                    email: $('#email').val(),
                     destination: $('#destination').val(),
                     departure: $('#departure').val(),
                     start_date: $('#start_date').val(),
