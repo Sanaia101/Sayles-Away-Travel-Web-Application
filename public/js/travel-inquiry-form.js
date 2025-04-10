@@ -8,6 +8,9 @@ $(document).ready(function(){
         return this.optional(element) || /^\bcat\b$/.test(value)
     }, "type the correct answer -_-");
 
+    $.validator.addMethod("notNone", function(value, element) {
+        return value !== "";
+    }, "Please select a valid reference.");
 
     // validate travelinquiryform
     $(function() {
@@ -73,7 +76,8 @@ $(document).ready(function(){
                 },
                 reference: {
                     required: true,
-                    minlength: 0
+                    minlength: 0,
+                    notNone: true
                 },
                 other_reference: {
                     minlength: 0
@@ -137,7 +141,7 @@ $(document).ready(function(){
                 },
                 reference: {
                     required: "",
-                    minlength: ""
+                    notNone: ""
                 },
                 other_reference: {
                     minlength: ""

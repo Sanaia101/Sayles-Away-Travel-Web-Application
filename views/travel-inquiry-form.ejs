@@ -322,7 +322,7 @@ label {
     </h2>    
 
     <!-- Introduction -->
-    <div id="introduction" style="max-width: 1200px; margin: 0 auto; text-align: center;">
+    <div id="introduction" style="max-width: 800px; margin: 10px auto; padding: 0 15px; text-align: center;">
         <br>
         <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 30px; color: #37d7e5; margin-bottom: 30px; font-weight: bold;">
             Please complete the form below so we can provide a custom quote just for you!
@@ -342,12 +342,12 @@ label {
 </html>
 
 <!-- Create Travel Inquiry Form -->
-<form method="POST" id="travelinquiryform" 
-    style="max-width: 800px; width: 100%; margin: 0 auto; background-color: #f9f9f9;
+<form method="POST" id="travelinquiryform" onsubmit="showSpinner()"
+    style="max-width: 800px; margin: 0 auto; background-color: #f9f9f9;
            padding: 30px; border-radius: 10px; 
            border: 2px solid #37d7e5; 
            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-           margin-bottom: 20px;
+           margin-bottom: 60px;
            display: flex;
            flex-direction: column;
            ">
@@ -573,11 +573,11 @@ label {
             <!-- Reference Input -->
             <div style="margin-bottom: 20px;">
                 <label for="reference" class="required" style="display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
-                    How did you find me?
+                    How did you hear about us?
                 </label>
                 <div style="display: flex; margin-bottom: 5px;">
-                    <select id="reference" name="reference" onchange="toggleTextboxReference(this.value)" style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; margin-bottom: 15px; transition: border 0.3s; display: block;">
-                        <option value="Select">Select</option>
+                    <select id="reference" name="reference" onchange="toggleTextboxReference(this.value)" style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; margin-bottom: 15px; transition: border 0.3s; display: block;" required>
+                        <option placeholder disabled selected hidden> Please select</option>
                         <option value="Instagram">Instagram</option>
                         <option value="Facebook">Facebook</option>
                         <option value="TikTok">TikTok</option>
@@ -589,14 +589,14 @@ label {
                 </div>
                 <div style="display: none; margin-bottom: 20px;" id="other_reference" name="other_reference">
                     <input type="text" name="other_reference" placeholder="Please specify"
-                           style="width: 30%; padding: 10px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                           style="width: 50%; padding: 10px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
                 </div>
             </div>
 
             <!-- Submit Button -->
         <div style="text-align: center;">
             <button type="form_submit" id="submitButton" class="buttonload" style="background-color: #00b8b8; color: white; padding: 14px 30px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease;"
-                onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';" onclick="showSpinner()">
+                onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
                 <i id="submit" class=""></i>Submit
             </button>
         </div>
@@ -619,11 +619,6 @@ label {
         endDateInput.min = startDate;  
     });
 
-    endDateInput.addEventListener('change', function() {
-        const endDate = endDateInput.value;
-        startDateInput.max = endDate;  
-    });
-
     function toggleTextboxAge(isVisible) {
         document.getElementById("under_18_traveler_count").style.display = isVisible ? "block" : "none";
     }
@@ -636,15 +631,43 @@ label {
             textbox.style.display = "none";
         }
     }
-
+    
     function showSpinner() {
-        var form = document.getElementById('travelinquiryform')
-        var submitButton = document.getElementById("submitButton");
-        var submit = document.getElementById("submit");
+        const form = document.getElementById('travelinquiryform');
+        const submit = document.getElementById("submit");
+        const requiredFields = [
+            'valid_passport', 
+            'under_18_travelers', 
+            'accommodations', 
+            'atmosphere', 
+            'budget',
+            'activities', 
+            'reference'
+        ];
 
-        if (form.checkValidity()) {
-            submit.classList.add("fa", "fa-spinner", "fa-spin")
+        if (!form.checkValidity()) return;
+        
+        for (let fieldName of requiredFields) {
+        const field = form.querySelectorAll(`input[name="${fieldName}"]`);
+
+        if (field.length > 0) {
+            const check = Array.from(field).some(input => input.checked);
+            if (!check) {
+                console.log(`Missing selection in: ${fieldName}`);
+                return;
+            }
+        } else {
+            const input = form.querySelector(`[name="${fieldName}"]`);
+            if (!input || !input.value) {
+                console.log(`Missing value in: ${fieldName}`);
+                return;
+            }
         }
+    }
+
+
+        submit.classList.add("fa", "fa-spinner", "fa-spin");
+        
     }
 
 </script>

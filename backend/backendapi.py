@@ -103,7 +103,7 @@ def generate_inquiry_pdf(data):
     pdf.cell(200, 10, f"Travel Inquiry Form - {data['first_name']} {data['last_name']}", ln=True, align='C')
     
     # Add Watermark
-    pdf.image('../public/img/watermark.png', x=20, y=60, w=170)
+    pdf.image('../public/img/watermark.png', x=5, y=35, w=200)
 
     # Add Client Information
     pdf.ln(10)  # Line break
@@ -127,7 +127,7 @@ def generate_inquiry_pdf(data):
     pdf.cell(200, 10, f"Atmosphere: {data['atmosphere']}", ln=True)
     pdf.cell(200, 10, f"Budget: {data['budget']}", ln=True)
     pdf.cell(200, 10, f"Activities: {data['activities']}", ln=True)
-    pdf.cell(200, 10, f"How did you find me: {data['reference']}", ln=True)
+    pdf.cell(200, 10, f"How did you hear about us? {data['reference']}", ln=True)
     pdf.cell(200, 10, f"If Other, reference: {data['other_reference']}", ln=True)
 
     return pdf
@@ -182,7 +182,7 @@ def generate_contact_pdf(data):
     pdf.cell(200, 10, f"Contact Form - {data['first_name']} {data['last_name']}", ln=True, align='C')
 
     # Add Watermark
-    pdf.image('../public/img/watermark.png', x=20, y=60, w=170)
+    pdf.image('../public/img/watermark.png', x=5, y=35, w=200)
 
     # Client information
     pdf.ln(10)  # Line break
