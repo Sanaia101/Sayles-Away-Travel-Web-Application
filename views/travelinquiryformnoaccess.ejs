@@ -9,8 +9,10 @@
 	<link rel="icon" href="img/Golden.png" type="image/png">
 	<title>Sayles Away Travel</title>
 
+    <link href="https://fonts.cdnfonts.com/css/grandiflora-one" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/klein-trial" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/gold-lines-serif-trial" rel="stylesheet">
-    
+    <link href="https://fonts.cdnfonts.com/css/mylestock-free" rel="stylesheet">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="vendors/linericon/style.css">
@@ -79,26 +81,25 @@
 
 .list.menu-left li {
     padding: 0 !important;
-    margin: 0 0 15px 0 !important; /* Adds space between list items */
+    margin: 0 0 15px 0 !important; 
     list-style-type: none;
 }
 
 .list.menu-left a {
     font-family: 'Gold Lines Serif Trial', sans-serif !important;
-    font-size: 22px !important;
+    font-size: 18px !important;
     font-weight: 400 !important;
     color: #000000 !important;
     text-decoration: none !important;
-    padding: 10px 0 !important; /* Adds space inside each item */
+    padding: 10px 0 !important; 
     white-space: nowrap !important;
     display: block !important;
     text-align: left !important;
     margin-left: 0 !important;
 }
 
-/* Ensure the container (side menu) doesn't add extra padding */
 .side_menu {
-    padding: 20px 0px 20px 10px !important; /* Adjust left padding */
+    padding: 20px 0px 20px 10px !important; 
 }
 
 
@@ -152,6 +153,7 @@
 }
 
 /* ------- MOBILE RESPONSIVENESS -------- */
+
 @media screen and (max-width: 768px) {
     .list.menu-left {
         text-align: left !important;
@@ -159,9 +161,13 @@
     }
 
     .list.menu-left a {
-        font-size: 20px !important;
+        font-size: 18px !important;
         padding-left: 0 !important;
         text-align: left !important;
+    }
+
+    .side_menu {
+        width: 250px !important; 
     }
 }
 
@@ -306,7 +312,7 @@
         }
     </style>
 </head>
-
+<link href="https://fonts.cdnfonts.com/css/klein-trial" rel="stylesheet">
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: url('img/background.jpg') no-repeat center center fixed; background-size: cover;">
     <div class="side_menu" style="padding-top: 0; margin-top: 0; max-height: 100vh; overflow-y: auto; scroll-behavior: smooth;">
         <div class="menu-close">
@@ -361,20 +367,22 @@
 
 	<title>Unauthorized</title>
 <body>
-    <div class="content" style="text-align: center; padding: 60px 20px;">
+    <div class="content" style="text-align: center; padding: 60px 20px; font-family: 'Klein Trial', serif ;">
         <h2 style="font-size: 30px; color: #000000;">
             You must be logged in to submit a Travel Inquiry Form.
         </h2>
     </div>
+    
 
 <head>
     <script src="https://kit.fontawesome.com/83152295c7.js" crossorigin="anonymous"></script>
 </head>
 
-<footer class="footer-area" style="background: linear-gradient(to right, #37d7e5, #00b8b8); color: #000000; font-family: 'Roboto', sans-serif;">
+	
+<footer class="footer-area" style="font-family: 'Mylestock-Free';background: linear-gradient(to right, #37d7e5, #00b8b8); color: #000000;">
     <div class="container">
         <div class="footer-bottom" style="text-align: center; padding: 10px 0; font-size: 12px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
-            <h3 style="font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+            <h3 style="font-size: 16px; font-family: 'Mylestock-Free';font-weight: 500; margin-bottom: 4px;">
                 Sayles Away Travel
             </h3>
             <p style="margin: 2px 0;">
@@ -409,6 +417,7 @@
         </div>
     </div>
 </footer>
+
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -416,19 +425,17 @@
         const sideMenu = document.querySelector(".side_menu");
         const closeMenuIcon = document.querySelector(".menu-close .toggle_icon");
 
-        // Toggle the side menu when the toggle icon is clicked
+    
         toggleIcons.forEach(icon => {
             icon.addEventListener("click", function () {
                 sideMenu.classList.toggle("active");
             });
         });
 
-        // Close the side menu when the close menu icon is clicked
         closeMenuIcon.addEventListener("click", function () {
             sideMenu.classList.remove("active");
         });
 
-        // Close the side menu if you click anywhere outside of it
         document.addEventListener("click", function (event) {
             if (!sideMenu.contains(event.target) && !event.target.closest('.toggle_icon')) {
                 sideMenu.classList.remove("active");

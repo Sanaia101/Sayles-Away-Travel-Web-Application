@@ -12,7 +12,7 @@
     <link href="https://fonts.cdnfonts.com/css/mylestock-free" rel="stylesheet">
 
     <link href="https://fonts.cdnfonts.com/css/gold-lines-serif-trial" rel="stylesheet">
-
+    <link href="https://fonts.cdnfonts.com/css/klein-trial" rel="stylesheet">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="vendors/linericon/style.css">
@@ -82,26 +82,25 @@
 
 .list.menu-left li {
     padding: 0 !important;
-    margin: 0 0 15px 0 !important; /* Adds space between list items */
+    margin: 0 0 15px 0 !important; 
     list-style-type: none;
 }
 
 .list.menu-left a {
     font-family: 'Gold Lines Serif Trial', sans-serif !important;
-    font-size: 22px !important;
+    font-size: 18px !important;
     font-weight: 400 !important;
     color: #000000 !important;
     text-decoration: none !important;
-    padding: 10px 0 !important; /* Adds space inside each item */
+    padding: 10px 0 !important; 
     white-space: nowrap !important;
     display: block !important;
     text-align: left !important;
     margin-left: 0 !important;
 }
 
-/* Ensure the container (side menu) doesn't add extra padding */
 .side_menu {
-    padding: 20px 0px 20px 10px !important; /* Adjust left padding */
+    padding: 20px 0px 20px 10px !important; 
 }
 
 
@@ -154,6 +153,7 @@
     border-color: #00b8b8;
 }
 
+
 /* ------- MOBILE RESPONSIVENESS -------- */
 @media screen and (max-width: 768px) {
     .list.menu-left {
@@ -162,9 +162,13 @@
     }
 
     .list.menu-left a {
-        font-size: 20px !important;
+        font-size: 18px !important;
         padding-left: 0 !important;
         text-align: left !important;
+    }
+
+    .side_menu {
+        width: 250px !important; 
     }
 }
 
@@ -243,58 +247,64 @@
         <h2 style="font-family: 'Mylestock Free', sans-serif !important; font-size: 70px; font-weight: 400; color: #090909; letter-spacing: 1px; margin-bottom: 20px; text-align: center;">
             Contact Us
         </h2>
-        <p style="font-size: 18px; color: #777; margin-bottom: 40px;">We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
+        <p style="font-family: 'Klein Trial', serif; font-size: 18px; color: #777; margin-bottom: 40px;">We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
         
         <form method="POST" id ="contactForm" style="max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
             <!-- First Name Input -->
             <div style="margin-bottom: 20px;">
-                <label for="fname" style="display: block; font-size: 18px; font-weight: 500; margin-bottom: 5px;">
+                <label for="fname" style="display: block; font-family: 'Klein Trial', serif; font-size: 18px; font-weight: 500; margin-bottom: 5px;">
                     First Name
                 </label>
                 <input type="text" id="fname" name="fname" value="<%= userInfo.given_name %>" readonly
-                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
+                       style="width: 100%; padding: 15px; font-family: 'Klein Trial', serif; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Last Name Input -->
             <div style="margin-bottom: 20px;">
-                <label for="lname" style="display: block; font-size: 18px; font-weight: 500; margin-bottom: 5px;">
+                <label for="lname" style="display: block;font-family: 'Klein Trial', serif;  font-size: 18px; font-weight: 500; margin-bottom: 5px;">
                     Last Name
                 </label>
                 <input type="text" id="lname" name="lname" value="<%= userInfo.family_name %>" readonly
-                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #333; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
+                       style="width: 100%; padding: 15px;font-family: 'Klein Trial', serif;  font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #333; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Email Input -->
             <div style="margin-bottom: 20px;">
-                <label for="email" style="display: block; font-size: 18px; font-weight: 500; margin-bottom: 5px;">
+                <label for="email" style="display: block;font-family: 'Klein Trial', serif;  font-size: 18px; font-weight: 500; margin-bottom: 5px;">
                     Email
                 </label>
                 <input type="text" id="email" name="email" value="<%= userInfo.email %>" readonly
-                       style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px;  color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
+                       style="width: 100%; padding: 15px;font-family: 'Klein Trial', serif;  font-size: 16px; border: 2px solid #ddd; border-radius: 8px;  color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
             </div>
             
             <!-- Subject Input -->
             <div style="margin-bottom: 20px;">
-                <label for="subject" style="font-size: 18px; font-weight: 500; color: #333;">Your Subject</label>
+                <label for="subject" style="font-family: 'Klein Trial', serif; font-size: 18px; font-weight: 500; color: #333;">Your Subject</label>
                 <input type="text" id="subject" name="subject" required placeholder="Enter your subject" 
-                       style="width: 100%; padding: 15px; margin-top: 8px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
+                       style="width: 100%; font-family: 'Klein Trial', serif; padding: 15px; margin-top: 8px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Message Input -->
             <div style="margin-bottom: 30px;">
-                <label for="message" style="font-size: 18px; font-weight: 500; color: #333;">Your Message</label>
+                <label for="message" style="font-size: 18px;font-family: 'Klein Trial', serif;  font-weight: 500; color: #333;">Your Message</label>
                 <textarea id="message" name="message" required placeholder="Enter your message" 
-                          style="width: 100%; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;"></textarea>
+                          style="width: 100%; font-family: 'Klein Trial', serif; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;"></textarea>
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" style="background-color: #00b8b8; color: white; padding: 14px 30px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease;"
+            <button type="submit" style="background-color: #00b8b8; color: white; padding: 14px 30px; font-family: 'Klein Trial', serif; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: background-color 0.3s, transform 0.2s ease;"
                 onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
                 Submit
             </button>
         </form>
     </div>
 </section>
+
+
+<div style="text-align: center; padding: 5px 0; margin-top: -20px;">
+    <img src="img/Golden_transparent.png" alt="Golden Logo" style="max-width: 200px; width: 100%; height: auto;">
+</div>
+
 
  <!--================Contact Success and Error message Area =================-->
  <div id="success" class="modal modal-message fade" role="dialog">
@@ -333,10 +343,10 @@
 </head>
 
 	
-<footer class="footer-area" style="background: linear-gradient(to right, #37d7e5, #00b8b8); color: #000000; font-family: 'Roboto', sans-serif;">
+<footer class="footer-area" style="font-family: 'Mylestock-Free';background: linear-gradient(to right, #37d7e5, #00b8b8); color: #000000; font-family: 'Roboto', sans-serif;">
     <div class="container">
         <div class="footer-bottom" style="text-align: center; padding: 10px 0; font-size: 12px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
-            <h3 style="font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+            <h3 style="font-size: 16px;font-family: 'Mylestock-Free'; font-weight: 500; margin-bottom: 4px;">
                 Sayles Away Travel
             </h3>
             <p style="margin: 2px 0;">

@@ -1,5 +1,5 @@
 # CIS-4375-Team-06-Spring-2025
-
+cd 
 Follow these steps to run the application:
 
 1. Open the terminal and navigate to the CIS-4375-Team-06-Spring-2025 folder path.
