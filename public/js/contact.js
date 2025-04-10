@@ -12,6 +12,9 @@ $(document).ready(function(){
     $(function() {
         $('#contactForm').validate({
             rules: {
+                email: {
+                    minlength: 0
+                },
                 subject: {
                     required: true,
                     minlength: 0
@@ -34,6 +37,7 @@ $(document).ready(function(){
             submitHandler: function(form) {
 
                 var formData = {
+                    email: $('#email').val(),
                     subject: $('#subject').val(),
                     message: $('#message').val()
                 };
