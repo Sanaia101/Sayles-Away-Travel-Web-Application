@@ -79,18 +79,18 @@
 }
 
 .klein-trial-text {
-    font-family: 'Klein Trial', serif; /* Replace 'Klein Trial' with the actual font name if needed */
-    font-weight: normal; /* Adjust the weight if needed */
+    font-family: 'Klein Trial', serif; 
+    font-weight: normal; 
     font-size: 20px;
-    color: #333333; /* Set your desired text color */
+    color: #333333; 
 }
 
-/* Apply Gold Lines Serif Trial font to the h3 title */
+
 .service-info-title h3 {
-    font-family: 'Gold Lines Serif Trial', serif; /* Use the Gold Lines Serif Trial font */
-    font-weight: normal; /* Adjust font weight if necessary */
-    color: #333333; /* Set the text color */
-    text-align: center; /* Center all text inside this container */
+    font-family: 'Gold Lines Serif Trial', serif; 
+    font-weight: normal; 
+    color: #333333;
+    text-align: center; 
 }
 
 
@@ -104,30 +104,30 @@
 
 .list.menu-left li {
     padding: 0 !important;
-    margin: 0 0 15px 0 !important; /* Adds space between list items */
+    margin: 0 0 15px 0 !important; 
     list-style-type: none;
 }
 
 .list.menu-left a {
     font-family: 'Gold Lines Serif Trial', sans-serif !important;
-    font-size: 22px !important;
+    font-size: 18px !important;
     font-weight: 400 !important;
     color: #000000 !important;
     text-decoration: none !important;
-    padding: 10px 0 !important; /* Adds space inside each item */
+    padding: 10px 0 !important; 
     white-space: nowrap !important;
     display: block !important;
     text-align: left !important;
     margin-left: 0 !important;
 }
 
-/* Ensure the container (side menu) doesn't add extra padding */
+
 .side_menu {
-    padding: 20px 0px 20px 10px !important; /* Adjust left padding */
+    padding: 20px 0px 20px 10px !important; 
 }
 
 
-/* Side menu styles */
+
 .side_menu {
     display: none;
     position: fixed;
@@ -176,6 +176,7 @@
     border-color: #00b8b8;
 }
 
+
 /* ------- MOBILE RESPONSIVENESS -------- */
 @media screen and (max-width: 768px) {
     .list.menu-left {
@@ -184,12 +185,15 @@
     }
 
     .list.menu-left a {
-        font-size: 20px !important;
+        font-size: 18px !important;
         padding-left: 0 !important;
         text-align: left !important;
     }
-}
 
+    .side_menu {
+        width: 250px !important; 
+    }
+}
  
 
     .toggle_icon {
@@ -278,6 +282,54 @@
     margin: 20px auto; 
 }
 
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16; 
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+
+
+.service-video {
+  aspect-ratio: unset;
+  height: 100% !important;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+
+
+.video-wrapper:hover .play-button {
+    opacity: 1;
+}
+
+
+
+
 .about-container {
     display: flex;
     align-items: center;
@@ -286,7 +338,7 @@
     gap: 40px;
 }
 
-/* IMAGE STYLING */
+
 .about-image {
     width: 250px; 
     height: auto;
@@ -295,7 +347,7 @@
     flex-shrink: 0;
 }
 
-/* TEXT CONTAINER */
+
 .about-text-container {
     flex: 2;
     min-width: 300px;
@@ -303,7 +355,7 @@
     padding: 20px;
 }
 
-/* TITLE STYLING */
+
 .about-title {
     font-family: 'Mylestock Free', sans-serif;
     font-size: 80px;
@@ -312,14 +364,13 @@
     text-align: center;
 }
 
-/* TEXT PARAGRAPH */
 .about-text {
     font-size: 18px;
     line-height: 1.6;
     text-align: left;
 }
 
-/* RESPONSIVE DESIGN */
+
 @media (max-width: 768px) {
     .about-container {
         flex-direction: column; 
@@ -370,6 +421,7 @@
             transition: transform 0.3s ease;
         }
 
+
         .service-card img,
         .service-card video {
             width: 100%;
@@ -387,6 +439,7 @@
             font-size: 1.2rem;
             color: #333;
         }
+   
 
         .service-card .service-info p {
             color: #777;
@@ -449,49 +502,66 @@ label {
     <div class="title">Sayles Away Travel</div>
 
     
-    
     <div class="service-container">
-        <div class="service-card">
-            <video width="100%" height="200" controls>
-                <source src="img/Cabos.mp4" type="video/mp4">
-            </video>
-            <div class="service-info-title">
-                <h3>Luxury Vacations</h3>
-                <p>Indulge in a luxurious vacation experience with high-end resorts, gourmet dining, and exclusive experiences.</p>
-            </div>
-                      
-            
-        </div>
     
         <div class="service-card">
-            <video width="100%" height="200" controls>
-                <source src="img/Romantic.mp4" type="video/mp4">
-            </video>
+            <div class="video-wrapper">
+                <video class="service-video" muted>
+                    <source src="img/Cabos.mp4" type="video/mp4">
+                </video>
+                <button class="play-button">&#9658;</button>
+            </div>
             <div class="service-info" style="font-family: 'Cormorant Garamond', serif; font-weight: 300;">
-                <h3>Romantic Getaways</h3>
-                <p>Escape to a paradise for two with our romantic getaway packages, perfect for creating unforgettable memories.</p>
+                <h3 style="font-family: 'Gold Lines Serif Trial', serif;">Luxury Vacations</h3>
+                <p style="font-family: 'Klein Trial', serif;">
+                    Indulge in a luxurious vacation experience with high-end resorts, gourmet dining, and exclusive experiences.
+                </p>
             </div>
         </div>
     
         <div class="service-card">
-            <video width="100%" height="200" controls>
-                <source src="img/Cancun.mp4" type="video/mp4">
-            </video>
+            <div class="video-wrapper">
+                <video class="service-video" muted>
+                    <source src="img/Romantic.mp4" type="video/mp4">
+                </video>
+                <button class="play-button">&#9658;</button>
+            </div>
             <div class="service-info" style="font-family: 'Cormorant Garamond', serif; font-weight: 300;">
-                <h3>All Inclusive Resorts</h3>
-                <p>Enjoy everything you need for a perfect vacation, from meals to activities, all in one incredible package.</p>
+                <h3 style="font-family: 'Gold Lines Serif Trial', serif;">Romantic Getaways</h3>
+                <p style="font-family: 'Klein Trial', serif;">
+                    Escape to a paradise for two with our romantic getaway packages, perfect for creating unforgettable memories.</p>
+                </p>
             </div>
         </div>
     
         <div class="service-card">
-            <video width="100%" height="200" controls>
-                <source src="img/Colombia.mp4" type="video/mp4">
-            </video>
+            <div class="video-wrapper">
+                <video class="service-video" muted>
+                    <source src="img/Cancun.mp4" type="video/mp4">
+                </video>
+                <button class="play-button">&#9658;</button>
+            </div>
             <div class="service-info" style="font-family: 'Cormorant Garamond', serif; font-weight: 300;">
-                <h3>International Escapes</h3>
-                <p>Explore new countries and cultures with tailored international travel experiences to amazing destinations.</p>
+                <h3 style="font-family: 'Gold Lines Serif Trial', serif;">All Inclusive Resorts</h3>
+                <p style="font-family: 'Klein Trial', serif;">
+                Enjoy everything you need for a perfect vacation, from meals to activities, all in one incredible package.</p>
             </div>
         </div>
+    
+        <div class="service-card">
+            <div class="video-wrapper">
+                <video class="service-video" muted>
+                    <source src="img/Colombia.mp4" type="video/mp4">
+                </video>
+                <button class="play-button">&#9658;</button>
+            </div>
+            <div class="service-info" style="font-family: 'Cormorant Garamond', serif; font-weight: 300;">
+                <h3 style="font-family: 'Gold Lines Serif Trial', serif;">International Escapes</h3>
+                <p style="font-family: 'Klein Trial', serif;">
+                Explore new countries and cultures with tailored international travel experiences to amazing destinations.</p>
+            </div>
+        </div>
+    
     </div>
     
     
@@ -532,10 +602,10 @@ label {
 </head>
 
 	
-<footer class="footer-area" style="background: linear-gradient(to right, #37d7e5, #00b8b8); color: #000000; font-family: 'Roboto', sans-serif;">
+<footer class="footer-area" style="font-family: 'Mylestock-Free';background: linear-gradient(to right, #37d7e5, #00b8b8); color: #000000;">
     <div class="container">
         <div class="footer-bottom" style="text-align: center; padding: 10px 0; font-size: 12px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
-            <h3 style="font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+            <h3 style="font-size: 16px; font-family: 'Mylestock-Free';font-weight: 500; margin-bottom: 4px;">
                 Sayles Away Travel
             </h3>
             <p style="margin: 2px 0;">
@@ -571,7 +641,40 @@ label {
     </div>
 </footer>
 
-
+<script>
+    document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+      const video = wrapper.querySelector('.service-video');
+      const button = wrapper.querySelector('.play-button');
+  
+      // Show play button initially
+      button.style.display = 'flex';
+  
+      // When play button is clicked
+      button.addEventListener('click', () => {
+        video.play();
+        video.muted = false;
+        button.style.display = 'none';
+      });
+  
+      // Click anywhere on video to pause
+      video.addEventListener('click', () => {
+        if (!video.paused) {
+          video.pause();
+          button.style.display = 'flex';
+        }
+      });
+  
+      // Reset button when video ends
+      video.addEventListener('ended', () => {
+        button.style.display = 'flex';
+      });
+    });
+  </script>
+  
+  
+  
+  
+  
 	
 
     <script>
@@ -580,19 +683,19 @@ label {
         const sideMenu = document.querySelector(".side_menu");
         const closeMenuIcon = document.querySelector(".menu-close .toggle_icon");
 
-        // Toggle the side menu when the toggle icon is clicked
+      
         toggleIcons.forEach(icon => {
             icon.addEventListener("click", function () {
                 sideMenu.classList.toggle("active");
             });
         });
 
-        // Close the side menu when the close menu icon is clicked
+
         closeMenuIcon.addEventListener("click", function () {
             sideMenu.classList.remove("active");
         });
 
-        // Close the side menu if you click anywhere outside of it
+    
         document.addEventListener("click", function (event) {
             if (!sideMenu.contains(event.target) && !event.target.closest('.toggle_icon')) {
                 sideMenu.classList.remove("active");
