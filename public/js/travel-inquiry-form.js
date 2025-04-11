@@ -167,7 +167,7 @@ $(document).ready(function(){
                     rooms: $('#rooms').val(),
                     payment_date: $('#payment').val(),
                     atmosphere: atmosphere.join(', '),
-                    budget: $('input[name="budget"]:checked').val(),
+                    budget: $('#budget').val(),
                     activities: activities.join(', '),
                     reference: $('#reference').val()
                 };
