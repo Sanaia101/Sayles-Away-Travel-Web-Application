@@ -78,9 +78,6 @@ $(document).ready(function(){
                     required: true,
                     minlength: 0,
                     notNone: true
-                },
-                other_reference: {
-                    minlength: 0
                 }
             },
             messages: {
@@ -142,10 +139,7 @@ $(document).ready(function(){
                 reference: {
                     required: "",
                     notNone: ""
-                },
-                other_reference: {
-                    minlength: ""
-                },
+                }
             },
             submitHandler: function(form) {
 
@@ -173,10 +167,9 @@ $(document).ready(function(){
                     rooms: $('#rooms').val(),
                     payment_date: $('#payment').val(),
                     atmosphere: atmosphere.join(', '),
-                    budget: $('input[name="budget"]:checked').val(),
+                    budget: $('#budget').val(),
                     activities: activities.join(', '),
-                    reference: $('#reference').val(),
-                    other_reference: $('#other_reference input').val()
+                    reference: $('#reference').val()
                 };
 
                 $.ajax({
