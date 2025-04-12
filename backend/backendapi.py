@@ -88,8 +88,8 @@ def send_email(to_email, subject, message):
 
 
 # Function to insert form inquiry information into the database.
-def insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, reference, other_reference):
-    sql = f"insert into travel_inquiries (client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by, other_reference) values ({client_id}, '{destination}', '{departure}', '{start_date}', '{end_date}', '{is_passport_valid}', '{num_travelers}', '{underage_travelers}', '{num_underage_travelers}','{accommodations}', '{rooms}', '{payment_date}', '{atmosphere}', '{budget}', '{activities}', '{reference}', '{other_reference}')"
+def insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, reference):
+    sql = f"insert into travel_inquiries (client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by) values ({client_id}, '{destination}', '{departure}', '{start_date}', '{end_date}', '{is_passport_valid}', '{num_travelers}', '{underage_travelers}', '{num_underage_travelers}','{accommodations}', '{rooms}', '{payment_date}', '{atmosphere}', '{budget}', '{activities}', '{reference}')"
     execute_update_query(create_connection(creds.myhostname, creds.uname, creds.passwd, creds.dbname), sql)
 
 # Function to generate inquiry form pdf using data from the database
@@ -128,7 +128,6 @@ def generate_inquiry_pdf(data):
     pdf.cell(200, 10, f"Budget: {data['budget']}", ln=True)
     pdf.cell(200, 10, f"Activities: {data['activities']}", ln=True)
     pdf.cell(200, 10, f"How did you hear about us? {data['reference']}", ln=True)
-    pdf.cell(200, 10, f"If Other, reference: {data['other_reference']}", ln=True)
 
     return pdf
 
@@ -270,7 +269,6 @@ def submit_travel_inquiry_form():
     budget = data.get('budget')
     activities = data.get('activities')
     referenced_by = data.get('reference')
-    other_reference = data.get('other_reference')
 
     # Find the client ID in the database via email
     client = find_client(email) 
@@ -283,7 +281,7 @@ def submit_travel_inquiry_form():
     email = client_data[0]['email']
 
     # Insert form data into the database
-    insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by, other_reference)
+    insert_inquiry_info(client_id, destination, departure, start_date, end_date, is_passport_valid, num_travelers, underage_travelers, num_underage_travelers, accommodations, rooms, payment_date, atmosphere, budget, activities, referenced_by)
 
     form_data = find_inquiry() # Retrieve most recent travel inquiry from the database
     print(form_data)
@@ -302,8 +300,7 @@ def submit_travel_inquiry_form():
     atmosphere = form_data[0]['atmosphere']
     budget = form_data[0]['budget']
     activities = form_data[0]['activities']
-    referenced_by = form_data[0]['referenced_by']  
-    other_reference = form_data[0]['other_reference']  
+    referenced_by = form_data[0]['referenced_by'] 
     
     # Prepare the data for the pdf generation
     pdf_data = {
@@ -324,8 +321,7 @@ def submit_travel_inquiry_form():
         'atmosphere': atmosphere,
         'budget': budget,
         'activities': activities,
-        'reference': referenced_by,
-        'other_reference': other_reference
+        'reference': referenced_by
     }
 
     # Generate pdf using the prepared data
