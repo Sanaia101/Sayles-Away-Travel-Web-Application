@@ -10,12 +10,12 @@ Pre-requisites: Download Python (https://www.python.org/downloads/) and make sur
  
 4. Run the command "pip install -r pipreqs.txt" to install all pip dependencies.
 
-5. Create a .env file in the CIS-4375-Team-06-Spring-2025 folder. In the .env file, create sender_gmail and email_password as empty string variables. Put your gmail address into the sender_gmail variable. Put your gmail password into the email_password variable if there is no 2 step authentication on the account. If 2 step authentication is enabled, go to this link (https://support.google.com/mail/answer/185833?hl=en) and follow the instructions to create and retrieve your app password. Once you have your app password, put it into the email_password variable in the .env file. 
+5. Create a .env file in the CIS-4375-Team-06-Spring-2025-final_design folder. In the .env file, create sender_gmail and email_password as empty string variables. Put your gmail address into the sender_gmail variable. Put your gmail password into the email_password variable if there is no 2 step authentication on the account. If 2 step authentication is enabled, go to this link (https://support.google.com/mail/answer/185833?hl=en) and follow the instructions to create and retrieve your app password. Once you have your app password, put it into the email_password variable in the .env file. 
 
 6. Run the command "npm install" to install all dependencies.
 
 7. Open another terminal and navigate to the backend folder path. Run the command "python backendapi.py" to launch the flask server. If Python is not in your system's PATH environment variables, run the command "py backendapi.py" to launch the flask server.
 
-8. Go back to the original terminal that points to the CIS-4375-Team-06-Spring-2025 folder path. Run the command "node server.js" to launch the server.
+8. Go back to the original terminal that points to the CIS-4375-Team-06-Spring-2025-final_design folder path. Run the command "node server.js" to launch the server.
 
 9. Go to http://localhost:8080 to view the website.
