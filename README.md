@@ -6,7 +6,7 @@ Pre-requisites: Download Python (https://www.python.org/downloads/) and make sur
 
 2. Extract the zip file and open the folder in your preferred development environment such as Visual Studio Code.
 
-3. Open the terminal and navigate to the CIS-4375-Team-06-Spring-2025-final_design folder path.
+3. Open the terminal and navigate to the CIS-4375-Team-06-Spring-2025-final_design folder path. (May need to do this twice as extracting a zip file can create a nested folder inside with the same exact name)
  
 4. Run the command "pip install -r pipreqs.txt" to install all pip dependencies.
 
