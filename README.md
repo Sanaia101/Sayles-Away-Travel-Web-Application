@@ -1,6 +1,6 @@
-# CIS-4375-Team-06-Spring-2025
-cd 
-Follow these steps to run the application:
+# Follow these steps to run the application
+
+Pre-requisites: Download Python (https://www.python.org/downloads/) and make sure that Python is added to your system's PATH environment variables during installation. Download Node.js (https://nodejs.org/en/download).
 
 1. Open the terminal and navigate to the CIS-4375-Team-06-Spring-2025 folder path.
  
@@ -10,7 +10,7 @@ Follow these steps to run the application:
 
 3. Run the command "npm install" to install all dependencies.
 
-4. Open another terminal and navigate to the backend folder path. Run the command "python backendapi.py" to launch the flask server.
+4. Open another terminal and navigate to the backend folder path. Run the command "python backendapi.py" to launch the flask server. If Python is not in your system's PATH environment variables, run the command "py backendapi.py" to launch the flask server.
 
 5. Go back to the original terminal that points to the CIS-4375-Team-06-Spring-2025 folder path. Run the command "node server.js" to launch the server.
 
