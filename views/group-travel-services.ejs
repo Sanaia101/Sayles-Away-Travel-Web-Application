@@ -9,6 +9,8 @@
 	<link rel="icon" href="img/Golden.png" type="image/png">
 	<title>Sayles Away Travel</title>
 
+    <link href="https://fonts.cdnfonts.com/css/satonda" rel="stylesheet">
+
     <link href="https://fonts.cdnfonts.com/css/gold-lines-serif-trial" rel="stylesheet">
 
     <link href="https://fonts.cdnfonts.com/css/klein-trial" rel="stylesheet">
@@ -29,34 +31,10 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
-<header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #f9f9f9); border-bottom: 4px solid #37d7e5;">
-    <div style="flex: 1; display: flex; justify-content: center; position: relative; margin-left: 80px;">
-        <a href="/" style="display: inline-block;">
-            <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
-        </a>
-    </div>
-
-
-
-    <section class="top-btn-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <% if (isAuthenticated) { %>
-                        <a href="/logout" class="main_btn">
-                            Log out
-                            <img src="img/next.png" alt="">
-                        </a>
-                    <% } else { %>
-                        <a href="/login" class="main_btn">
-                            Log in
-                            <img src="img/next.png" alt="">
-                        </a>
-                    <% } %>
-                </div>
-            </div>
-        </div>
-    </section>
+<header style="display: flex; align-items: center; justify-content: center; padding: 10px 0; background: linear-gradient(to right, #f9f9f9); border-bottom: 4px solid #37d7e5;">
+    <a href="/" style="display: inline-block;">
+        <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
+    </a>
 </header>
 
 
@@ -270,20 +248,17 @@
             <li><a href="/destination-weddings">Destination Weddings</a></li>
             <li><a href="/excursions">Excursions</a></li>
             <li>
-                <% if (isAuthenticated) { %>
-                    <a href="/travel-inquiry-form">Travel Inquiry Form</a>
-                <% } else { %>
-                    <a href="/travelinquiryformnoaccess">Travel Inquiry Form</a>
-                <% } %>
+                <a href="/travel-inquiry-form">Travel Inquiry Form</a>
             </li>
             <li>
-                <% if (isAuthenticated) { %>
-                    <a href="/contact">Contact Us</a>
-                <% } else { %>
-                    <a href="/contactnoaccess">Contact Us</a>
-                <% } %>
+                <a href="/make-payment">Make A Payment</a>
             </li>
-        </ul>
+            <li>
+                <a href="/contact">Contact Us</a>
+            </li>
+            
+        
+    </div>
     </div>
 
     <div class="toggle_icon" title="Menu Bar">
@@ -340,7 +315,7 @@
 
     <section class="group-travel-services" style="max-width: 1100px; margin: 0 auto; padding: 50px 20px; background-color: #fff; text-align: center;">
     
-        <h2 style="font-family: 'Mylestock Free', sans-serif !important; font-size: 70px; font-weight: 400; color: #090909; letter-spacing: 1px; margin-bottom: 20px;">
+        <h2 style="font-family: 'Satonda', sans-serif !important; font-size: 70px; font-weight: 400; color: #090909; letter-spacing: 1px; margin-top: -40px; margin-bottom: 20px; text-align: center;">
             Group Travel Services
         </h2>
         

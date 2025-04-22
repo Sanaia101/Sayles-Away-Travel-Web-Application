@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="img/Golden.png" type="image/png">
 	<title>Sayles Away Travel</title>
+    <link href="https://fonts.cdnfonts.com/css/satonda" rel="stylesheet">
 
     <link href="https://fonts.cdnfonts.com/css/gold-lines-serif-trial" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/grandiflora-one" rel="stylesheet">
@@ -32,31 +33,14 @@
 <header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #f9f9f9); border-bottom: 4px solid #37d7e5;">
     <div style="flex: 1; display: flex; justify-content: center; position: relative; margin-left: 80px;">
         <a href="/" style="display: inline-block;">
-            <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
+            <img src="img/JPEG-small-size-transparent.png" alt="Logo" 
+            style="display: block; margin: 0 auto; transform: translateX(-40px); height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
         </a>
     </div>
 
 
 
-    <section class="top-btn-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <% if (isAuthenticated) { %>
-                        <a href="/logout" class="main_btn">
-                            Log out
-                            <img src="img/next.png" alt="">
-                        </a>
-                    <% } else { %>
-                        <a href="/login" class="main_btn">
-                            Log in
-                            <img src="img/next.png" alt="">
-                        </a>
-                    <% } %>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 </header>
 
 
@@ -210,21 +194,18 @@
             <li><a href="/destination-weddings">Destination Weddings</a></li>
             <li><a href="/excursions">Excursions</a></li>
             <li>
-                <% if (isAuthenticated) { %>
-                    <a href="/travel-inquiry-form">Travel Inquiry Form</a>
-                <% } else { %>
-                    <a href="/travelinquiryformnoaccess">Travel Inquiry Form</a>
-                <% } %>
+                <a href="/travel-inquiry-form">Travel Inquiry Form</a>
             </li>
             <li>
-                <% if (isAuthenticated) { %>
-                    <a href="/contact">Contact Us</a>
-                <% } else { %>
-                    <a href="/contactnoaccess">Contact Us</a>
-                <% } %>
+                <a href="/make-payment">Make A Payment</a>
             </li>
-        </ul>
+            <li>
+                <a href="/contact">Contact Us</a>
+            </li>
+            
+        
     </div>
+
 
     <div class="toggle_icon" title="Menu Bar">
         <span></span>
@@ -243,7 +224,7 @@
     </div> 
     <div class="container">
         
-        <h1 style="font-family: 'Mylestock Free', sans-serif !important; font-size: 70px; font-weight: 300; text-align: center; margin-bottom: 20px; color: #333333; letter-spacing: 1.5px;">
+        <h1 style="font-family: 'Satonda', sans-serif !important; font-size: 70px; font-weight: 300; text-align: center; margin-bottom: 20px; color: #333333; letter-spacing: 1.5px;">
             Privacy Policy
         </h1>
         <p style="font-size: 1.1rem; line-height: 1.8; color: #333333; margin-bottom: 15px; text-align: justify;">

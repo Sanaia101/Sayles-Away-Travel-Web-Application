@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="img/Golden.png" type="image/png">
 	<title>Sayles Away Travel</title>
+    <link href="https://fonts.cdnfonts.com/css/satonda" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/klein-trial" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/mylestock-free" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/qarinthen" rel="stylesheet">         
@@ -31,31 +32,13 @@
 <header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #f9f9f9); border-bottom: 4px solid #37d7e5;">
     <div style="flex: 1; display: flex; justify-content: center; position: relative; margin-left: 80px;">
         <a href="/" style="display: inline-block;">
-            <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
+            <img src="img/JPEG-small-size-transparent.png" alt="Logo" 
+            style="display: block; margin: 0 auto; transform: translateX(-40px); height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
         </a>
     </div>
 
 
 
-    <section class="top-btn-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <% if (isAuthenticated) { %>
-                        <a href="/logout" class="main_btn">
-                            Log out
-                            <img src="img/next.png" alt="">
-                        </a>
-                    <% } else { %>
-                        <a href="/login" class="main_btn">
-                            Log in
-                            <img src="img/next.png" alt="">
-                        </a>
-                    <% } %>
-                </div>
-            </div>
-        </div>
-    </section>
 </header>
 
 
@@ -211,20 +194,16 @@
             <li><a href="/destination-weddings">Destination Weddings</a></li>
             <li><a href="/excursions">Excursions</a></li>
             <li>
-                <% if (isAuthenticated) { %>
-                    <a href="/travel-inquiry-form">Travel Inquiry Form</a>
-                <% } else { %>
-                    <a href="/travelinquiryformnoaccess">Travel Inquiry Form</a>
-                <% } %>
+                <a href="/travel-inquiry-form">Travel Inquiry Form</a>
             </li>
             <li>
-                <% if (isAuthenticated) { %>
-                    <a href="/contact">Contact Us</a>
-                <% } else { %>
-                    <a href="/contactnoaccess">Contact Us</a>
-                <% } %>
+                <a href="/make-payment">Make A Payment</a>
             </li>
-        </ul>
+            <li>
+                <a href="/contact">Contact Us</a>
+            </li>
+            
+        
     </div>
 
     <div class="toggle_icon" title="Menu Bar">
@@ -359,7 +338,7 @@ label {
 <body>
 
 
-    <h2 style="font-family: 'Mylestock Free', sans-serif !important; font-size: 70px; font-weight: 400; color: #090909; letter-spacing: 1px; margin-bottom: 20px; text-align: center;">
+    <h2 style="font-family: 'Satonda', sans-serif !important; font-size: 70px; font-weight: 400; color: #090909; letter-spacing: 1px; margin-bottom: 20px; text-align: center;">
         Travel Inquiry Form
     </h2>
     
@@ -386,7 +365,7 @@ label {
 </body>
 </html>
 
-<form method="POST" id="travelinquiryform" onsubmit="showSpinner()"
+<form action="https://formspree.io/f/mrbqzvwn" method="POST"
     style="max-width: 800px; width: 100%; margin: 0 auto; background-color: #f9f9f9;
            padding: 30px; border-radius: 10px; 
            border: 2px solid #37d7e5; 
@@ -395,34 +374,34 @@ label {
 
             <!-- First Name Input -->
             <div style="margin-bottom: 20px;">
-                <label for="fname" style="display: block; font-size: 18px; font-family: 'Klein Trial'; font-weight: 500; text-align: left; margin-bottom: 5px;">
+                <label for="First Name" style="display: block; font-size: 18px; font-family: 'Klein Trial'; font-weight: 500; text-align: left; margin-bottom: 5px;">
                     First Name
                 </label>
-                <input type="text" id="fname" name="fname" value="<%= userInfo.given_name %>" readonly
-                       style="width: 100%; font-family: 'Klein Trial'; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
+                <input type="text" id="First Name" name="First Name" 
+       style="width: 100%; font-family: 'Klein Trial'; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #333; background-color: #fff; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Last Name Input -->
             <div style="margin-bottom: 20px;">
-                <label for="lname" style="display: block;font-family: 'Klein Trial'; font-size: 18px; font-weight: 500;  text-align: left; margin-bottom: 5px;">
+                <label for="Last Name" style="display: block;font-family: 'Klein Trial'; font-size: 18px; font-weight: 500;  text-align: left; margin-bottom: 5px;">
                     Last Name
                 </label>
-                <input type="text" id="lname" name="lname" value="<%= userInfo.family_name %>" readonly
-                       style="width: 100%; padding: 15px; font-family: 'Klein Trial';font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #333; color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
+                <input type="text" id="Last Name" name="Last Name" 
+       style="width: 100%; padding: 15px; font-family: 'Klein Trial'; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #333; background-color: #fff; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Email Input -->
             <div style="margin-bottom: 20px;">
-                <label for="email" style="display: block;font-family: 'Klein Trial'; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="Email" style="display: block;font-family: 'Klein Trial'; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     Email
                 </label>
-                <input type="text" id="email" name="email" value="<%= userInfo.email %>" readonly
-                       style="width: 100%;font-family: 'Qarinthen'; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px;  color: #888888; background-color: #f0f0f0; cursor: not-allowed; outline: none; transition: border 0.3s;">
+                <input type="email" id="email" name="email"
+       style="width: 100%; font-family: 'Qarinthen'; padding: 15px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; color: #333; background-color: #fff; outline: none; transition: border 0.3s;">
             </div>
 
             <!-- Destination Input -->
             <div style="margin-bottom: 20px;">
-                <label for="destination" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="Destination" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     Where would you like to travel to?
                 </label>
                 <input type="text" id="destination" name="destination" required
@@ -431,7 +410,7 @@ label {
 
             <!-- Departure City Input -->
             <div style="margin-bottom: 20px;">
-                <label for="departure" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="Departure" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     What is your departure city?
                 </label>
                 <input type="text" id="departure" name="departure" required 
@@ -440,14 +419,14 @@ label {
 
             <!-- Dates Input -->
             <div style="margin-bottom: 20px;">
-                <label for="start_date" class="required" style="display: block; font-size: 18px;font-family: 'Klein Trial'; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="Start Date" class="required" style="display: block; font-size: 18px;font-family: 'Klein Trial'; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     Start Date
                 </label>
                 <input type="date" id="start_date" name="start_date" required 
                         style="width: 100%;font-family: 'Qarinthen'; padding: 15px; margin-top: 8px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
             </div>
             <div style="margin-bottom: 20px;">    
-                <label for="end-date" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="End Date" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     End Date
                 </label>
                 <input type="date" id="end_date" name="end_date" required 
@@ -456,7 +435,7 @@ label {
             
             <!-- Valid Passport Input -->
             <div style="margin-bottom: 20px;">
-                <label for="valid_passport" class="required" style="font-family: 'Klein Trial';display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="Valid Passport" class="required" style="font-family: 'Klein Trial';display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     Do you have a valid passport?
                 </label>
                 <div style="display: flex; align-items: center;">
@@ -471,7 +450,7 @@ label {
 
             <!-- Travelers Input -->
             <div style="margin-bottom: 20px;">
-                <label for="num_travelers" class="required" style="font-family: 'Klein Trial';display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="Number of Travelers" class="required" style="font-family: 'Klein Trial';display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     How many travelers?
                 </label>
                 <input type="number" id="num_travelers" name="num_travelers" required 
@@ -486,22 +465,22 @@ label {
                 </label>
             
                 <div style="display: flex; align-items: center;">
-                    <input type="radio" id="under_18_is_traveling" name="under_18_travelers" value="Yes" onclick="toggleTextboxAge(true)">
-                    <label for="under_18_is_traveling" style="font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Yes</label>
+                    <input type="radio" id="Travelers under 18" name="Travelers under 18" value="Yes" onclick="toggleTextboxAge(true)">
+                    <label for="Travelers under 18" style="font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">Yes</label>
                 </div>
                 <div style="display: none;font-family: 'Qarinthen'; margin-bottom: 20px;" id="under_18_traveler_count" name="under_18_traveler_count">
-                    <input type="number" name="under_18_traveler_count"
+                    <input type="number" name="Travelers under 28"
                            style="width: 100%; padding: 15px;font-family: 'Qarinthen'; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; outline: none; transition: border 0.3s;">
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <input type="radio" id="under_18_is_not_traveling" name="under_18_travelers" value="No" onclick="toggleTextboxAge(false)">
-                    <label for="under_18_is_not_traveling" style="font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">No</label>
+                    <input type="radio" id="Travelers over 18 " name="under_18_travelers" value="No" onclick="toggleTextboxAge(false)">
+                    <label for="Travelers over 18" style="font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; margin-left: 10px;">No</label>
                 </div>
             </div>
 
             <!-- Travel accommodation Input -->
             <div style="margin-bottom: 20px;">
-                <label for="accommodations" class="required" style="display: block; font-size: 18px; font-family: 'Klein Trial';font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="Accommodations" class="required" style="display: block; font-size: 18px; font-family: 'Klein Trial';font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     What travel accommodation is needed?
                 </label>
                 <div style="display: flex; align-items: center;">
@@ -520,7 +499,7 @@ label {
 
             <!-- Rooms Input -->
             <div style="margin-bottom: 20px;">
-                <label for="rooms" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="Rooms" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     How many rooms do you need?
                 </label>
                 <input type="number" id="rooms" name="rooms" required 
@@ -529,7 +508,7 @@ label {
 
             <!-- Payment Input -->
             <div style="margin-bottom: 20px;">
-                <label for="payment" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="Payment" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     How soon are you prepared to book/pay deposits?
                 </label>
                 <input type="date" id="payment" name="payment" required 
@@ -538,7 +517,7 @@ label {
 
             <!-- Atmosphere Input -->
             <div style="margin-bottom: 20px;">
-                <label for="atmosphere" class="required" style="font-family: 'Klein Trial';display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="Atmosphere" class="required" style="font-family: 'Klein Trial';display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     What type of atmosphere are you looking for?
                 </label>
                 <div style="display: flex; align-items: center;">
@@ -565,7 +544,7 @@ label {
 
             <!-- Budget Dropdown -->
             <div style="padding-bottom: 70px; display: block; width: 100%;">
-                <label for="budget" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 10px;">
+                <label for="Budget" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 10px;">
                     What is the budget per person? Please be as accurate as possible.
                 </label>
                 <select id="budget" name="budget" style="display: block; width: 100%; font-family: 'Klein Trial';max-width: 400px; padding: 10px; font-size: 18px; font-weight: 500; color: #333; border: 1px solid #ccc; border-radius: 5px; margin-top: 5px;">
@@ -579,7 +558,7 @@ label {
 
             <!-- Activities Input -->
             <div style="margin-bottom: 20px; display: block; width: 100%;">
-                <label for="activities" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 10px;">
+                <label for="Activities" class="required" style="display: block; font-family: 'Klein Trial';font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 10px;">
                     Which activities are you interested in?
                 </label>
 
@@ -607,7 +586,7 @@ label {
 
             <!-- Reference Input -->
             <div style="margin-bottom: 20px;">
-                <label for="reference" class="required" style="font-family: 'Klein Trial';display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
+                <label for="Reference" class="required" style="font-family: 'Klein Trial';display: block; font-size: 18px; font-weight: 500; color: #333; text-align: left; margin-bottom: 5px;">
                     How did you find me?
                 </label>
                 <input type="text" id="reference" name="reference" required 
@@ -708,21 +687,7 @@ label {
    </div>
 </div>
 
-<!-- Modals error -->
 
-<div id="error" class="modal modal-message fade" role="dialog">
-   <div class="modal-dialog">
-       <div class="modal-content">
-           <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                   <i class="fa fa-close"></i>
-               </button>
-               <h2>Sorry !</h2>
-               <p> Something went wrong </p>
-           </div>
-       </div>
-   </div>
-</div>
 
 <head>
     <script src="https://kit.fontawesome.com/83152295c7.js" crossorigin="anonymous"></script>

@@ -8,7 +8,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="img/Golden.png" type="image/png">
 	<title>Sayles Away Travel</title>
-
+    <link href="https://fonts.cdnfonts.com/css/satonda" rel="stylesheet">
+                
+                
     <link href="https://fonts.cdnfonts.com/css/mylestock-free" rel="stylesheet">
 
     <link href="https://fonts.cdnfonts.com/css/gold-lines-serif-trial" rel="stylesheet">
@@ -36,31 +38,15 @@
 <header style="display: flex; align-items: center; justify-content: space-between; padding: 0px 20px; background: linear-gradient(to right, #f9f9f9); border-bottom: 4px solid #37d7e5;">
     <div style="flex: 1; display: flex; justify-content: center; position: relative; margin-left: 80px;">
         <a href="/" style="display: inline-block;">
-            <img src="img/JPEG-small-size-transparent.png" alt="Logo" style="height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
+            <img src="img/JPEG-small-size-transparent.png" alt="Logo" 
+            style="display: block; margin: 0 auto; transform: translateX(-40px); height: 80px; max-width: 100%; object-fit: contain; z-index: 1;">
+       
         </a>
     </div>
 
 
 
-    <section class="top-btn-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <% if (isAuthenticated) { %>
-                        <a href="/logout" class="main_btn">
-                            Log out
-                            <img src="img/next.png" alt="">
-                        </a>
-                    <% } else { %>
-                        <a href="/login" class="main_btn">
-                            Log in
-                            <img src="img/next.png" alt="">
-                        </a>
-                    <% } %>
-                </div>
-            </div>
-        </div>
-    </section>
+ 
 </header>
 
 
@@ -70,7 +56,7 @@
 <body>
     <style>
     .title {
-    font-family: 'Mylestock Free', sans-serif;
+    font-family: 'Satonda', sans-serif;
     font-size: 36px;
     font-weight: 400;
     color: #090909;
@@ -228,20 +214,15 @@
             <li><a href="/destination-weddings">Destination Weddings</a></li>
             <li><a href="/excursions">Excursions</a></li>
             <li>
-                <% if (isAuthenticated) { %>
-                    <a href="/travel-inquiry-form">Travel Inquiry Form</a>
-                <% } else { %>
-                    <a href="/travelinquiryformnoaccess">Travel Inquiry Form</a>
-                <% } %>
+                <a href="/travel-inquiry-form">Travel Inquiry Form</a>
             </li>
             <li>
-                <% if (isAuthenticated) { %>
-                    <a href="/contact">Contact Us</a>
-                <% } else { %>
-                    <a href="/contactnoaccess">Contact Us</a>
-                <% } %>
+                <a href="/make-payment">Make A Payment</a>
             </li>
-        </ul>
+            <li>
+                <a href="/contact">Contact Us</a>
+            </li>
+            
         
     </div>
 
@@ -272,9 +253,10 @@
         }
 
 		.title {
-    font-family: 'Mylestock Free', sans-serif;
+    font-family: '', 'Satonda',sans-serif;
     font-size: 80px;
     color: #090909;
+    font-weight: 10;
     letter-spacing: 1.5px;
     line-height: 1.4;
     text-align: center; 
@@ -357,7 +339,7 @@
 
 
 .about-title {
-    font-family: 'Mylestock Free', sans-serif;
+    font-family: 'Satonda', sans-serif;
     font-size: 80px;
     font-weight: 400;
     margin-bottom: 20px;
@@ -500,6 +482,13 @@ label {
 
 
     <div class="title">Sayles Away Travel</div>
+    <p style="font-family: 'Klein Trial', serif; font-size: 22px; color: #333; max-width: 900px; margin: 30px auto 0; text-align: center; line-height: 1.8;">
+        Welcome to Sayles Away Travel! I’m a travel expert specializing in group travel, destination weddings, and all-inclusive resort getaways.
+        Whether you’re planning a romantic wedding, a milestone celebration with friends and family, or a stress-free escape for your group,
+        I’m here to make the process seamless and enjoyable. My goal is to turn your vision into a beautifully executed reality!
+    </p>
+    
+    
 
     
     <div class="service-container">
@@ -582,7 +571,7 @@ label {
         <!-- Text Section -->
         <div class="about-text-container">
             <h2 class="about-title">About Us</h2>
-            <p class="klein-trial-text">
+            <p class="klein-trial-text"; color:#333;>
                 After planning my dream destination wedding, I knew becoming a travel agent was the best way to express my passion for traveling. 
                 Whether it's group travel or a family vacation, I'm here to assist with your travel needs. I offer a variety of services including:
                 customized quotes, trip itineraries/excursions, and packages for groups, solo travelers, couples, etc.
