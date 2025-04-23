@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://saylesawaytravel.com/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://saylesawaytravel.com/group-travel-services</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://saylesawaytravel.com/destination-weddings</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://saylesawaytravel.com/excursions</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://saylesawaytravel.com/travel-inquiry-form</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://saylesawaytravel.com/make-payment</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://saylesawaytravel.com/contact</loc>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://saylesawaytravel.com/privacy-policy</loc>
+    <priority>0.50</priority>
+  </url>
+
+  <url>
+    <loc>https://saylesawaytravel.com/terms-of-service</loc>
+    <priority>0.50</priority>
+  </url>
+
+</urlset>
