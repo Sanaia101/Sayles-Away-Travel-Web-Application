@@ -1,17 +1,50 @@
-# Follow these steps to run the application
+🧳 Sayles Away Travel
+Welcome to the Sayles Away Travel website — a beautifully branded platform designed for a boutique travel business specializing in group travel, destination weddings, and all-inclusive getaways.
 
-Pre-requisites: Download Python (https://www.python.org/downloads/) and make sure that Python is added to your system's PATH environment variables during installation. Download Node.js (https://nodejs.org/en/download).
 
-1. Open the terminal and navigate to the CIS-4375-Team-06-Spring-2025-main folder path. (May need to do this twice as extracting a zip file can create a nested folder inside with the same exact name)
- 
-2. Run the command "pip install -r pipreqs.txt" to install all pip dependencies.
+✨ Overview
+This project was created to provide a seamless and engaging experience for travelers looking to plan their next adventure with Sayles Away Travel.
 
-3. Create a .env file in the CIS-4375-Team-06-Spring-2025-main folder. In the .env file, create sender_gmail and email_password as empty string variables. Put your gmail address into the sender_gmail variable. Put your gmail password into the email_password variable if there is no 2 step authentication on the account. If 2 step authentication is enabled, go to this link (https://support.google.com/mail/answer/185833?hl=en) and follow the instructions to create and retrieve your app password. Once you have your app password, put it into the email_password variable in the .env file. 
+As the Project Manager and Lead Developer, I oversaw the full lifecycle of this website, from concept and planning to implementation, styling, deployment, and SEO optimization.
 
-4. Run the command "npm install" to install all dependencies.
+💻 Built With
+HTML5 / CSS3 / JavaScript / Node.js / Express
 
-5. Open another terminal and navigate to the backend folder path. Run the command "python backendapi.py" to launch the flask server. If Python is not in your system's PATH environment variables, run the command "py backendapi.py" to launch the flask server.
+Bootstrap 4 for responsive layout
 
-6. Go back to the original terminal that points to the CIS-4375-Team-06-Spring-2025-main folder path. Run the command "node server.js" to launch the server.
+Custom Google Fonts for branded typography
 
-7. Go to http://localhost:8080 to view the website.
+Render for deployment
+
+Squarespace DNS for domain management
+
+Google Search Console for SEO indexing
+
+Formspree for form handling (inquiry form)
+
+🔧 Features
+🖥️ Responsive Design — Optimized for desktop, tablet, and mobile
+
+🎥 Video Previews — Custom video sections with interactive play buttons
+
+📋 Travel Inquiry Form — Easily collect client requests
+
+✈️ Service Highlights — Showcase group travel, destination weddings, and international escapes
+
+🔍 SEO Ready — Sitemap integration and meta tag optimization
+
+🛠️ Easy Navigation — Toggle sidebar with intuitive layout
+
+
+📌 Deployment
+The live site is hosted at:
+🔗 https://saylesawaytravel.com
+
+📈 My Role
+🧠 Project Manager: Led a team of 7 during development
+
+🖌️ Lead Frontend Developer: Built the user interface, video features, responsive design, and custom styling
+
+🌍 Deployed and connected the custom domain via Render + Squarespace
+
+📊 Implemented SEO: Custom meta tags, sitemap.xml, and Google Search Console integration
