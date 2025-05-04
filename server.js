@@ -18,6 +18,8 @@ app.get('/terms-of-service', (req, res) => res.render('terms-of-service'));
 app.get('/privacy-policy', (req, res) => res.render('privacy-policy'));
 app.get('/contact', (req, res) => res.render('contact'));
 app.get('/travel-inquiry-form', (req, res) => res.render('travel-inquiry-form'));
+app.get('/destinations', (req, res) => res.render('destinations'));
+
 
 // Start server
 const PORT = process.env.PORT || 8080;
